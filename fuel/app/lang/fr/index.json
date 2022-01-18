@@ -1,0 +1,175 @@
+{
+    "title" : "Acceuil",
+    "slider" : {
+        "invest" : {
+            "subtitle": "Votre société de placement financier en Afrique",
+            "title" : "Investissez comme <br> vous le pensez !",
+            "paragraph" : "Laissez votre argent travailler pour vous et savourez les bénéfices qu'il vous génère grâce à un rendement mensuel égale à 10%.",
+            "button" : "En savoir plus",
+            "url" : "#"
+        },
+        "health" : {
+            "subtitle": "Le canal par lequel vous exprimez votre philantropie",
+            "title" : "Montrez-vous solidaire <br> envers les démunis !",
+            "paragraph" : "Par manque d'assurance médicale et surtout par manque d'argent, 2 congolais sur 5 meurent dans les hôpitaux locaux.",
+            "button" : "Apporter de l'aide",
+            "url" : "#"
+        },
+        "art" : {
+            "subtitle": "Votre point d'accès à l'art contemporain congolais",
+            "title" : "Importez l'art <br> congolais chez vous !",
+            "paragraph" : "La république démocratique du Congo possède un artisanat unique et de grande qualité, avec des très belles pièces.",
+            "button" : "Visitez la boutique",
+            "url" : "#"
+        },
+        "it" : {
+            "subtitle": "Le partenaire idéal pour des projets de transformation numérique en RDC",
+            "title" : "Bénéficiez du meilleur <br> rapport qualité/prix !",
+            "paragraph" : "Nous offrons un accompagnement en termes de Conseil, d'Assistance à la Maîtrise d'ouvrage et de Maîtrise d'oeuvre.",
+            "button" : "En savoir plus",
+            "url" : "#"
+        },
+        "crowdfunding" : {
+            "subtitle": "Votre plateforme de financement participatif en RDC",
+            "title" : "Financez en termes de don, <br> de prêt ou d'investissement !",
+            "paragraph" : "En RDC, faute de politique permettant l'accès aux entrepreneurs au crédit bancaire, beaucoup de projets viables et rentables ne peuvent être réalisés.",
+            "button" : "Parcourrir les projets",
+            "url" : "#"
+        }
+    },
+    "whatwedo" : {
+        "title": "Ce que nous faisons",
+        "subtitle": "Nous exerçons dans le commerce général et dans l'IT avec un ensemble d'activités <br>allant de celles permettant le placement des capitaux à celles qui sont philantropiques.",
+        "invest" : {
+            "title" : "Placement des capitaux",
+            "paragraph": "Nous permettons le placement d'argent dans nos activités, sous forme d'investissement mezzanine, et dans d'autres projets sous forme de don, de prêt ou d'investissement à travers notre plateforme de financement participatif."
+        },
+        "art": {
+            "title" : "Promotion de l'art et de l'artisanat congolais",
+            "paragraph" : "Nous avons constitué le marché numérique de cet artisanat unique, de grande qualité et imputable à l'incroyable talent des artisans congolais, aux styles et influences spécifiques à chaque région/ethnie de la république démocratique du Congo."
+        },
+        "it": {
+            "title" : "Services informatiques",
+            "paragraph" : "Nous apportons reponse à tout type de besoin en informatique : Gouvernance des SI (Audit & Conseil), Réseaux et Télématiques, Analyse des données et BI, Cybersécurité, Acquisition et Maintenance d'infrastructures, Acquisition ou Implementation et Maintenance de solutions applicatives (ERP, Développement Web & Mobile, Intégration), Marketing Digital (Web Ads, e-Reputation, Conception graphique) et Formation."
+        },
+        "health": {
+            "title" : "Activités philantropiques",
+            "paragraph" : "Nous essayons, du mieux que l'on peut, de venir en aide aux démunis dans les centres hospitaliers en république démocratique du Congo, en général, et à Kinshasa, en particulier. Et grâce à notre plateforme de sponsoring des soins de santé des démunis, nous nous ouvrons au monde afin de permettre aux autres de faire comme nous."
+        }
+    },
+    "expertise" : {
+        "title": "Nos domaines d'expertise",
+        "subtitle" : "Découvrez ici un ensemble de nos domaines d'expertise et dites-nous lequel de nos services correspond à votre besoin. <br>Ou bien, trouvez-y carrément la raison pour laquelle vous investirez dans nos activités.",
+        "button" : "En savoir plus",
+        "more" : "Tout découvrir",
+        "url" : "#",
+        "audit" : {
+            "title" : "Audit & Contrôle",
+            "grandparent" : "Informatique",
+            "parent" : "Gouvernance des SI",
+            "img": "audit.jpg",
+            "url": "#"
+        },
+        "network" : {
+            "title" : "Déploiement des réseaux d'entreprises",
+            "grandparent" : "Informatique",
+            "parent" : "Systèmes & Réseaux",
+            "img": "network.jpg",
+            "url": "#"
+        },
+        "ops" : {
+        },
+        "dev" : {
+            "title" : "Applications mobiles (Android & iOS)",
+            "grandparent" : "Informatique",
+            "parent" : "Développement d'applications",
+            "img": "dev.jpg",
+            "url": "#"
+        },
+        "cybersecurity" : {
+            "title" : "Cybersécurité",
+            "grandparent" : "Informatique",
+            "parent" : "Systèmes & Réseaux",
+            "img": "cybersecurity.jpg",
+            "url": "#"
+        },
+        "marketing" : {
+            "title" : "Community Management",
+            "grandparent" : "Informatique",
+            "parent" : "Marketing & BI",
+            "img": "marketing.jpg",
+            "url": "#"
+        },
+        "data" : {
+            "title" : "Analyse des données",
+            "grandparent" : "Informatique",
+            "parent" : "Marketing Digital & BI",
+            "img": "data.jpg",
+            "url": "#"
+        },
+        "training" : {
+
+        },
+        "trading" : {
+            "title" : "Investissement en bourse",
+            "grandparent" : "Finance",
+            "parent" : "Marchier boursier",
+            "img": "trading.jpg",
+            "url": "#"
+        }
+    },
+    "satisfaction" : {
+        "network": {
+            "title": "Infrastructures déployées",
+            "stats": 25
+        },
+        "invest": {
+            "title": "Investisseurs satisfaits",
+            "stats": 65
+        },
+        "dev": {
+            "title": "Applications livrées",
+            "stats": 39
+        },
+        "audit": {
+            "title": "Missions d'audit réalisées",
+            "stats": 11
+        }
+    },
+    "testimonials" : {
+        "title": "Quelques témoignages",
+        "subtitle" : "Nous récoltons et nous continuerons à récolter pour vous des témoignages de <br>ceux qui nous font confiance afin de partager leur expérience avec vous.",
+        "testimonies" : [
+            {
+                "name" : "Divine Kiengi",
+                "title": "Directeur Gérant chez Rouah SARL",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            },
+            {
+                "name" : "Ange Mombu",
+                "title": "Chargé des opérations chez AZ",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            },
+            {
+                "name" : "Glory Kakessa",
+                "title": "CEO chez Akilix",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            },
+            {
+                "name" : "Jonathan Ndaye",
+                "title": "Ingénieur chez iEngineering",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            },
+            {
+                "name" : "Achille MUYAKA",
+                "title": "System Administrator chez AEDES/RDC",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            }
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "title" : "Paiement direct",
+    "home" : "Accueil",
+    "aboutinvest" : "Placement des capitaux",
+    "form":{
+        "top":{
+            "title": "Bienvenue au module de paiement direct !",
+            "paragraph": "Ce module vous permet d'effectuer directement un paiement relatif à votre placement d'argent sans avoir à passer par d'autres processus. Ces différents processus seront réalisés de façon implicite."
+        },
+        "input":{
+            "amount":{
+                "label": "Montant en USD",
+                "placeholder" : "Entrez la valeur du montant en USD ici",
+                "error" : ""
+            },
+            "payer":{
+                "label": "Prénom et Nom",
+                "placeholder" : "Entrez votre nom et votre prénom ici",
+                "error" : ""
+            },
+            "email":{
+                "label": "Email",
+                "placeholder" : "Entrez votre adresse email ici",
+                "error" : ""
+            },
+            "submit": {
+                "value": "Valider"
+            }
+        },
+        "notice":"Vous allez être redirigé vers la solution de paiement en ligne fournie par notre partenaire."
+    },
+    "trouble": {
+        "indication": "Avez-vous un souci avec ce formulaire ?",
+        "contact" : "Contactez-nous !"
+    }
+}
