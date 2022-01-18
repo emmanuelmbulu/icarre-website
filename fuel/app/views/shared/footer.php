@@ -1,5 +1,7 @@
 <?php
-    use Fuel\Core\Config;
+
+use Fuel\Core\Asset;
+use Fuel\Core\Config;
 
 ?>
 <footer class="section footer-section bg-secondary">
@@ -12,7 +14,7 @@
                         <div class="footer-logo">
                             <div id="hs_cos_wrapper_footer_logo" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-logo" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                 <span id="hs_cos_wrapper_footer_logo_hs_logo_widget" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" data-hs-cos-general-type="widget" data-hs-cos-type="logo"><a href="https://19899805.hs-sites.com/en-us/terbay/home?hsLang=en-us" id="hs-link-footer_logo_hs_logo_widget" style="border-width:0px;border:0px;">
-                                    <img src="//fs.hubspotusercontent00.net/hub/19899805/hubfs/raw_assets/public/terbay/images/logo/footer-logo.png?width=177&amp;name=footer-logo.png" class="hs-image-widget " style="width:177px;border-width:0px;border:0px;" width="177" alt="Footer logo" title="Footer logo"></a>
+                                    <img src="<?= Asset::get_file("logo_large_reverse.png", "img") ?>" class="hs-image-widget " style="width:177px;border-width:0px;border:0px;" width="177" alt="Footer logo" title="Footer logo"></a>
                                 </span>
                             </div>
                         </div>

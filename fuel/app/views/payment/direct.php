@@ -49,7 +49,7 @@ Lang::load("payment_direct.json", null, $lang);
               <?= Form::open(array("method" => "post", "id" => "direct-payment-form", "onsubmit" => "onFormSubmit()", "data-hs-do-not-collect" => "")) ?>
                 <?= Form::csrf() ?>
                 <?php
-                  $form = Fieldset::forge('payment')->add_model('Model_Payment');
+                  $form = $form == null ? Fieldset::forge('payment')->add_model('Model_Payment') : $form;
                   $prepattern = "<div class='row'><div class='col-md-6 col-sm-12'>";
                   $prepattern1 = "<div class='col-md-6 col-sm-12'>";
                   $postpattern = "</div></div>";

@@ -2,8 +2,10 @@
 
 use Fuel\Core\Config;
 use Fuel\Core\Cookie;
+use Fuel\Core\File;
 use Fuel\Core\Response;
 use Fuel\Core\Router;
+use Fuel\Core\Uri;
 
 /**
  * Created by Fabrice MANDEKE.
@@ -115,4 +117,35 @@ class Helper {
         }
         return $lang;
     }
+
+    /**
+     * Function that manage error occured and report it to a file
+     * @param object $e : The error that occured
+     * @return null
+     */
+    static public function archiverErreur($e) {
+        $i = 0;
+        try {
+            $url = Uri::base(false) . substr($_SERVER['REQUEST_URI'], 1);
+            $message = 'Error: "' . $e->getMessage() .'". File: "' . $e->getFile() . '". Line: ' . $e->getLine() . '. Uri: "'. $url . '"';
+
+            if(File::exists(DOCROOT.'/error.log.text')) {
+                File::append(DOCROOT, '/error.log.text', date("Y-m-d H:i:s")." ".$message."\n");
+            } else {
+                File::create(DOCROOT, '/error.log.text', date("Y-m-d H:i:s")." ".$message."\n");
+            }
+        } catch(Exception $e) {
+            $i++;
+        }
+    }
+
+    /**
+     * Function that return the current datetime in Y-m-d H:i:s format
+     * @param null
+     * @return string : The datetime value in string
+     */
+    static public function renvoyerNow() {
+        return (new DateTime("NOW"))->format('Y-m-d H:i:s');
+    }
+
 }
