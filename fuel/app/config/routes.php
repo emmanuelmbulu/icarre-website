@@ -73,4 +73,9 @@ return array(
 
 	'(:lang)/invest-with-us' => array('default/kyc', 'name' => "kyc"),
 	'invest-with-us' => array('default/kyc', 'name' => "kyc-without-lang-param"),
+
+	/**
+	 * Receipt route
+	 */
+	'payment/receipt/:ref/pdf-file' => array('receipt/pdf', 'name' => "receipt-pdf"),
 );

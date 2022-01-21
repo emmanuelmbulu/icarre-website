@@ -49,6 +49,7 @@
         "error": "La valeur saisie pour le montant à payer n'est pas correcte. Veillez saisir une valeur valide qui soit inférieure ou égale au reste à payer."
     },
     "callback": {
+        "description" : "Paiement d'une tranche de :amount :currency sur la facture :reference",
         "approved": {
             "title" : "Votre paiement a abouti !",
             "message" : "Vous pouvez télécharger la preuve de paiement en cliquant sur le lien ci-dessous.",
