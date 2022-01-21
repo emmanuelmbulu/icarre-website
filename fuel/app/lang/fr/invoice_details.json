@@ -1,0 +1,62 @@
+{
+    "title": "Facture :reference",
+    "reference": "Facture réf.: :reference",
+    "amount": ":value :currency",
+    "details" : {
+        "title": "Détails de la facture",
+        "reference" : "Référence :",
+        "date" : "Date :",
+        "total" : "Total à payer :",
+        "paid": "Total payé :",
+        "status" : {
+            "label" : "Statut :",
+            "paid" : "Soldée",
+            "unpaid" : "A solder"
+        }
+    },
+    "client": {
+        "title": "Détails du client",
+        "email": "Email :",
+        "phone" : "Tél. :"
+    },
+    "items": {
+        "label": "ITEM",
+        "quantity": "QUANTITE",
+        "price": "COUT UNITAIRE",
+        "total": "COUT TOTAL"
+    },
+    "add": {
+        "ht" : "MONTANT HT :",
+        "vat": "TVA (:value %) :",
+        "ttc" : "TOTAL A PAYER TTC :"
+    },
+    "payments" : {
+        "date" : "DATE",
+        "reference" : "REFERENCE",
+        "status" : "STATUT",
+        "approved" : "Approuvé",
+        "cancelled" : "Non abouti",
+        "amount" : "MONTANT",
+        "channel" : "MOYEN DE PAIEMENT",
+        "receipt" : "PREUVE",
+        "empty": "Nous n'avons trouvé aucun paiement effectué pour cette facture."
+    },
+    "input": {
+        "title": "Nous vous offrons la possibilité de payer en plusieurs tranches.",
+        "label": "Montant à payer en :currency",
+        "placeholder" : "Entrez le montant que vous souhaitez payer ici",
+        "button" : "Valider",
+        "error": "La valeur saisie pour le montant à payer n'est pas correcte. Veillez saisir une valeur valide qui soit inférieure ou égale au reste à payer."
+    },
+    "callback": {
+        "approved": {
+            "title" : "Votre paiement a abouti !",
+            "message" : "Vous pouvez télécharger la preuve de paiement en cliquant sur le lien ci-dessous.",
+            "link": "Télécharger la preuve de paiement."
+        },
+        "cancelled" : {
+            "title": "Votre paiement a échoué !",
+            "message": "Pour une ou plusieurs raisons votre paiement n'a pas abouti. Veillez entrer en contact avec le fournisseur du moyen de paiement que vous avez utilisé pour plus amples informations"
+        }
+    }
+}

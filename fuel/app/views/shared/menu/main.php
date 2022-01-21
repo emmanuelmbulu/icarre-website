@@ -1,7 +1,10 @@
 <?php
 use Fuel\Core\Asset;
+use Fuel\Core\Lang;
+use Fuel\Core\Router;
 use Fuel\Core\Uri;
 
+Lang::load("main_menu.json", null, $lang);
 ?>
 <div class="header-bottom section header-sticky">
     <div class="container">
@@ -33,7 +36,8 @@ use Fuel\Core\Uri;
                     <div id="hs_cos_wrapper_navigation-primary" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation sub-menu hs-menu-children-wrapper level-1" aria-hidden="false">
-                                <li class="no-has-children menu-item"><a class="menu-link active active-item" href="<?= Uri::base(false)."$lang/home" ?>" aria-current="page">Accueil</a></li>
+                                <li class="no-has-children menu-item"><a class="<?= $active == "index" ? 'menu-link active active-item' : 'navs-link' ?>" href="<?= Uri::base(false)."$lang/home" ?>" aria-current="page"><?= Lang::get("home", [], null, $lang) ?></a></li>
+                                <li class="no-has-children menu-item"><a class="<?= $active == "about" ? 'menu-link active active-item' : 'navs-link' ?>" href="<?= Router::get("about", ["lang" => $lang]) ?>" aria-current="page"><?= Lang::get("about", [], null, $lang) ?></a></li>
                                 <li class="has-children menu-item">
                                     <a class="navs-link" href="?hsLang=en-us">Template</a>
                                     <ul class="navigation sub-menu hs-menu-children-wrapper level-2" aria-hidden="true">

@@ -27,6 +27,13 @@ class Model_Payment extends \Orm\Model {
                 "type" => false,
             )
 		),
+		"channel" => array(
+			"label" => "form.input.channel.label",
+			"data_type" => "varchar",
+            "form" => array(
+                "type" => false,
+            )
+		),
 		"reference" => array(
 			"label" => "form.input.reference.label",
 			"data_type" => "varchar",

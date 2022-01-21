@@ -1,6 +1,7 @@
 <?php
 use Fuel\Core\Asset;
 use Fuel\Core\Lang;
+use Fuel\Core\Router;
 
 Lang::load('index.json', null, $lang);
 
@@ -54,7 +55,7 @@ Asset::add_path('assets/videos/', 'mp4');
                                                         <span class="sub-title"><?= Lang::get("slider.invest.subtitle", [], null, $lang) ?> </span>
                                                         <h2 class="title"><?= Lang::get("slider.invest.title", [], null, $lang) ?> </h2>
                                                         <p><?= Lang::get("slider.invest.paragraph", [], null, $lang) ?></p>
-                                                        <a class="btn btn-hover-secondary btn-primary" href="<?= Lang::get("slider.invest.url", [], null, $lang) ?>"><?= Lang::get("slider.invest.button", [], null, $lang) ?></a>
+                                                        <a class="btn btn-hover-secondary btn-primary" href="<?= Router::get("about", ["lang" => $lang]) ?>"><?= Lang::get("slider.invest.button", [], null, $lang) ?></a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -9,11 +9,6 @@ use Fuel\Core\Asset;
         <title><?= isset($title) ? "iCarré - $title" : "iCarré - Des idées intelligentes" ?></title>
         <link rel="shortcut icon" href="<?= Asset::get_file("our-logo-to-use-as-icon.png", "img") ?>">
         <meta name="description" content="">
-
-
-        <script src="https://kit.fontawesome.com/f2711dea4c.js" crossorigin="anonymous"></script>
-
-
         <meta property="og:description" content="">
         <meta property="og:title" content="iCarré - Des idées intelligentes">
         <meta name="twitter:description" content="">
@@ -26,8 +21,6 @@ use Fuel\Core\Asset;
             "search-input.css",
             ""
         ]) ?>
-
-
 
         <link rel="canonical" href="https://icarre-rdc.com">
 
@@ -42,6 +35,7 @@ use Fuel\Core\Asset;
         <style>
             a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
         </style>
+        <script src="https://kit.fontawesome.com/ce6806c18f.js" crossorigin="anonymous"></script>
     </head>
     <body>
     <div class="body-wrapper hs-content-id-48845610400 hs-site-page page ">      
@@ -132,8 +126,6 @@ use Fuel\Core\Asset;
         "odometer.js",
         "main.js"
     ]) ?>
-
-    <script src="48248452365/1623747430870/terbay/js/plugins/aos.min.js"></script>
 
     <script>
         if (typeof hsVars !== 'undefined') { hsVars['language'] = 'en-us'; }

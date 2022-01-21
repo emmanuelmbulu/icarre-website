@@ -22,12 +22,13 @@ return array(
 
 	/**
 	 * -------------------------------------------------------------------------
-	 *  Page not found
+	 *  Http Erros
 	 * -------------------------------------------------------------------------
 	 *
 	 */
 
 	'_404_' => 'default/404',
+	'_500_' => 'default/500',
 
 	/**
 	 * -------------------------------------------------------------------------
@@ -45,6 +46,15 @@ return array(
 	 */
 	'(:lang)/direct-payment' => array("payment/direct", 'name' => "direct-payment"),
 	'direct-payment' => array("payment/direct", 'name' => "direct-payment-without-lang-param"),
+	
+	/**
+	 * Bill routes
+	 */
+	'(:lang)/billing/:ref/details' => array("bill/details", 'name' => "details-bill"),
+	'direct-payment/:ref/details' => array("bill/details", 'name' => "details-bill-without-lang-param"),
+
+	'(:lang)/create-invoice' => array("bill/create", 'name' => "create-invoice"),
+	'create-invoice' => array("bill/create", 'name' => "create-invoice-without-lang-param"),
 
 	/**
 	 * Default routes
@@ -52,6 +62,15 @@ return array(
 	'(:lang)/page-not-found' => array('default/404', 'name' => "page-not-found"),
 	'page-not-found' => array('default/404', 'name' => "page-not-found-without-lang-param"),
 
+	'(:lang)/server-error-occured' => array('default/500', 'name' => "error-500"),
+	'server-error-occured' => array('default/500', 'name' => "error-500-without-lang-param"),
+
 	'(:lang)/home' => array('default/index', 'name' => "index"),
 	'home' => array('default/index', 'name' => "index-without-lang-param"),
+
+	'(:lang)/about-us' => array('default/about', 'name' => "about"),
+	'about-us' => array('default/about', 'name' => "about-without-lang-param"),
+
+	'(:lang)/invest-with-us' => array('default/kyc', 'name' => "kyc"),
+	'invest-with-us' => array('default/kyc', 'name' => "kyc-without-lang-param"),
 );

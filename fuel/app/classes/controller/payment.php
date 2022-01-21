@@ -36,9 +36,8 @@ class Controller_Payment extends Controller_Hybrid {
 
             if(!$directForm->error("amount") && !$directForm->error("direct_payer")) {
                 $payment = Dao_Payment::persistDirect($payment, $directForm);
-                Cookie::set("direct-payment", $payment->id, 5 * 60);
-
                 if($payment != null) {
+                    Cookie::set("direct-payment", $payment->id, 5 * 60);
                     $route_name = "direct-payment";
                     return $this->buildPage($lang, $route_name, $route_name, "payment/redirect", ["payment" => $payment]);
                 }
