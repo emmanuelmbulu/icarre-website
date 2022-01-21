@@ -116,7 +116,7 @@ class Controller_Bill extends Controller_Hybrid {
         try {            
             Lang::load("invoice_details.json", null, $lang);
 
-            $ref = Input::get("transaction_id", 0);
+            $ref = Input::get("Reference", 0);
             $bill = Model_Bill::find($ref);
             if($bill == null) {
                 $route = Router::get("page-not-found", ["lang" => $lang]);
@@ -246,7 +246,7 @@ class Controller_Bill extends Controller_Hybrid {
         $client->phone = "+243813700243";
 
         $description = "Déploiement du premier livrable de l'application mobile";
-        $price = 5000;
+        $price = 50;
         $item = new Bill_Item($description, $price, 1);
 
         $bill = new Model_Bill();
