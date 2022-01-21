@@ -121,7 +121,7 @@ class Helper {
             if(Config::get("$lang") == null) {
                 $args["lang"] = "fr";
                 return Response::redirect(Router::get($route_name, $args));
-            } else Cookie::set("lang", $lang);
+            } else Cookie::set("lang", $lang, 30 * 24 * 60 * 60);
         }
         return $lang;
     }

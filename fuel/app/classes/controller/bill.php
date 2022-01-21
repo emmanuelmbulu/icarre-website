@@ -235,6 +235,131 @@ class Controller_Bill extends Controller_Hybrid {
         }
     }
 
+    public function post_callback() {
+        $lang = Helper::manageLanguage($this, "details-bill", ["ref" => 0]);
+
+        try {            
+            Lang::load("invoice_details.json", null, $lang);
+
+            $ref = Input::post("Reference", 0);
+            $bill = Model_Bill::find($ref);
+            if($bill == null) {
+                $route = Router::get("page-not-found", ["lang" => $lang]);
+                return Response::redirect($route, "location", 404);
+            }
+
+            $payment = new Bill_Payment();
+            $status = Input::post("status", "cancelled");
+            $payment->set_status($status);
+            //$payment->reference = $bill->reference;
+            $payment->reference = "ICIP-".Input::post("order", 0);
+            $payment->reference .= "-".Input::post("paymentID", 0);
+            $payment->reference .= "-".Input::post("transaction_id", 0);
+            $payment->amount = Input::post("amount", 0);
+            $payment->channel = Input::post("PaymentMethod", "undefined");
+            $payment->date = Input::post("transaction_date");
+            $payment->ip_address = Cookie::get("ip", "0.0.0.0");
+            $payment->receipt = "#";
+
+            $date_format = "Y-m-d h:i:s";
+            if($lang == "fr") {
+                $date_format = "d/m/Y h:i:s";
+            }
+
+            if($payment->status == "approved") {
+                $client = $bill->get_client();
+
+                $pathToModel = DOCROOT."/assets/bills/".$lang."-model.docx";
+                $phpdocx = new TemplateProcessor($pathToModel);
+
+                $phpdocx->setValues(array(
+                    /**
+                     * PAYMENT
+                     */
+                    "reference" => $payment->reference,
+                    "payment_date" => date($date_format, strtotime($payment->date)),
+                    "payment_channel" => $payment->channel,
+                    "channel_reference" => Input::post("order", "undefined"),
+
+                    /**
+                     * CLIENT
+                     */
+                    "payer_fullname" => $client->fullname,
+                    "payer_address" => $client->address,
+                    "payer_mail" => $client->email,
+
+                    /**
+                     * ITEM
+                     */
+                    "item_description" => Lang::get("callback.description", 
+                        [
+                            "amount" => $payment->amount,
+                            "currency" => $bill->currency,
+                            "reference" => $bill->reference
+                        ], null, $lang
+                    ),
+                    "item_unit" => 1,
+                    "item_quantity" => 1,
+                    "item_price" => $payment->amount,
+                    "item_total" => $payment->amount,
+                    "total_ht" => $payment->amount,
+                    "tva_value" => 0,
+                    "tva_amount" => 0,
+                    "currency" => $bill->currency,
+                    "total_ttc" => $payment->amount,
+                ));
+
+                $dossier = DOCROOT."/receipts/";
+                $receiptRef = strtolower(Helper::NormalizeChars($payment->reference));
+                 
+                $pathToQRCode = $dossier."receipt-".$receiptRef.".png";
+                $contenuQRCode = Router::get("receipt-pdf", ["ref" => $receiptRef]);
+                $payment->receipt = $contenuQRCode;
+                QRcode::png($contenuQRCode, $pathToQRCode, QR_ECLEVEL_H, 4, 2);
+
+                $phpdocx->setImageValue('qrcode', array(
+                    'path' => $pathToQRCode, 
+                    'width' => 100, 
+                    'height' => 100,
+                    'ratio' => false
+                    )
+                );
+
+                $fichier_docx = $dossier."receipt-".$receiptRef.".docx";
+                $phpdocx->saveAs($fichier_docx);
+
+                // CONVERT THE DOCS DOCUMENT TO PDF DOCUMENT
+                shell_exec('libreoffice --headless --convert-to pdf '.$fichier_docx.' --outdir '.$dossier);
+
+                // DELETE THE DOCX DOCUMENT CREATED AND THE PNG FILE.
+                File::delete($fichier_docx);
+                File::delete($pathToQRCode);
+            }
+
+            $bill->add_payment($payment);
+            $bill->save();
+
+            $items = $bill->get_items();
+            $client = $bill->get_client();
+            $payments = $bill->get_payments();
+            $context = [
+                "status" => $payment->status,
+                "receipt" => $payment->receipt,
+                "invoice" => $bill,
+                "items" => $items,
+                "client" => $client,
+                "payments" => $payments,
+            ];
+
+            $title = Lang::get("title", ["reference" => $bill->reference], null, $lang);
+            return $this->buildPage($lang, "invoice/details", $title, $context);         
+        } catch (\Throwable $th) {
+            Helper::archiverErreur($th);
+            $route = Router::get("error-500", ["lang" => $lang]);
+            return Response::redirect($route, "location", 500);
+        }
+    }
+
     public function get_create() {
         $lang = Helper::manageLanguage($this, "details");
 
