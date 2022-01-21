@@ -3,6 +3,7 @@
 use Fuel\Core\Config;
 use Fuel\Core\Form;
 use Fuel\Core\Lang;
+use Fuel\Core\Router;
 use Fuel\Core\Uri;
 
 Config::load("icarre-data-config.json");
@@ -19,8 +20,8 @@ $signature = $sign;
 
 $datetrans = date('Y-m-d H:i:s');
 $emailId = "emmanuel.mbulu@icarre-rdc.com";
-$successurl="#";
-$cancelurl="#";
+$successurl= Router::get("callback-invoice", ["lang" => $lang, "ref" => $ref]);
+$cancelurl= $successurl;
 
 $data = [
     "signature" => $signature,
