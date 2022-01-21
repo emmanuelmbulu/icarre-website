@@ -110,13 +110,13 @@ class Controller_Bill extends Controller_Hybrid {
         }
     }
 
-    public function post_callback() {
+    public function get_callback() {
         $lang = Helper::manageLanguage($this, "details-bill", ["ref" => 0]);
 
         try {            
             Lang::load("invoice_details.json", null, $lang);
 
-            $ref = Input::post("transaction_id", 0);
+            $ref = Input::get("transaction_id", 0);
             $bill = Model_Bill::find($ref);
             if($bill == null) {
                 $route = Router::get("page-not-found", ["lang" => $lang]);
@@ -124,14 +124,15 @@ class Controller_Bill extends Controller_Hybrid {
             }
 
             $payment = new Bill_Payment();
-            $status = Input::post("status", "cancelled");
+            $status = Input::get("status", "cancelled");
             $payment->set_status($status);
-            $payment->reference = $bill->reference;
-            $payment->reference = "ICIP-".Input::post("order");
-            $payment->reference .= "-".Input::post("paymentID");
-            $payment->amount = Input::post("amount", 0);
-            $payment->channel = Input::post("paymentMethod");
-            $payment->date = Input::post("transaction_date");
+            //$payment->reference = $bill->reference;
+            $payment->reference = "ICIP-".Input::get("order", 0);
+            $payment->reference .= "-".Input::get("paymentID", 0);
+            $payment->reference .= "-".Input::get("transaction_id", 0);
+            $payment->amount = Input::get("amount", 0);
+            $payment->channel = Input::get("PaymentMethod", "undefined");
+            $payment->date = Input::get("transaction_date");
             $payment->ip_address = Cookie::get("ip", "0.0.0.0");
             $payment->receipt = "#";
 
@@ -153,7 +154,7 @@ class Controller_Bill extends Controller_Hybrid {
                     "reference" => $payment->reference,
                     "payment_date" => date($date_format, strtotime($payment->date)),
                     "payment_channel" => $payment->channel,
-                    "channel_reference" => Input::post("order"),
+                    "channel_reference" => Input::get("order", "undefined"),
 
                     /**
                      * CLIENT
@@ -217,7 +218,7 @@ class Controller_Bill extends Controller_Hybrid {
             $client = $bill->get_client();
             $payments = $bill->get_payments();
             $context = [
-                "status" => $status,
+                "status" => $payment->status,
                 "receipt" => $payment->receipt,
                 "invoice" => $bill,
                 "items" => $items,
