@@ -61,7 +61,7 @@ class Controller_Bill extends Controller_Hybrid {
     }
 
     public function post_details() {
-        $lang = Helper::manageLanguage($this, "details-bill");
+        $lang = Helper::manageLanguage($this, "details-bill", ["ref" => 0]);
 
         try {
             Cookie::set("ip", Input::ip(), 60 * 60);
@@ -84,7 +84,7 @@ class Controller_Bill extends Controller_Hybrid {
                 $bill->amount = Input::post("amount");
                 Lang::load("payment_redirect.json", null, $lang);
                 $title = Lang::get("title", ["reference" => $bill->reference], null, $lang);
-                return $this->buildPage($lang, "invoice/redirect", $title, ["invoice" => $bill]);
+                return $this->buildPage($lang, "invoice/redirect", $title, ["invoice" => $bill, "ref" => $this->param("ref")]);
             }
             
             Lang::load("invoice_details.json", null, $lang);
@@ -111,7 +111,7 @@ class Controller_Bill extends Controller_Hybrid {
     }
 
     public function post_callback() {
-        $lang = Helper::manageLanguage($this, "details-bill");
+        $lang = Helper::manageLanguage($this, "details-bill", ["ref" => 0]);
 
         try {            
             Lang::load("invoice_details.json", null, $lang);
@@ -226,7 +226,7 @@ class Controller_Bill extends Controller_Hybrid {
             ];
 
             $title = Lang::get("title", ["reference" => $bill->reference], null, $lang);
-            return $this->buildPage($lang, "invoice/payment", $title, $context);         
+            return $this->buildPage($lang, "invoice/details", $title, $context);         
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
             $route = Router::get("error-500", ["lang" => $lang]);

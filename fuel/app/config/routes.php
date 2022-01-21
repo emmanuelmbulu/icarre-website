@@ -51,10 +51,13 @@ return array(
 	 * Bill routes
 	 */
 	'(:lang)/billing/:ref/details' => array("bill/details", 'name' => "details-bill"),
-	'direct-payment/:ref/details' => array("bill/details", 'name' => "details-bill-without-lang-param"),
+	'billing/:ref/details' => array("bill/details", 'name' => "details-bill-without-lang-param"),
 
 	'(:lang)/create-invoice' => array("bill/create", 'name' => "create-invoice"),
 	'create-invoice' => array("bill/create", 'name' => "create-invoice-without-lang-param"),
+
+	'(:lang)/billing/:ref/payment-callback' => array("bill/callback", 'name' => "callback-invoice"),
+	'billing/:ref/payment-callback' => array("bill/callback", 'name' => "callback-invoice-without-lang-param"),
 
 	/**
 	 * Default routes
