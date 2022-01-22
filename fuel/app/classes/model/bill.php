@@ -160,7 +160,8 @@ class Model_Bill extends Model {
      */
     public function get_lastPayment() {
         $all = $this->get_payments();
-        $count = count($all);
+        //$count = count($all); 
+        $count = 0; foreach($all as $item) { $count++; }
         if($count != 0) {
             return $all[$count - 1];
         }
