@@ -81,6 +81,24 @@ class Model_Bill extends Model {
     }
 
     /**
+     * Function that returns the vat amount of the bill
+     * @param null : Nothing
+     * @return float : The vat amount value
+     */
+    public function get_vat() {
+        return $this->amount * $this->tva / 100;
+    }
+
+    /**
+     * Function that returns the ttc amount of the bill
+     * @param null : Nothing
+     * @return float : The ttc amount value
+     */
+    public function get_ttc() {
+        return $this->amount + $this->get_vat();
+    }
+
+    /**
      * Function that add the client to the bill
      * @param Bill_Client $client : An object
      */
@@ -107,7 +125,7 @@ class Model_Bill extends Model {
     public function add_payment($payment) {
         if($payment->status == "approved") {
             $this->amount_paid += $payment->amount;
-            $total_to_pay = $this->amount + ($this->amount * $this->tva / 100);
+            $total_to_pay = $this->get_ttc();
 
             if($this->amount_paid >= $total_to_pay) {
                 $this->is_paid = true;
@@ -133,6 +151,20 @@ class Model_Bill extends Model {
             return json_decode($this->payments);
         }
         return [];
+    }
+
+    /**
+     * Function that returns the last Bill_Payment object occured for the bill
+     * @param null : Nothing
+     * @return Bill_Payment|null
+     */
+    public function get_lastPayment() {
+        $all = $this->get_payments();
+        $count = count($all);
+        if($count != 0) {
+            return $all[$count - 1];
+        }
+        return null;
     }
 
     public function set_reference() {

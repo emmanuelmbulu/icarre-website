@@ -57,8 +57,7 @@ Lang::load("invoice_details.json", null, $lang);
                                 if($lang == "fr") {
                                     $date_format = "d-m-Y h:i:s";
                                 }
-                                $total = $invoice->amount;
-                                $total += $total * $invoice->tva / 100;
+                                $total = $invoice->get_ttc();
                             ?>
                             <div class="row" id="details">
                                 <div class="col-md-6">
@@ -120,7 +119,7 @@ Lang::load("invoice_details.json", null, $lang);
                                         </tr>
                                         <tr>
                                             <th scope="row" style="text-align: right" colspan="4"><?= Lang::get("add.vat", ["value" => $invoice->tva], null, $lang) ?></th>
-                                            <th scope="row" style="text-align: right"><?= Lang::get("amount", ["value" => $invoice->amount * $invoice->tva / 100, "currency" => $invoice->currency], null, $lang) ?></th>
+                                            <th scope="row" style="text-align: right"><?= Lang::get("amount", ["value" => $invoice->get_vat(), "currency" => $invoice->currency], null, $lang) ?></th>
                                         </tr>
                                         <tr>
                                             <th scope="row" style="text-align: right" colspan="4"><?= Lang::get("add.ttc", [], null, $lang) ?></th>
@@ -182,7 +181,7 @@ Lang::load("invoice_details.json", null, $lang);
                                     </div>
                                     <div class="col-6">
                                         <div class="form-floating mb-3">
-                                            <input type="number" min="1" max="<?= $invoice->amount - $invoice->amount_paid ?>" class="form-control" name="amount" id="amount" placeholder="<?= $input["placeholder"] ?>">
+                                            <input type="number" min="1" max="<?= $total - $invoice->amount_paid ?>" class="form-control" name="amount" id="amount" placeholder="<?= $input["placeholder"] ?>">
                                             <label for="amount"><?= Lang::get("input.label", ["currency" => $invoice->currency], null, $lang) ?></label>
                                         </div>
                                     </div>

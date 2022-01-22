@@ -51,6 +51,11 @@ class Controller_Default extends Controller_Hybrid {
         return $this->buildPage($lang, $route, "500", Lang::get("title", [], null, $lang), []);
     }
 
+    public function get_test() {
+        $lang = "fr";
+        return View::forge("mail/layout", ["lang" => $lang]);
+    }
+
     function buildPage($lang, $route_name, $view, $title, $array_context) {
         $array_context["lang"] = $lang;
         $mainMenu = View::forge("shared/menu/main", ["active" => $route_name, "lang" => $lang,]);
