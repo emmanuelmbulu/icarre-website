@@ -53,7 +53,23 @@ class Controller_Default extends Controller_Hybrid {
 
     public function get_test() {
         $lang = "fr";
-        return View::forge("mail/layout", ["lang" => $lang]);
+        $bill = Model_Bill::find(1);
+        $payment = $bill->get_lastPayment();
+        $items = $bill->get_items();
+        $client = $bill->get_client();
+        
+        $created_view = View::forge("mail/bill/payment/received", [
+            "lang" => $lang,
+            "bill" => $bill,
+            "payment" => $payment,
+            "items" => $items,
+            "client" => $client
+        ]);
+        return View::forge("mail/layout", [
+            "lang" => $lang,
+            "content" => $created_view
+        ]);
+        //return View::forge("mail/layout", ["lang" => $lang]);
     }
 
     function buildPage($lang, $route_name, $view, $title, $array_context) {

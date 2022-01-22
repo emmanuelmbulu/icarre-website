@@ -221,6 +221,7 @@ class Controller_Bill extends Controller_Hybrid {
                     "bill" => $bill,
                     "payment" => $payment,
                     "items" => $items,
+                    "client" => $client
                 ]);
                 $mail_payment_created = View::forge("mail/layout", [
                     "lang" => $lang,
@@ -409,6 +410,7 @@ class Controller_Bill extends Controller_Hybrid {
                     "bill" => $bill,
                     "payment" => $payment,
                     "items" => $items,
+                    "client" => $client
                 ]);
                 $mail_payment_created = View::forge("mail/layout", [
                     "lang" => $lang,
