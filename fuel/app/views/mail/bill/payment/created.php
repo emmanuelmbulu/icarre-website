@@ -6,6 +6,10 @@ Lang::load("mail_layout.json", null, $lang);
 
 $date_format = "Y-m-d h:i:s";
 if($lang == "fr") $date_format = "d/m/Y h:i:s";
+
+$payment = $bill->get_lastPayment();
+$items = $bill->get_items();
+$client = $bill->get_client();
 ?>
 <div class="col-12 p-3 bg-success">
     <h4 class="text-center"><?= Lang::get("title", ["value"=>$payment->amount, "currency"=>$bill->currency], null, $lang) ?></h4>

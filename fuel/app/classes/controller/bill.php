@@ -136,6 +136,9 @@ class Controller_Bill extends Controller_Hybrid {
             $payment->date = Input::get("transaction_date");
             $payment->ip_address = Cookie::get("ip", "0.0.0.0");
             $payment->receipt = "#";
+            
+            $bill->add_payment($payment);
+            $bill->save();
 
             $date_format = "Y-m-d h:i:s";
             if($lang == "fr") {
@@ -219,9 +222,6 @@ class Controller_Bill extends Controller_Hybrid {
                 $mail_payment_created_content = View::forge("mail/bill/payment/created", [
                     "lang" => $lang,
                     "bill" => $bill,
-                    "payment" => $payment,
-                    "items" => $items,
-                    "client" => $client
                 ]);
                 $mail_payment_created = View::forge("mail/layout", [
                     "lang" => $lang,
@@ -247,8 +247,6 @@ class Controller_Bill extends Controller_Hybrid {
                 $mail_payment_received_content = View::forge("mail/bill/payment/received", [
                     "lang" => $lang,
                     "bill" => $bill,
-                    "payment" => $payment,
-                    "client" => $client,
                 ]);
                 $mail_payment_received = View::forge("mail/layout", [
                     "lang" => $lang,
@@ -266,8 +264,6 @@ class Controller_Bill extends Controller_Hybrid {
                 $mail_payment_received_content = View::forge("mail/bill/payment/received", [
                     "lang" => $lang,
                     "bill" => $bill,
-                    "payment" => $payment,
-                    "client" => $client,
                 ]);
                 $mail_payment_received = View::forge("mail/layout", [
                     "lang" => $lang,
@@ -279,8 +275,6 @@ class Controller_Bill extends Controller_Hybrid {
                  */
             }
 
-            $bill->add_payment($payment);
-            $bill->save();
             $payments = $bill->get_payments();
             $context = [
                 "status" => $payment->status,
@@ -333,6 +327,9 @@ class Controller_Bill extends Controller_Hybrid {
 
             $items = $bill->get_items();
             $client = $bill->get_client();
+
+            $bill->add_payment($payment);
+            $bill->save();
 
             if($payment->status == "approved") {
                 $pathToModel = DOCROOT."/assets/bills/".$lang."-model.docx";
@@ -408,9 +405,6 @@ class Controller_Bill extends Controller_Hybrid {
                 $mail_payment_created_content = View::forge("mail/bill/payment/created", [
                     "lang" => $lang,
                     "bill" => $bill,
-                    "payment" => $payment,
-                    "items" => $items,
-                    "client" => $client
                 ]);
                 $mail_payment_created = View::forge("mail/layout", [
                     "lang" => $lang,
@@ -436,8 +430,6 @@ class Controller_Bill extends Controller_Hybrid {
                 $mail_payment_received_content = View::forge("mail/bill/payment/received", [
                     "lang" => $lang,
                     "bill" => $bill,
-                    "payment" => $payment,
-                    "client" => $client,
                 ]);
                 $mail_payment_received = View::forge("mail/layout", [
                     "lang" => $lang,
@@ -455,8 +447,6 @@ class Controller_Bill extends Controller_Hybrid {
                 $mail_payment_received_content = View::forge("mail/bill/payment/received", [
                     "lang" => $lang,
                     "bill" => $bill,
-                    "payment" => $payment,
-                    "client" => $client,
                 ]);
                 $mail_payment_received = View::forge("mail/layout", [
                     "lang" => $lang,
@@ -467,9 +457,6 @@ class Controller_Bill extends Controller_Hybrid {
                  * Notifications sent
                  */
             }
-
-            $bill->add_payment($payment);
-            $bill->save();
 
             $payments = $bill->get_payments();
             $context = [
