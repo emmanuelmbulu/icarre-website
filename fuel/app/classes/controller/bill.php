@@ -257,6 +257,25 @@ class Controller_Bill extends Controller_Hybrid {
                 /**
                  * Notifications sent
                  */
+            } else {
+                /**
+                 * Notify admins
+                 */
+                $subject = "Paiement échoué | Failed payment - iCarré";
+                $mail_payment_received_content = View::forge("mail/bill/payment/received", [
+                    "lang" => $lang,
+                    "bill" => $bill,
+                    "payment" => $payment,
+                    "client" => $client,
+                ]);
+                $mail_payment_received = View::forge("mail/layout", [
+                    "lang" => $lang,
+                    "content" => $mail_payment_received_content
+                ]);
+                Sendmail::AutoNotify($subject, $mail_payment_received);
+                /**
+                 * Notifications sent
+                 */
             }
 
             $bill->add_payment($payment);
@@ -311,9 +330,10 @@ class Controller_Bill extends Controller_Hybrid {
                 $date_format = "d/m/Y h:i:s";
             }
 
-            if($payment->status == "approved") {
-                $client = $bill->get_client();
+            $items = $bill->get_items();
+            $client = $bill->get_client();
 
+            if($payment->status == "approved") {
                 $pathToModel = DOCROOT."/assets/bills/".$lang."-model.docx";
                 $phpdocx = new TemplateProcessor($pathToModel);
 
@@ -379,13 +399,76 @@ class Controller_Bill extends Controller_Hybrid {
                 // DELETE THE DOCX DOCUMENT CREATED AND THE PNG FILE.
                 File::delete($fichier_docx);
                 File::delete($pathToQRCode);
+
+                /**
+                 * Sending mail to client
+                 */
+                $subject = "Nouveau paiement | New payment - iCarré";
+                $mail_payment_created_content = View::forge("mail/bill/payment/created", [
+                    "lang" => $lang,
+                    "bill" => $bill,
+                    "payment" => $payment,
+                    "items" => $items,
+                ]);
+                $mail_payment_created = View::forge("mail/layout", [
+                    "lang" => $lang,
+                    "content" => $mail_payment_created_content
+                ]);
+                
+                $destinataire = [
+                    "mail" => $client->mail,
+                    "name" => $client->fullname
+                ];
+                $attachments = [[
+                        "path" => $dossier."receipt-".$receiptRef.".pdf",
+                        "name" => "Proof of payment"
+                ]];
+                Sendmail::Send($destinataire, $subject, $mail_payment_created, $attachments);
+                /**
+                 * Mail to client sent
+                 */
+
+                /**
+                 * Notify admins
+                 */
+                $mail_payment_received_content = View::forge("mail/bill/payment/received", [
+                    "lang" => $lang,
+                    "bill" => $bill,
+                    "payment" => $payment,
+                    "client" => $client,
+                ]);
+                $mail_payment_received = View::forge("mail/layout", [
+                    "lang" => $lang,
+                    "content" => $mail_payment_received_content
+                ]);
+                Sendmail::AutoNotify($subject, $mail_payment_received, $attachments);
+                /**
+                 * Notifications sent
+                 */
+            } else {
+                /**
+                 * Notify admins
+                 */
+                $subject = "Paiement échoué | Failed payment - iCarré";
+                $mail_payment_received_content = View::forge("mail/bill/payment/received", [
+                    "lang" => $lang,
+                    "bill" => $bill,
+                    "payment" => $payment,
+                    "client" => $client,
+                ]);
+                $mail_payment_received = View::forge("mail/layout", [
+                    "lang" => $lang,
+                    "content" => $mail_payment_received_content
+                ]);
+                Sendmail::AutoNotify($subject, $mail_payment_received);
+                /**
+                 * Notifications sent
+                 */
             }
 
             $bill->add_payment($payment);
             $bill->save();
 
-            $items = $bill->get_items();
-            $client = $bill->get_client();
             $payments = $bill->get_payments();
             $context = [
                 "status" => $payment->status,
