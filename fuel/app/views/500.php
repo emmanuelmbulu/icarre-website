@@ -1,6 +1,7 @@
 <?php
 
 use Fuel\Core\Config;
+use Fuel\Core\Cookie;
 use Fuel\Core\Lang;
 use Fuel\Core\Uri;
 
@@ -8,6 +9,9 @@ Config::load("icarre-data-config.json");
 $tel = Config::get("tel");
 $mail = Config::get("mail");
 
+if(!isset($lang)) {
+    $lang = Cookie::get("lang", "fr");
+}
 Lang::load("500.json", null, $lang);
 
 ?>
