@@ -149,7 +149,7 @@ class Controller_Bill extends Controller_Hybrid {
             $client = $bill->get_client();
 
             if($payment->status == "approved") {
-                $pathToModel = DOCROOT."/assets/bills/".$lang."-model.docx";
+                $pathToModel = DOCROOT."assets/bills/".$lang."-model.docx";
                 $phpdocx = new TemplateProcessor($pathToModel);
 
                 $phpdocx->setValues(array(
@@ -189,7 +189,7 @@ class Controller_Bill extends Controller_Hybrid {
                     "total_ttc" => $payment->amount,
                 ));
 
-                $dossier = DOCROOT."/receipts/";
+                $dossier = DOCROOT."receipts/";
                 $receiptRef = strtolower(Helper::NormalizeChars($payment->reference));
                  
                 $pathToQRCode = $dossier."receipt-".$receiptRef.".png";
@@ -332,7 +332,7 @@ class Controller_Bill extends Controller_Hybrid {
             $bill->save();
 
             if($payment->status == "approved") {
-                $pathToModel = DOCROOT."/assets/bills/".$lang."-model.docx";
+                $pathToModel = DOCROOT."assets/bills/".$lang."-model.docx";
                 $phpdocx = new TemplateProcessor($pathToModel);
 
                 $phpdocx->setValues(array(
@@ -372,7 +372,7 @@ class Controller_Bill extends Controller_Hybrid {
                     "total_ttc" => $payment->amount,
                 ));
 
-                $dossier = DOCROOT."/receipts/";
+                $dossier = DOCROOT."receipts/";
                 $receiptRef = strtolower(Helper::NormalizeChars($payment->reference));
                  
                 $pathToQRCode = $dossier."receipt-".$receiptRef.".png";
@@ -510,7 +510,7 @@ class Controller_Bill extends Controller_Hybrid {
                 $date_format = "d/m/Y h:i:s";
             }
 
-            $pathToModel = DOCROOT."/assets/bills/".$lang."-model.docx";
+            $pathToModel = DOCROOT."assets/bills/".$lang."-model.docx";
             $phpdocx = new TemplateProcessor($pathToModel);
 
             $phpdocx->setValues(array(
@@ -552,7 +552,7 @@ class Controller_Bill extends Controller_Hybrid {
 			}
 			$phpdocx->cloneRowAndSetValues('item_description', $invoiceItems);
 
-            $dossier = DOCROOT."/invoices/";
+            $dossier = DOCROOT."invoices/";
             $invoiceRef = strtolower(Helper::NormalizeChars($bill->reference));
                 
             $pathToQRCode = $dossier."invoice-".$invoiceRef.".png";
@@ -619,7 +619,7 @@ class Controller_Bill extends Controller_Hybrid {
         
         try {
             $ref = strtolower($ref);
-            $file = DOCROOT."/invoices/invoice-".$ref.".pdf";
+            $file = DOCROOT."invoices/invoice-".$ref.".pdf";
 
             if(File::exists($file)) {
                 $response = new Response();
