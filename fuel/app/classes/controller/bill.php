@@ -234,7 +234,7 @@ class Controller_Bill extends Controller_Hybrid {
                 ];
                 $attachments = [[
                         "path" => $dossier."receipt-".$receiptRef.".pdf",
-                        "name" => "Proof of payment"
+                        "name" => "Proof of payment.pdf"
                 ]];
                 Sendmail::Send($destinataire, $subject, $mail_payment_created, $attachments);
                 /**
@@ -417,7 +417,7 @@ class Controller_Bill extends Controller_Hybrid {
                 ];
                 $attachments = [[
                         "path" => $dossier."receipt-".$receiptRef.".pdf",
-                        "name" => "Proof of payment"
+                        "name" => "Proof of payment.pdf"
                 ]];
                 Sendmail::Send($destinataire, $subject, $mail_payment_created, $attachments);
                 /**
@@ -600,7 +600,7 @@ class Controller_Bill extends Controller_Hybrid {
             ];
             $attachments = [[
                     "path" => $dossier."invoice-".$invoiceRef.".pdf",
-                    "name" => "Invoice ".$bill->reference
+                    "name" => "Invoice ".$bill->reference.".pdf"
             ]];
             Sendmail::Send($destinataire, $subject, $mail_invoice_created, $attachments);
             /**
