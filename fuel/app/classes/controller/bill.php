@@ -510,7 +510,7 @@ class Controller_Bill extends Controller_Hybrid {
                 $date_format = "d/m/Y h:i:s";
             }
 
-            $pathToModel = DOCROOT."assets/bills/".$lang."-model.docx";
+            $pathToModel = DOCROOT."assets/bills/".$lang."-invoice-model.docx";
             $phpdocx = new TemplateProcessor($pathToModel);
 
             $phpdocx->setValues(array(
