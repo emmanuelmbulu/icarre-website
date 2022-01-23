@@ -7,6 +7,7 @@ Lang::load("mail_layout.json", null, $lang);
 $date_format = "Y-m-d h:i:s";
 if($lang == "fr") $date_format = "d/m/Y h:i:s";
 
+$bill = Model_Bill::forge($bill->to_array());
 $payment = $bill->get_lastPayment();
 $items = $bill->get_items();
 $client = $bill->get_client();

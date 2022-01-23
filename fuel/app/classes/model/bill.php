@@ -45,7 +45,7 @@ class Model_Bill extends Model {
 
         $items = array();
         if(!empty($this->items)) {
-            $item = json_decode($this->items);
+            $items = (array)json_decode($this->items);
         }
         $items[] = $item;
         $this->items = json_encode($items);
@@ -62,7 +62,7 @@ class Model_Bill extends Model {
 
         $last_items = array();
         if(!empty($this->items)) {
-            $last_items = json_decode($this->items);
+            $last_items = (array)json_decode($this->items);
         }
         $last_items = array_merge($last_items, $items);
         $this->items = json_encode($last_items);
@@ -75,7 +75,7 @@ class Model_Bill extends Model {
      */
     public function get_items() {
         if(!empty($this->items)) {
-            return json_decode($this->items);
+            return (array)json_decode($this->items);
         }
         return [];
     }
@@ -135,7 +135,7 @@ class Model_Bill extends Model {
 
         $payments = array();
         if(!empty($this->payments)) {
-            $payments = json_decode($this->payments);
+            $payments = (array)json_decode($this->payments);
         }
         $payments[] = $payment;
         $this->payments = json_encode($payments);
@@ -148,7 +148,7 @@ class Model_Bill extends Model {
      */
     public function get_payments() {
         if(!empty($this->payments)) {
-            return json_decode($this->payments);
+            return (array)json_decode($this->payments);
         }
         return [];
     }
@@ -159,9 +159,9 @@ class Model_Bill extends Model {
      * @return Bill_Payment|null
      */
     public function get_lastPayment() {
-        $all = $this->get_payments();
-        //$count = count($all); 
-        $count = 0; foreach($all as $item) { $count++; }
+        $all = (array)$this->get_payments();
+        $count = count($all); 
+        
         if($count != 0) {
             return $all[$count - 1];
         }
