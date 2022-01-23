@@ -229,7 +229,7 @@ class Controller_Bill extends Controller_Hybrid {
                 ]);
                 
                 $destinataire = [
-                    "mail" => $client->mail,
+                    "mail" => $client->email,
                     "name" => $client->fullname
                 ];
                 $attachments = [[
@@ -412,7 +412,7 @@ class Controller_Bill extends Controller_Hybrid {
                 ]);
                 
                 $destinataire = [
-                    "mail" => $client->mail,
+                    "mail" => $client->email,
                     "name" => $client->fullname
                 ];
                 $attachments = [[
@@ -595,7 +595,7 @@ class Controller_Bill extends Controller_Hybrid {
             ]);
             
             $destinataire = [
-                "mail" => $client->mail,
+                "mail" => $client->email,
                 "name" => $client->fullname
             ];
             $attachments = [[
