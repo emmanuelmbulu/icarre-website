@@ -1,0 +1,36 @@
+{
+    "title" : "Direct payment",
+    "home" : "Home",
+    "aboutinvest" : "Capital investment",
+    "form":{
+        "top":{
+            "title": "Welcome to the direct payment module!",
+            "paragraph": "This module allows you to directly make a payment related to your money investment without having to go through other processes. These different processes will be carried out in an implicit way."
+        },
+        "input":{
+            "amount":{
+                "label": "Amount in USD",
+                "placeholder" : "Enter the value of the amount in USD here",
+                "error" : ""
+            },
+            "payer":{
+                "label": "Firstname and Lastname",
+                "placeholder" : "Enter your firstname and your lastname here",
+                "error" : ""
+            },
+            "email":{
+                "label": "Email",
+                "placeholder" : "Enter your email address",
+                "error" : ""
+            },
+            "submit": {
+                "value": "Validate"
+            }
+        },
+        "notice":"You will be redirected to the online payment solution provided by our partner."
+    },
+    "trouble": {
+        "indication": "Do you have a problem with this form?",
+        "contact" : "Contact us!"
+    }
+}

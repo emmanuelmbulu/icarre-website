@@ -1,0 +1,35 @@
+{    
+    "title": "Successful payment of :currency :value",
+    "paragraph": "Hello :fullname, <br>Your new payment for the :reference invoice has been successfully completed.",
+    "amount" : ":currency :value",
+    "payment" : {
+        "title": "Payment details",
+        "date" : "Date:",
+        "reference" : "Reference:",
+        "amount" : "Amount:",
+        "channel" : "Means of payment:"
+    },
+    "invoice" : {
+        "title": "Invoice details",
+        "reference" : "Reference:",
+        "date" : "Date:",
+        "total" : "Total to pay:",
+        "paid": "Total paid:",
+        "status" : {
+            "label" : "Status:",
+            "paid" : "Paid",
+            "unpaid" : "To pay"
+        }
+    },
+    "items": {
+        "label": "ITEM",
+        "quantity": "QTY",
+        "price": "U.C.",
+        "total": "T.C."
+    },
+    "add": {
+        "ht" : "AMOUNT BT:",
+        "vat": "VAT (:value %):",
+        "ttc" : "TOTAL TO PAY AT:"
+    }
+}

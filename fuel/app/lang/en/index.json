@@ -1,0 +1,175 @@
+{
+    "title" : "Home",
+    "slider" : {
+        "invest" : {
+            "subtitle": "Your financial investment company in Africa",
+            "title" : "Invest like <br> you mean it!",
+            "paragraph" : "Let your money work for you and enjoy the benefits it generates with a monthly return of 10%.",
+            "button" : "Read more",
+            "url" : "#"
+        },
+        "health" : {
+            "subtitle": "The channel through which you express your philanthropy",
+            "title" : "Show your solidarity <br>with those in need!",
+            "paragraph" : "Due to lack of medical insurance and especially lack of money, 2 out of 5 Congolese die in local hospitals.",
+            "button" : "Provide assistance",
+            "url" : "#"
+        },
+        "art" : {
+            "subtitle": "Your access point to contemporary Congolese art",
+            "title" : "Import Congolese <br>Art to your home!",
+            "paragraph" : "The Democratic Republic of Congo has a unique and high quality handicraft, with very beautiful pieces.",
+            "button" : "Visit our store",
+            "url" : "#"
+        },
+        "it" : {
+            "subtitle": "The ideal partner for digital transformation projects in DRC",
+            "title" : "Benefit from the best <br> value for money!",
+            "paragraph" : "We offer support in terms of Consulting, Project Management Assistance and Project Management.",
+            "button" : "Learn more",
+            "url" : "#"
+        },
+        "crowdfunding" : {
+            "subtitle": "Your crowdfunding platform in the DRC",
+            "title" : "Finance in terms of donation,<br>loan or investment!",
+            "paragraph" : "In the DRC, for lack of a policy giving entrepreneurs access to bank credit, many viable and profitable projects cannot be carried out.",
+            "button" : "Browse projects",
+            "url" : "#"
+        }
+    },
+    "whatwedo" : {
+        "title": "What we do",
+        "subtitle": "We operate in general commerce and in IT with a range of activities <br>ranging from those allowing the investment of capital to those which are philanthropic.",
+        "invest" : {
+            "title" : "Capital investment",
+            "paragraph": "We allow the placement of money in our activities, in the form of mezzanine investment, and in other projects in the form of a donation, a loan or an investment through our crowdfunding platform."
+        },
+        "art": {
+            "title" : "Promotion of Congolese arts and crafts",
+            "paragraph" : "We have created the digital market for this unique, high quality craftsmanship attributable to the incredible talent of Congolese artisans, with styles and influences specific to each region/ethnicity of the Democratic Republic of Congo."
+        },
+        "it": {
+            "title" : "IT services",
+            "paragraph" : "We respond to all types of IT needs: IS Governance (Audit & Consulting), Networks and Telematics, Data Analysis and BI, Cybersecurity, Infrastructure Acquisition and Maintenance, Acquisition or Implementation and Maintenance of application solutions (ERP, Web & Mobile Development, Integration), Digital Marketing (Web Ads, e-Reputation, Graphic Design) and Training."
+        },
+        "health": {
+            "title" : "Philanthropic activities",
+            "paragraph" : "We try, as best as we can, to help the needy in hospitals in the Democratic Republic of Congo, in general, and in Kinshasa, in particular. And through our Poor Healthcare Sponsorship Platform, we are reaching out to the world to enable others to do as we do."
+        }
+    },
+    "expertise" : {
+        "title": "Our areas of expertise",
+        "subtitle" : "Discover here a set of our areas of expertise and tell us which of our services corresponds to your needs. <br>Or, find out there the reason why you will invest in our activities.",
+        "button" : "Learn more",
+        "more" : "Discover all",
+        "url" : "#",
+        "audit" : {
+            "title" : "Audit & Control",
+            "grandparent" : "Computer science",
+            "parent" : "IS governance",
+            "img": "audit.jpg",
+            "url": "#"
+        },
+        "network" : {
+            "title" : "Deployment of business networks",
+            "grandparent" : "Computer science",
+            "parent" : "Systems & Networks",
+            "img": "network.jpg",
+            "url": "#"
+        },
+        "ops" : {
+        },
+        "dev" : {
+            "title" : "Mobile apps (Android & iOS)",
+            "grandparent" : "Computer science",
+            "parent" : "Application development",
+            "img": "dev.jpg",
+            "url": "#"
+        },
+        "cybersecurity" : {
+            "title" : "Cybersecurity",
+            "grandparent" : "Computer science",
+            "parent" : "Systems & Networks",
+            "img": "cybersecurity.jpg",
+            "url": "#"
+        },
+        "marketing" : {
+            "title" : "Community Management",
+            "grandparent" : "Computer science",
+            "parent" : "Digital Marketing & BI",
+            "img": "marketing.jpg",
+            "url": "#"
+        },
+        "data" : {
+            "title" : "Data analysis",
+            "grandparent" : "Computer science",
+            "parent" : "Digital Marketing & BI",
+            "img": "data.jpg",
+            "url": "#"
+        },
+        "training" : {
+
+        },
+        "trading" : {
+            "title" : "Stock market investment",
+            "grandparent" : "Finance",
+            "parent" : "Stock market",
+            "img": "trading.jpg",
+            "url": "#"
+        }
+    },
+    "satisfaction" : {
+        "network": {
+            "title": "Infrastructure deployed",
+            "stats": 25
+        },
+        "invest": {
+            "title": "Satisfied investors",
+            "stats": 65
+        },
+        "dev": {
+            "title": "Delivered softwares",
+            "stats": 39
+        },
+        "audit": {
+            "title": "Audit missions performed",
+            "stats": 11
+        }
+    },
+    "testimonials" : {
+        "title": "Some testimonials",
+        "subtitle" : "We collect and we will continue to collect testimonials for you<br>from those who trust us to share their experience with you.",
+        "testimonies" : [
+            {
+                "name" : "Joe-Kibay Michel",
+                "title": "Managing Director at Attemit SARL",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            },
+            {
+                "name" : "Ange Mombu",
+                "title": "Operations Officer at AZ",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            },
+            {
+                "name" : "Glory Kakessa",
+                "title": "Akilix CEO",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            },
+            {
+                "name" : "Jonathan Ndaye",
+                "title": "Engineer at iEngineering",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            },
+            {
+                "name" : "Francis Mapilanga",
+                "title": "Consultant at CENI/RDC",
+                "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
+                "img": "#"
+            }
+        ]
+    }
+}

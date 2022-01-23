@@ -1,0 +1,18 @@
+{
+    "tel" : "+243900694746",
+    "mail" : "contact@icarre-rdc.com",
+    "fr": "Français",
+    "en": "English",
+    "smtp": {
+        "charset": "UTF-8",
+        "encoding": "quoted-printable",
+        "output": "error_log",
+        "debug": 2,
+        "host": "smtp.ionos.fr",
+        "auth": true,
+        "username": "example@domain.com",
+        "password": "password",
+        "secure": "ssl",
+        "port": 465
+    }
+}

@@ -1,0 +1,29 @@
+{    
+    "title": "Nouveau paiement de :value :currency !",
+    "paragraph": "Vous avez enregistré un nouveau paiement pour la facture :reference.",
+    "amount" : ":value :currency",
+    "payment" : {
+        "title": "Détails du paiement",
+        "date" : "Date :",
+        "reference" : "Référence :",
+        "amount" : "Montant :",
+        "channel" : "Moyen de paiement :"
+    },
+    "invoice" : {
+        "title": "Détails de la facture",
+        "reference" : "Référence :",
+        "date" : "Date :",
+        "total" : "Total à payer :",
+        "paid": "Total payé :",
+        "status" : {
+            "label" : "Statut :",
+            "paid" : "Soldée",
+            "unpaid" : "A solder"
+        }
+    },
+    "client": {
+        "title": "Détails du client",
+        "email": "Email :",
+        "phone" : "Tél. :"
+    }
+}

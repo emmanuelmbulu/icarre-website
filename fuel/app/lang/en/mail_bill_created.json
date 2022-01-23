@@ -1,0 +1,33 @@
+{    
+    "title": "Invoice :reference",
+    "paragraph": "Hello :fullname, <br>You have a new iCarré invoice of :amount :currency to pay. Below are the details of said invoice.",
+    "amount" : ":currency :value",
+    "invoice" : {
+        "title": "Invoice details",
+        "reference" : "Reference:",
+        "date" : "Date:",
+        "total" : "Total to pay:",
+        "paid": "Total paid:",
+        "status" : {
+            "label" : "Status:",
+            "paid" : "Paid",
+            "unpaid" : "To pay"
+        }
+    },
+    "items": {
+        "label": "ITEM",
+        "quantity": "QTY",
+        "price": "U.C.",
+        "total": "T.C."
+    },
+    "add": {
+        "ht" : "AMOUNT BT:",
+        "vat": "VAT (:value %):",
+        "ttc" : "TOTAL TO PAY AT:"
+    },
+    "action": {
+        "link": "Click here to pay the invoice",
+        "button": "Pay the invoice",
+        "notice": "You can pay in several instalments until the invoice is settled. And you decide how much to pay for each payment."
+    }
+}

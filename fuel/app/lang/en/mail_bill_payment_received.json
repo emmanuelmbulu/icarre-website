@@ -1,0 +1,29 @@
+{    
+    "title": "New payment of :currency :value !",
+    "paragraph": "You have registered a new payment for the invoice :reference.",
+    "amount" : ":currency :value",
+    "payment" : {
+        "title": "Payment details",
+        "date" : "Date:",
+        "reference" : "Reference:",
+        "amount" : "Amount:",
+        "channel" : "Means of payment:"
+    },
+    "invoice" : {
+        "title": "Invoice details",
+        "reference" : "Reference:",
+        "date" : "Date:",
+        "total" : "Total to pay:",
+        "paid": "Total paid:",
+        "status" : {
+            "label" : "Status:",
+            "paid" : "Paid",
+            "unpaid" : "To pay"
+        }
+    },
+    "client": {
+        "title": "Client details",
+        "email": "Email:",
+        "phone" : "Phone:"
+    }
+}

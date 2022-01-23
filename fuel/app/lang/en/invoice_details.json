@@ -1,0 +1,63 @@
+{
+    "title": "Invoice :reference",
+    "reference": "Invoice ref.: :reference",
+    "amount": ":currency :value",
+    "details" : {
+        "title": "Invoice details",
+        "reference" : "Reference:",
+        "date" : "Date :",
+        "total" : "Total to be pay:",
+        "paid": "Total paid :",
+        "status" : {
+            "label" : "Status:",
+            "paid" : "Paid",
+            "unpaid" : "To pay"
+        }
+    },
+    "client": {
+        "title": "Client details",
+        "email": "Email:",
+        "phone" : "Phone:"
+    },
+    "items": {
+        "label": "ITEM",
+        "quantity": "QUANTITY",
+        "price": "UNITARY COST",
+        "total": "TOTAL COST"
+    },
+    "add": {
+        "ht" : "AMOUNT HT:",
+        "vat": "VAT (:value %) :",
+        "ttc" : "TOTAL TO PAY TTC :"
+    },
+    "payments" : {
+        "date" : "DATE",
+        "reference" : "REFERENCE",
+        "status" : "STATUT",
+        "approved" : "Approuved",
+        "cancelled" : "Failed",
+        "amount" : "AMOUNT",
+        "channel" : "MEAN OF PAYMENT",
+        "receipt" : "PROOF",
+        "empty": "We did not find any payment saved with this invoice."
+    },
+    "input": {
+        "title": "Nous vous offrons la possibilité de payer en plusieurs tranches.",
+        "label": "Amount to pay in :currency",
+        "placeholder" : "Put here the amount you want to pay for",
+        "button" : "Validate",
+        "error": "The value entered for the amount to pay is not correct. Please provide a valid amount value which is less than or equal to the amount to pay."
+    },
+    "callback": {
+        "description" : "Payment of :currency :amount on invoice :reference",
+        "approved": {
+            "title" : "Your payment was successful!",
+            "message" : "You can download the proof of payment by clicking on the link below.",
+            "link": "Download proof of payment."
+        },
+        "cancelled" : {
+            "title": "Your payment failed!",
+            "message": "For one or more reasons your payment was not successful. Please contact the provider of the payment method you used for more information."
+        }
+    }
+}

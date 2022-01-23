@@ -1,0 +1,129 @@
+{
+    "title": "Investing money",
+    "home": "Home",
+    "about": "About iCarré",
+    "form": {
+        "introduction": {
+            "title": "Good to know",
+            "paragraph": "The terms of your investment in our business are based on the form below and the supporting documents you provide. You must ensure that all information and supporting documents we receive from you are true and accurate."
+        },
+        "term": {
+            "paragraph": "Read the terms and conditions that apply to your investment in our business by downloading the related document.",
+            "link": "Download the document."
+        },
+        "accordions" : [
+            {
+                "name": "profile",
+                "title": "Who are you?",
+                "inputs": [
+                    {
+                        "name": "title",
+                        "label": "Title",
+                        "values": [
+                            {
+                                "value": "Mr",
+                                "text": "Sir"
+                            },
+                            {
+                                "value": "Mrs",
+                                "text": "Madam"
+                            },
+                            {
+                                "value": "Ms",
+                                "text": "Miss"
+                            },
+                            {
+                                "value": "Dr",
+                                "text": "Doctor"
+                            }
+                        ],
+                        "type": "radio"
+                    },
+                    {
+                        "name": "lastname",
+                        "label": "Last name",
+                        "placeholder": "Enter your last name here",
+                        "type": "text"
+                    },
+                    {
+                        "name": "firstname",
+                        "label": "First name",
+                        "placeholder": "Enter your first name here",
+                        "type": "text"
+                    },
+                    {
+                        "name" : "birth",
+                        "label": "Date of birth",
+                        "placeholder": "Enter your date of birth here",
+                        "type": "date"
+                    },
+                    {
+                        "name": "address",
+                        "label": "Home address",
+                        "placeholder": "Enter your home address here",
+                        "type": "textarea"
+                    },
+                    {
+                        "name": "country",
+                        "label": "Country of residence",
+                        "placeholder": "Select your country of residence here",
+                        "type": "list",
+                        "data": "api",
+                        "url": "https://restcountries.com/v3.1/all"
+                    },
+                    {
+                        "name": "postal",
+                        "label": "Zip code",
+                        "placeholder": "Enter your zip code here",
+                        "type": "text"
+                    },
+                    {
+                        "name": "nationality",
+                        "label": "Nationality",
+                        "placeholder": "Select the country of your nationality",
+                        "type": "list",
+                        "data": "api",
+                        "url": "https://restcountries.com/v3.1/all"
+                    },
+                    {
+                        "name": "nationalid",
+                        "label": "Identification number (or passport number)",
+                        "placeholder": "Enter your ID Number or your passport number",
+                        "type": "text"
+                    },
+                    {
+                        "name": "mail",
+                        "label": "Email address",
+                        "placeholder": "Enter your email address here",
+                        "type": "email"
+                    },
+                    {
+                        "name": "phone",
+                        "label": "Phone number",
+                        "placeholder": "Enter your phone number here",
+                        "type": "text"
+                    }
+                ]
+            },
+            {
+                "name": "money",
+                "title": "How much would you like to invest?",
+                "text": {
+                    "type": "simple",
+                    "paragraph": "For each investment you would like to make, you must invest a lump sum worth at least USD 100 and no more than USD 10,000.<br><br>You can still invest as much as you like but the maximum value of your investment is USD 10,000."
+                },
+                "inputs": [
+                    {
+                        "name": "amount",
+                        "label": "Lump sum in USD for this investment",
+                        "placeholder": "Enter the value of the USD amount of your investment here",
+                        "min": 100,
+                        "max": 10000,
+                        "type": "number"
+                    }
+                ]
+            }
+        ]
+        
+    }
+}

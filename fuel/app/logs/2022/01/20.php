@@ -1,0 +1,22 @@
+<?php defined('COREPATH') or exit('No direct script access allowed'); ?>
+
+ERROR - 2022-01-20 12:05:27 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 12:06:01 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 12:07:09 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 12:55:25 --> Error - Class 'Bill_Client' not found in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\classes\controller\bill.php on line 60
+ERROR - 2022-01-20 13:03:10 --> 23000 - SQLSTATE[23000]: Integrity constraint violation: 1048 Le champ 'amount_paid' ne peut être vide (null) with query: "INSERT INTO `bill` (`reference`, `amount`, `currency`, `tva`, `client`, `items`, `payments`, `amount_paid`, `is_paid`, `last_payment_date`, `created_at`) VALUES ('ICIV-2022-00001-0120', 5000, 'USD', 0, '{\"fullname\":\"Emmabuel Mbulu\",\"address\":\"131B, avenue Songololo, commune de Kinshasa, ville de Kinshasa\",\"country\":\"R\\u00e9publique d\\u00e9mocratique du Congo\",\"email\":\"emmanuel.mbulu@gmail.com\",\"phone\":\"+243813700243\"}', '[{\"description\":\"D\\u00e9ploiement du premier livrable de l\'application mobile\",\"price\":5000,\"quantity\":1,\"total\":5000}]', null, null, '0', null, null)" in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\database\pdo\connection.php on line 235
+ERROR - 2022-01-20 13:17:00 --> 23000 - SQLSTATE[23000]: Integrity constraint violation: 1048 Le champ 'created_at' ne peut être vide (null) with query: "INSERT INTO `bill` (`reference`, `amount`, `currency`, `tva`, `client`, `items`, `payments`, `amount_paid`, `is_paid`, `last_payment_date`, `created_at`) VALUES ('ICIV-2022-00001-0120', 5000, 'USD', 0, '{\"fullname\":\"Emmabuel Mbulu\",\"address\":\"131B, avenue Songololo, commune de Kinshasa, ville de Kinshasa\",\"country\":\"R\\u00e9publique d\\u00e9mocratique du Congo\",\"email\":\"emmanuel.mbulu@gmail.com\",\"phone\":\"+243813700243\"}', '[{\"description\":\"D\\u00e9ploiement du premier livrable de l\'application mobile\",\"price\":5000,\"quantity\":1,\"total\":5000}]', null, 0, '0', null, null)" in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\database\pdo\connection.php on line 235
+ERROR - 2022-01-20 13:20:05 --> Notice - Undefined variable: bill in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\invoice\details.php on line 31
+ERROR - 2022-01-20 13:21:37 --> Notice - A non well formed numeric value encountered in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\invoice\details.php on line 45
+ERROR - 2022-01-20 13:23:29 --> Notice - A non well formed numeric value encountered in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\invoice\details.php on line 45
+ERROR - 2022-01-20 13:28:36 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 13:44:42 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 13:53:43 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 18:20:15 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 18:21:06 --> Notice - Undefined variable: bill in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\invoice\details.php on line 151
+ERROR - 2022-01-20 18:43:49 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 18:47:17 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 18:48:09 --> Notice - Undefined variable: payment in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\invoice\redirect.php on line 27
+ERROR - 2022-01-20 19:10:34 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 19:20:42 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
+ERROR - 2022-01-20 19:31:10 --> Notice - Undefined variable: lang in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\views\404.php on line 11
