@@ -2,7 +2,7 @@
 
 use Fuel\Core\Lang;
 
-Lang::load("mail_layout.json", null, $lang);
+Lang::load("mail_bill_payment_created.json", null, $lang);
 
 $date_format = "Y-m-d h:i:s";
 if($lang == "fr") $date_format = "d/m/Y h:i:s";
