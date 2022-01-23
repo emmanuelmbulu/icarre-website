@@ -136,7 +136,7 @@ class Controller_Bill extends Controller_Hybrid {
             $payment->date = Input::get("transaction_date");
             $payment->ip_address = Cookie::get("ip", "0.0.0.0");
             $payment->receipt = "#";
-            
+
             $bill->add_payment($payment);
             $bill->save();
 
@@ -178,7 +178,7 @@ class Controller_Bill extends Controller_Hybrid {
                             "reference" => $bill->reference
                         ], null, $lang
                     ),
-                    "item_unit" => 1,
+                    "item_unit" => "-",
                     "item_quantity" => 1,
                     "item_price" => $payment->amount,
                     "item_total" => $payment->amount,
@@ -361,7 +361,7 @@ class Controller_Bill extends Controller_Hybrid {
                             "reference" => $bill->reference
                         ], null, $lang
                     ),
-                    "item_unit" => 1,
+                    "item_unit" => "-",
                     "item_quantity" => 1,
                     "item_price" => $payment->amount,
                     "item_total" => $payment->amount,
@@ -489,21 +489,165 @@ class Controller_Bill extends Controller_Hybrid {
 
         $description = "Déploiement du premier livrable de l'application mobile";
         $price = 50;
-        $item = new Bill_Item($description, $price, 1);
+        $item = new Bill_Item($description, $price, 1, "Forfait");
+        $items = array();
+        $items[] = $item;
 
         $bill = new Model_Bill();
         $bill->set_reference();
         $bill->currency = "USD";
         $bill->amount = $bill->amount_paid = 0;
         $bill->tva = 0; 
-        $bill->add_item($item);
+        $bill->add_items($items);
         $bill->add_client($client);
         $bill->is_paid = false;
         $bill->created_at = Helper::renvoyerNow();
         $bill->save();
+
+        try {
+            $date_format = "Y-m-d h:i:s";
+            if($lang == "fr") {
+                $date_format = "d/m/Y h:i:s";
+            }
+
+            $pathToModel = DOCROOT."/assets/bills/".$lang."-model.docx";
+            $phpdocx = new TemplateProcessor($pathToModel);
+
+            $phpdocx->setValues(array(
+                /**
+                 * INVOICE
+                 */
+                "reference" => $bill->reference,
+                "invoice_date" => date($date_format, strtotime($bill->created_at)),
+                /*"payment_channel" => $payment->channel,
+                "channel_reference" => Input::post("order", "undefined"),*/
+
+                /**
+                 * CLIENT
+                 */
+                "payer_fullname" => $client->fullname,
+                "payer_address" => $client->address,
+                "payer_mail" => $client->email,
+
+                /**
+                 * ADD
+                 */
+                "total_ht" => $bill->amount,
+                "tva_value" => $bill->tva,
+                "tva_amount" => $bill->get_vat(),
+                "currency" => $bill->currency,
+                "total_ttc" => $bill->get_ttc(),
+            ));
+
+            $invoiceItems = array();
+
+			foreach($items as $it) {
+				$invoiceItems[] = [
+					"item_description" => $it->description,
+                    "item_unit" => $it->unit,
+                    "item_quantity" => $it->quantity,
+                    "item_price" => $it->price,
+                    "item_total" => $it->total,
+				];
+			}
+			$phpdocx->cloneRowAndSetValues('item_description', $invoiceItems);
+
+            $dossier = DOCROOT."/invoices/";
+            $invoiceRef = strtolower(Helper::NormalizeChars($bill->reference));
+                
+            $pathToQRCode = $dossier."invoice-".$invoiceRef.".png";
+            $contenuQRCode = Router::get("invoice-pdf", ["ref" => $invoiceRef]);
+            /**
+             * TO ADD AFTER
+             */
+            //$bill->receipt = $contenuQRCode;
+            QRcode::png($contenuQRCode, $pathToQRCode, QR_ECLEVEL_H, 4, 2);
+
+            $phpdocx->setImageValue('qrcode', array(
+                'path' => $pathToQRCode, 
+                'width' => 100, 
+                'height' => 100,
+                'ratio' => false
+                )
+            );
+
+            $fichier_docx = $dossier."invoice-".$invoiceRef.".docx";
+            $phpdocx->saveAs($fichier_docx);
+
+            // CONVERT THE DOCS DOCUMENT TO PDF DOCUMENT
+            shell_exec('libreoffice --headless --convert-to pdf '.$fichier_docx.' --outdir '.$dossier);
+
+            // DELETE THE DOCX DOCUMENT CREATED AND THE PNG FILE.
+            File::delete($fichier_docx);
+            File::delete($pathToQRCode);
+
+            /**
+             * Sending mail to client
+             */
+            $subject = "Nouvelle facture | New invoice - iCarré";
+            $mail_invoice_created_content = View::forge("mail/bill/created", [
+                "lang" => $lang,
+                "bill" => $bill,
+            ]);
+            $mail_invoice_created = View::forge("mail/layout", [
+                "lang" => $lang,
+                "content" => $mail_invoice_created_content
+            ]);
+            
+            $destinataire = [
+                "mail" => $client->mail,
+                "name" => $client->fullname
+            ];
+            $attachments = [[
+                    "path" => $dossier."invoice-".$invoiceRef.".pdf",
+                    "name" => "Invoice ".$bill->reference
+            ]];
+            Sendmail::Send($destinataire, $subject, $mail_invoice_created, $attachments);
+            /**
+             * Mail to client sent
+            */
+        } catch (\Throwable $th) {
+            Helper::archiverErreur($th);
+        }
         
         $route = Router::get("details-bill", ["lang" => $lang, "ref" => $bill->id]);
         return Response::redirect($route);
+    }
+
+    public function get_pdf($ref) {
+        $lang = Cookie::get("lang", "fr");
+        
+        try {
+            $ref = strtolower($ref);
+            $file = DOCROOT."/invoices/invoice-".$ref.".pdf";
+
+            if(File::exists($file)) {
+                $response = new Response();
+
+                $content = file_get_contents($file);
+
+                // We'll be outputting a PDF
+                $response->set_header('Content-Type', 'application/pdf');
+                $response->set_header('Content-Length', strlen($content));
+
+                $filename = "invoice-".$ref.".pdf";
+                $response->set_header('Content-Disposition', 'inline; filename="'.$filename.'"');
+
+                $response->set_header('Cache-Control', 'public, max-age=0, must-revalidate');
+                $response->set_header('Pragma', 'public');
+                $response->set_header('Author', 'iCarré - Des idées intelligentes');
+
+                $response->body($content);
+                return $response;
+            } else {
+                $route = Router::get("page-not-found", ["lang" => $lang]);
+                return Response::redirect($route, "location", 404);
+            }
+        } catch (\Throwable $th) {
+            Helper::archiverErreur($th);
+            $route = Router::get("error-500", ["lang" => $lang]);
+            return Response::redirect($route, "location", 500);
+        }
     }
 
     function buildPage($lang, $view, $title, $array_context) {

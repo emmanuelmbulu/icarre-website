@@ -82,4 +82,5 @@ return array(
 	 * Receipt route
 	 */
 	'payment/receipt/:ref/pdf-file' => array('receipt/pdf', 'name' => "receipt-pdf"),
+	'billing/invoice/:ref/pdf-file' => array('billing/pdf', 'name' => "invoice-pdf"),
 );

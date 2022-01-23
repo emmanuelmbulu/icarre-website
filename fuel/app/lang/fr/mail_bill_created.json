@@ -1,0 +1,33 @@
+{    
+    "title": "Facture :reference",
+    "paragraph": "Bonjour :fullname, <br>Vous avez une nouvelle facture iCarré de :amount :currency à payer. Ci-dessous les détails de ladite facture.",
+    "amount" : ":value :currency",
+    "invoice" : {
+        "title": "Détails de la facture",
+        "reference" : "Référence :",
+        "date" : "Date :",
+        "total" : "Total à payer :",
+        "paid": "Total payé :",
+        "status" : {
+            "label" : "Statut :",
+            "paid" : "Soldée",
+            "unpaid" : "A solder"
+        }
+    },
+    "items": {
+        "label": "ITEM",
+        "quantity": "QTE",
+        "price": "C.U.",
+        "total": "C.T."
+    },
+    "add": {
+        "ht" : "MONTANT HT :",
+        "vat": "TVA (:value %) :",
+        "ttc" : "TOTAL A PAYER TTC :"
+    },
+    "action": {
+        "link": "Cliquez ici pour payer la facture",
+        "button": "Payer la facture",
+        "notice": "Vous pouvez payer en plusieurs tranches jusqu'à solder la facture. Et c'est vous qui décidez du montant à payer pour chaque paiement."
+    }
+}

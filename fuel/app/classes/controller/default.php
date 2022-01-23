@@ -58,7 +58,7 @@ class Controller_Default extends Controller_Hybrid {
         $items = $bill->get_items();
         $client = $bill->get_client();
         
-        $created_view = View::forge("mail/bill/payment/received", [
+        $created_view = View::forge("mail/bill/created", [
             "lang" => $lang,
             "bill" => $bill,
             "payment" => $payment,
