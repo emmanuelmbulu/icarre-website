@@ -51,6 +51,8 @@ return array(
 	/**
 	 * Bill routes
 	 */
+	'billing/invoice/:ref/pdf-file' => array('bill/pdf', 'name' => "invoice-pdf"),
+	
 	'(:lang)/billing/:ref/details' => array("bill/details", 'name' => "details-bill"),
 	'billing/:ref/details' => array("bill/details", 'name' => "details-bill-without-lang-param"),
 
@@ -82,5 +84,4 @@ return array(
 	 * Receipt route
 	 */
 	'payment/receipt/:ref/pdf-file' => array('receipt/pdf', 'name' => "receipt-pdf"),
-	'billing/invoice/:ref/pdf-file' => array('billing/pdf', 'name' => "invoice-pdf"),
 );
