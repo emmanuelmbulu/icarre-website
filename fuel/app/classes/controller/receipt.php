@@ -7,12 +7,12 @@ use Fuel\Core\Response;
 use Fuel\Core\Router;
 
 class Controller_Receipt extends Controller_Hybrid {
-    public function get_pdf($ref) {
+    public function get_pdf() {
         $lang = Cookie::get("lang", "fr");
         
         try {
-            $ref = strtolower($ref);
-            $file = DOCROOT."/receipts/receipt-".$ref.".pdf";
+            $ref = strtolower($this->param("ref"));
+            $file = DOCROOT."receipts/receipt-".$ref.".pdf";
 
             if(File::exists($file)) {
                 $response = new Response();

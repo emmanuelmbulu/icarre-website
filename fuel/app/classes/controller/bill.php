@@ -639,11 +639,11 @@ class Controller_Bill extends Controller_Hybrid {
         return Response::redirect($route);
     }
 
-    public function get_pdf($ref) {
+    public function get_pdf() {
         $lang = Cookie::get("lang", "fr");
         
         try {
-            $ref = strtolower($ref);
+            $ref = strtolower($this->param("ref"));
             $file = DOCROOT."invoices/invoice-".$ref.".pdf";
 
             if(File::exists($file)) {
