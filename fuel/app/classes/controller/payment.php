@@ -44,7 +44,7 @@ class Controller_Payment extends Controller_Hybrid {
             }
         } catch(Throwable $e) {
             Helper::archiverErreur($e);
-            throw new Exception("Error Processing Request", 1);           
+            return Helper::redirectTo500($lang);           
         }
 
         $label_and_route = "direct-payment";
@@ -61,6 +61,5 @@ class Controller_Payment extends Controller_Hybrid {
         $this->template->header = $header;
         $this->template->content = View::forge($view_name, $data_context);
         $this->template->footer = View::forge("shared/footer", ["lang" => $lang]);
-        return;
     }
 }

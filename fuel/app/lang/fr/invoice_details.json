@@ -22,6 +22,7 @@
     },
     "items": {
         "label": "ITEM",
+        "unit": "UNITE",
         "quantity": "QUANTITE",
         "price": "COUT UNITAIRE",
         "total": "COUT TOTAL"

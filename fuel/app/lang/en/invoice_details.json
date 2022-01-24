@@ -22,6 +22,7 @@
     },
     "items": {
         "label": "ITEM",
+        "unit": "UNIT",
         "quantity": "QUANTITY",
         "price": "UNITARY COST",
         "total": "TOTAL COST"

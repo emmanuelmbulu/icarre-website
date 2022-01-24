@@ -100,6 +100,7 @@ Lang::load("invoice_details.json", null, $lang);
                                         <tr>
                                             <th>#</th>
                                             <th><?= Lang::get("items.label", [], null, $lang) ?></th>
+                                            <th><?= Lang::get("items.unit", [], null, $lang) ?></th>
                                             <th><?= Lang::get("items.quantity", [], null, $lang) ?></th>
                                             <th><?= Lang::get("items.price", [], null, $lang) ?></th>
                                             <th><?= Lang::get("items.total", [], null, $lang) ?></th>
@@ -110,7 +111,8 @@ Lang::load("invoice_details.json", null, $lang);
                                             <tr>
                                                 <th scope="row"><?= $i ?></th>
                                                 <td><?= $item->description ?></td>
-                                                <td><?= $item->quantity ?></td>
+                                                <td><?= $item->unit ?></td>
+                                                <td style="text-align: right"><?= $item->quantity ?></td>
                                                 <td style="text-align: right"><?= $item->price ?></td>
                                                 <td style="text-align: right"><?= $item->total ?></td>
                                             </tr>
@@ -152,7 +154,7 @@ Lang::load("invoice_details.json", null, $lang);
                                                 <td><?= $item->reference ?></td>
                                                 <td><?= $item->status == "approved" ? Lang::get("payments.approved", [], null, $lang) : Lang::get("payments.cancelled", [], null, $lang) ?></td>
                                                 
-                                                <td><?= Lang::get("amount", ["value" => $item->amount, "currency" => $invoice->currency], null, $lang) ?></td>
+                                                <td style="text-align: right"><?= Lang::get("amount", ["value" => $item->amount, "currency" => $invoice->currency], null, $lang) ?></td>
                                                 <td><?= $item->channel ?></td>
                                                 <td>
                                                     <?php if($item->status == "approved") { ?>
