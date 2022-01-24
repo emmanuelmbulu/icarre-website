@@ -81,6 +81,6 @@ class Controller_Default extends Controller_Hybrid {
         $this->template->title = $title;
         $this->template->header = $header;
         $this->template->content = View::forge($view, $array_context);
-        $this->template->footer = View::forge("shared/footer");
+        $this->template->footer = View::forge("shared/footer", ["lang" => $lang]);
     }
 }

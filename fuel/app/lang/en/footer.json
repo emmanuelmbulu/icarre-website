@@ -1,0 +1,29 @@
+{
+    "expertise" : {
+        "title": "What we do",
+        "invest" : "Financial investment",
+        "health" : "Philanthropic activities",
+        "art" : "Congolese Art Promotion",
+        "it" : "IT Services",
+        "crowdfunding" : "Crowdfunding"
+    },
+    "links": {
+        "title" : "Quick links",
+        "home": "Home",
+        "about": "About iCarré",
+        "terms": "Investment Terms and conditions",
+        "health" : "Health Assistance Platform",
+        "art": "Congolese Art Store",
+        "crowdfunding" : "Crowdfunding Platform"
+    },
+    "newsletter": {
+        "title": "Get in touch",
+        "paragraph": "Enter your email and receive the latest news from us.",
+        "form": {
+            "placeholder": "Enter your email address",
+            "button": "Validate",
+            "error": "Please enter a correct email address",
+            "success": "Great! We have add your mail to our newsletter!"
+        }
+    }
+}

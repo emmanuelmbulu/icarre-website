@@ -1,0 +1,29 @@
+{
+    "expertise" : {
+        "title": "Ce que nous faisons",
+        "invest" : "Placement des capitaux",
+        "health" : "Activités philantropiques",
+        "art" : "Promotion de l'artisanat congolais",
+        "it" : "Services Informatiques",
+        "crowdfunding" : "Crowdfunding"
+    },
+    "links": {
+        "title" : "Liens rapides",
+        "home": "Accueil",
+        "about": "A propos de iCarré",
+        "terms": "Termes et conditions d'investissement",
+        "health" : "Plateforme d'assistance",
+        "art": "Notre boutique d'arts",
+        "crowdfunding" : "Plateforme de crowdfunding"
+    },
+    "newsletter": {
+        "title": "Restons en contact",
+        "paragraph": "Entrez votre adresse email et recevez de nos nouvelles.",
+        "form": {
+            "placeholder": "Entrez votre adresse email ici",
+            "button": "Valider",
+            "error": "S'il vous plaît entrer une adresse email correcte.",
+            "success": "Très bien ! Nous avons ajouté votre adresse email dans notre newsletter."
+        }
+    }
+}

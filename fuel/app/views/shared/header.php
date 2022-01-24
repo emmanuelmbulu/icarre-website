@@ -1,6 +1,6 @@
 <?php
 
-    use Fuel\Core\Config;
+use Fuel\Core\Config;
 use Fuel\Core\Router;
 
 Config::load("icarre-data-config.json");

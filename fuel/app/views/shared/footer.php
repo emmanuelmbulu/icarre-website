@@ -2,7 +2,15 @@
 
 use Fuel\Core\Asset;
 use Fuel\Core\Config;
+use Fuel\Core\Lang;
+use Fuel\Core\Router;
 
+Config::load("icarre-data-config.json");
+$tel = Config::get("tel");
+$mail = Config::get("mail");
+$address = Config::get("address");
+
+Lang::load("footer.json", null, $lang);
 ?>
 <footer class="section footer-section bg-secondary">
     <!-- Footer Top Start -->
@@ -28,9 +36,9 @@ use Fuel\Core\Config;
                         <ul class="widget-address">
                             <div id="hs_cos_wrapper_contact_info" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                 <span id="hs_cos_wrapper_contact_info_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text">
-                                    <li><i class="fa fa-map-o"></i><span>1234 Road, London, UK</span></li>
-                                    <li><i class="fa fa-phone"></i><a href="#">+123 456 789 123</a></li>
-                                    <li><i class="fa fa-envelope-o"></i><a href="#">info@example.com</a></li>
+                                    <li><i class="fa fa-map-o"></i><span><?= $address ?></span></li>
+                                    <li><i class="fa fa-phone"></i><a href="<?= 'tel:'.$tel ?>"><?= $tel ?></a></li>
+                                    <li><i class="fa fa-envelope-o"></i><a href="<?= 'mailto:'.$mail ?>"><?= $mail ?></a></li>
                                 </span>
                             </div>
                         </ul>
@@ -41,7 +49,7 @@ use Fuel\Core\Config;
                     <div class="single-footer-widget">
                         <div id="hs_cos_wrapper_footer_widget_title" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-header" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                             <span id="hs_cos_wrapper_footer_widget_title_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_header" data-hs-cos-general-type="widget" data-hs-cos-type="header">
-                                <h2>Our Servcie</h2>
+                                <h2><?= Lang::get("expertise.title", [], null, $lang) ?></h2>
                             </span>
                         </div>
                         <ul class="widget-list pt-6">
@@ -49,11 +57,11 @@ use Fuel\Core\Config;
                                 <span id="hs_cos_wrapper_footer_menu_one_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_simple_menu" data-hs-cos-general-type="widget" data-hs-cos-type="simple_menu">
                                     <div id="hs_menu_wrapper_footer_menu_one_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-vertical" role="navigation" data-sitemap-name="" data-menu-id="" aria-label="Navigation Menu">
                                         <ul role="menu">
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Mobile App Development</a></li>
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Ui/Ux Design</a></li>
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Web Development</a></li>
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Article Writting</a></li>
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Content Management</a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("expertise.it", [], null, $lang) ?></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("expertise.invest", [], null, $lang) ?></a></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("expertise.health", [], null, $lang) ?></a></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("expertise.art", [], null, $lang) ?></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("expertise.crowdfunding", [], null, $lang) ?></a></li>
                                         </ul>
                                     </div>
                                 </span>
@@ -65,7 +73,7 @@ use Fuel\Core\Config;
                     <div class="single-footer-widget aos-init aos-animate">
                         <div id="hs_cos_wrapper_footer_widget_title" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-header" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                             <span id="hs_cos_wrapper_footer_widget_title_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_header" data-hs-cos-general-type="widget" data-hs-cos-type="header">
-                                <h2>Quick link</h2>
+                                <h2><?= Lang::get("links.title", [], null, $lang) ?></h2>
                             </span>
                         </div>
                         <ul class="widget-list pt-6">
@@ -73,11 +81,12 @@ use Fuel\Core\Config;
                                 <span id="hs_cos_wrapper_footer_menu_one_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_simple_menu" data-hs-cos-general-type="widget" data-hs-cos-type="simple_menu">
                                     <div id="hs_menu_wrapper_footer_menu_one_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-vertical" role="navigation" data-sitemap-name="" data-menu-id="" aria-label="Navigation Menu">
                                         <ul role="menu">
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Home</a></li>
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">About</a></li>
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Help Center</a></li>
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Conditin</a></li>
-                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self">Term Of Use</a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="<?= Router::get("index", ["lang" => $lang]) ?>" role="menuitem" target="_self"><?= Lang::get("links.home", [], null, $lang) ?></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="<?= Router::get("about", ["lang" => $lang]) ?>" role="menuitem" target="_self"><?= Lang::get("links.about", [], null, $lang) ?></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("links.terms", [], null, $lang) ?></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("links.health", [], null, $lang) ?></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("links.art", [], null, $lang) ?></a></li>
+                                            <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="#" role="menuitem" target="_self"><?= Lang::get("links.crowdfunding", [], null, $lang) ?></a></li>
                                         </ul>
                                     </div>
                                 </span>
@@ -89,13 +98,13 @@ use Fuel\Core\Config;
                     <div class="single-footer-widget">
                         <div id="hs_cos_wrapper_footer_widget_title" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-header" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                             <span id="hs_cos_wrapper_footer_widget_title_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_header" data-hs-cos-general-type="widget" data-hs-cos-type="header">
-                                <h2>Get in Touch</h2>
+                                <h2><?= Lang::get("newsletter.title", [], null, $lang) ?></h2>
                             </span>
                         </div>
                         <div class="widget-body pt-5">
                             <div id="hs_cos_wrapper_mail_text" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                 <span id="hs_cos_wrapper_mail_text_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text">
-                                    <p class="desc-content mb-0">Enter your email and receive the latest news from us.</p>
+                                    <p class="desc-content mb-0"><?= Lang::get("newsletter.paragraph", [], null, $lang) ?></p>
                                 </span>
                             </div>
                             
@@ -104,46 +113,55 @@ use Fuel\Core\Config;
                                 <form id="mc-form" class="mc-form">
                                     <div id="hs_cos_wrapper_site_mail" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-form" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                         <span id="hs_cos_wrapper_site_mail_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_form" data-hs-cos-general-type="widget" data-hs-cos-type="form">
-                                            <div id="hs_form_target_site_mail"></div>
+                                            <div id="newsletter-info"></div>
                                         </span>
                                     </div>
                                 </form>
                             </div>
 
                             <div class="newsletter-form-wrap pt-4">
-                                <form id="mc-form" class="mc-form" novalidate="true" data-hs-cf-bound="true">
+                                <form action="#" id="newsletter-form" class="mc-form" novalidate="true" data-hs-cf-bound="true">
                                     <div id="hs_cos_wrapper_site_mail" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-form" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                         <span id="hs_cos_wrapper_site_mail_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_form" data-hs-cos-general-type="widget" data-hs-cos-type="form">
                                             <div id="hs_form_target_site_mail">
-                                                <div class="hs-nested-form-fix" data-reactid=".hbspt-forms-0">
-                                                    <span data-reactid=".hbspt-forms-0.0"></span>
-                                                    <form novalidate="" accept-charset="UTF-8" action="" enctype="multipart/form-data" id="hsForm_622b2d5b-50ef-4f60-92d9-6287d1cac60f_276" method="POST" class="hs-form stacked hs-custom-form hs-form-private hsForm_622b2d5b-50ef-4f60-92d9-6287d1cac60f hs-form-622b2d5b-50ef-4f60-92d9-6287d1cac60f hs-form-622b2d5b-50ef-4f60-92d9-6287d1cac60f_0fd5f706-a3ce-486a-b933-c667f8aed279" data-form-id="622b2d5b-50ef-4f60-92d9-6287d1cac60f" data-portal-id="19899805" target="target_iframe_622b2d5b-50ef-4f60-92d9-6287d1cac60f_276" data-reactid=".hbspt-forms-0.1" data-hs-cf-bound="true">
-                                                        <div class="hs_email hs-email hs-fieldtype-text field hs-form-field" data-reactid=".hbspt-forms-0.1.1:$0">
-                                                            <label id="label-email-622b2d5b-50ef-4f60-92d9-6287d1cac60f_276" class="" placeholder="Enter your " for="email-622b2d5b-50ef-4f60-92d9-6287d1cac60f_276" data-reactid=".hbspt-forms-0.1.1:$0.0">
-                                                                <span data-reactid=".hbspt-forms-0.1.1:$0.0.0"></span>
-                                                            </label>
-                                                            <legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.1.1:$0.1"></legend>
-                                                            <div class="input" data-reactid=".hbspt-forms-0.1.1:$0.$email">
-                                                                <input id="email-622b2d5b-50ef-4f60-92d9-6287d1cac60f_276" class="hs-input" type="email" name="email" placeholder="Enter your email" value="" autocomplete="email" data-reactid=".hbspt-forms-0.1.1:$0.$email.0" inputmode="email">
-                                                            </div>
+                                                <div class="hs-nested-form-fix">
+                                                    <div class="hs_email hs-email hs-fieldtype-text field hs-form-field">
+                                                        <div class="input">
+                                                            <input id="newsletter-email" class="hs-input" type="email" name="email" placeholder='<?= Lang::get("newsletter.form.placeholder", [], null, $lang) ?>' value="" autocomplete="email" inputmode="email">
                                                         </div>
-                                                        <noscript data-reactid=".hbspt-forms-0.1.2"></noscript>
-                                                        <div class="hs_submit hs-submit" data-reactid=".hbspt-forms-0.1.5">
-                                                            <div class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.1.5.0"></div>
-                                                            <div class="actions" data-reactid=".hbspt-forms-0.1.5.1">
-                                                                <input type="submit" value="Submit" class="hs-button primary large" data-reactid=".hbspt-forms-0.1.5.1.0">
-                                                            </div>
+                                                    </div>
+                                                    <div class="hs_submit hs-submit">
+                                                        <div class="actions">
+                                                            <input type="submit" value='<?= Lang::get("newsletter.form.button", [], null, $lang) ?>' class="hs-button primary large">
                                                         </div>
-                                                        <noscript data-reactid=".hbspt-forms-0.1.6"></noscript>
-                                                        <input name="hs_context" type="hidden" value="" data-reactid=".hbspt-forms-0.1.7">
-                                                        <iframe name="target_iframe_622b2d5b-50ef-4f60-92d9-6287d1cac60f_276" style="display:none;" data-reactid=".hbspt-forms-0.1.8"></iframe>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </span>
                                     </div>
-                              </form>
-                          </div>
+                                </form>
+                                <script>
+                                    function processForm(e) {
+                                        if(e.preventDefault()) e.preventDefault();
+
+                                        const mail_format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                                        let mail = document.querySelector("#newsletter-email");
+                                        let info = document.querySelector("#newsletter-info");
+                                        console
+                                        if(mail_format.test(mail.value)) {
+                                            mail.value = "";
+                                            info.innerHTML('<?= "<p>".Lang::get("newsletter.form.success", [], null, $lang)."</p>" ?>');
+                                        } else {
+                                            info.innerHTML('<?= "<p>".Lang::get("newsletter.form.error", [], null, $lang)."</p>" ?>');
+                                        }
+                                        return false;
+                                    }
+                                    let newsletter = document.querySelector("#newsletter-form");
+                                    if(newsletter.attachEvent) {
+                                        newsletter.attachEvent("submit", processForm);
+                                    } else newsletter.addEventListener("submit", processForm);
+                                </script>
+                            </div>
                             <!-- Newsletter Form End -->
 
                             <!-- Soclial Link Start -->
@@ -151,10 +169,10 @@ use Fuel\Core\Config;
                                 <div id="hs_cos_wrapper_module_16226538086882" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                     <ul class="widget-social justify-content-start">
                                         <li><a href="https://www.facebook.com/"><i class="fa fa-facebook-f"></i></a></li>
-                                        <li><a href="?hsLang=en-us"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="?hsLang=en-us"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="?hsLang=en-us"><i class="fa fa-youtube"></i></a></li>
-                                        <li><a href="?hsLang=en-us"><i class="fa fa-vimeo"></i></a></li>
+                                        <li><a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a></li>
+                                        <!--li><a href="?hsLang=en-us"><i class="fa fa-vimeo"></i></a></li-->
                                     </ul>
                                 </div>
                             </div>

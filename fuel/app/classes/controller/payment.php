@@ -60,7 +60,7 @@ class Controller_Payment extends Controller_Hybrid {
         $this->template->title = "Paiement";
         $this->template->header = $header;
         $this->template->content = View::forge($view_name, $data_context);
-        $this->template->footer = View::forge("shared/footer");
+        $this->template->footer = View::forge("shared/footer", ["lang" => $lang]);
         return;
     }
 }

@@ -114,9 +114,7 @@ class Controller_Bill extends Controller_Hybrid {
     public function get_callback() {
         $lang = Helper::manageLanguage($this, "details-bill", ["ref" => 0]);
 
-        try {            
-            Lang::load("invoice_details.json", null, $lang);
-
+        try {
             $ref = Input::get("Reference", 0);
             $bill = Model_Bill::find($ref);
             if($bill == null) {
@@ -128,17 +126,14 @@ class Controller_Bill extends Controller_Hybrid {
             $status = Input::get("status", "cancelled");
             $payment->set_status($status);
             //$payment->reference = $bill->reference;
-            $payment->reference = "ICIP-".Input::get("order", 0);
-            $payment->reference .= "-".Input::get("paymentID", 0);
+            $payment->reference = "ICIP-".$bill->id;
+            //$payment->reference .= "-".Input::get("paymentID", 0);
             $payment->reference .= "-".Input::get("transaction_id", 0);
             $payment->amount = Input::get("amount", 0);
             $payment->channel = Input::get("PaymentMethod", "undefined");
             $payment->date = Input::get("transaction_date");
             $payment->ip_address = Cookie::get("ip", "0.0.0.0");
             $payment->receipt = "#";
-
-            $bill->add_payment($payment);
-            $bill->save();
 
             $date_format = "Y-m-d h:i:s";
             if($lang == "fr") {
@@ -149,6 +144,8 @@ class Controller_Bill extends Controller_Hybrid {
             $client = $bill->get_client();
 
             if($payment->status == "approved") {
+                Lang::load("invoice_details.json", null, $lang);
+
                 $pathToModel = DOCROOT."assets/bills/".$lang."-model.docx";
                 $phpdocx = new TemplateProcessor($pathToModel);
 
@@ -159,7 +156,7 @@ class Controller_Bill extends Controller_Hybrid {
                     "reference" => $payment->reference,
                     "payment_date" => date($date_format, strtotime($payment->date)),
                     "payment_channel" => $payment->channel,
-                    "channel_reference" => Input::get("order", "undefined"),
+                    "channel_reference" => Input::get("transaction_id", "undefined"),
 
                     /**
                      * CLIENT
@@ -275,6 +272,9 @@ class Controller_Bill extends Controller_Hybrid {
                  */
             }
 
+            $bill->add_payment($payment);
+            $bill->save();
+
             $payments = $bill->get_payments();
             $context = [
                 "status" => $payment->status,
@@ -284,7 +284,11 @@ class Controller_Bill extends Controller_Hybrid {
                 "client" => $client,
                 "payments" => $payments,
             ];
-
+            
+            /**
+             * Loading again after mails sent
+             */
+            Lang::load("invoice_details.json", null, $lang);
             $title = Lang::get("title", ["reference" => $bill->reference], null, $lang);
             return $this->buildPage($lang, "invoice/details", $title, $context);         
         } catch (\Throwable $th) {
@@ -297,9 +301,7 @@ class Controller_Bill extends Controller_Hybrid {
     public function post_callback() {
         $lang = Helper::manageLanguage($this, "details-bill", ["ref" => 0]);
 
-        try {            
-            Lang::load("invoice_details.json", null, $lang);
-
+        try {
             $ref = Input::post("Reference", 0);
             $bill = Model_Bill::find($ref);
             if($bill == null) {
@@ -311,8 +313,8 @@ class Controller_Bill extends Controller_Hybrid {
             $status = Input::post("status", "cancelled");
             $payment->set_status($status);
             //$payment->reference = $bill->reference;
-            $payment->reference = "ICIP-".Input::post("order", 0);
-            $payment->reference .= "-".Input::post("paymentID", 0);
+            $payment->reference = "ICIP-".$bill->id;
+            //$payment->reference .= "-".Input::get("paymentID", 0);
             $payment->reference .= "-".Input::post("transaction_id", 0);
             $payment->amount = Input::post("amount", 0);
             $payment->channel = Input::post("PaymentMethod", "undefined");
@@ -328,10 +330,9 @@ class Controller_Bill extends Controller_Hybrid {
             $items = $bill->get_items();
             $client = $bill->get_client();
 
-            $bill->add_payment($payment);
-            $bill->save();
-
             if($payment->status == "approved") {
+                Lang::load("invoice_details.json", null, $lang);
+
                 $pathToModel = DOCROOT."assets/bills/".$lang."-model.docx";
                 $phpdocx = new TemplateProcessor($pathToModel);
 
@@ -342,7 +343,7 @@ class Controller_Bill extends Controller_Hybrid {
                     "reference" => $payment->reference,
                     "payment_date" => date($date_format, strtotime($payment->date)),
                     "payment_channel" => $payment->channel,
-                    "channel_reference" => Input::post("order", "undefined"),
+                    "channel_reference" => Input::post("transaction_id", "undefined"),
 
                     /**
                      * CLIENT
@@ -458,6 +459,9 @@ class Controller_Bill extends Controller_Hybrid {
                  */
             }
 
+            $bill->add_payment($payment);
+            $bill->save();
+
             $payments = $bill->get_payments();
             $context = [
                 "status" => $payment->status,
@@ -467,7 +471,11 @@ class Controller_Bill extends Controller_Hybrid {
                 "client" => $client,
                 "payments" => $payments,
             ];
-
+            
+            /**
+             * Loading again after mails sent
+             */
+            Lang::load("invoice_details.json", null, $lang);
             $title = Lang::get("title", ["reference" => $bill->reference], null, $lang);
             return $this->buildPage($lang, "invoice/details", $title, $context);         
         } catch (\Throwable $th) {
@@ -481,16 +489,27 @@ class Controller_Bill extends Controller_Hybrid {
         $lang = Helper::manageLanguage($this, "details");
 
         $client = new Bill_Client();
-        $client->address = "131B, avenue Songololo, commune de Kinshasa, ville de Kinshasa";
-        $client->country = "République démocratique du Congo";
-        $client->email = "emmanuel.mbulu@gmail.com";
-        $client->fullname = "Emmabuel Mbulu";
-        $client->phone = "+243813700243";
+        $client->address = "105 Wildberry Crescent Woodbridge ON L4H 2C6";
+        $client->country = "Canada";
+        $client->email = "burdanerdo@vusra.com";
+        $client->fullname = "Justin Thomas";
+        $client->phone = "+14163232014";
 
-        $description = "Déploiement du premier livrable de l'application mobile";
-        $price = 50;
-        $item = new Bill_Item($description, $price, 1, "Forfait");
         $items = array();
+
+        $description = "Remote Drupal Web Application source code audit";
+        $price = 7500;
+        $item = new Bill_Item($description, $price, 1, "Package");
+        $items[] = $item;
+
+        $description = "Payrol Module Implementation";
+        $price = 25;
+        $item = new Bill_Item($description, $price, 200, "Hours");
+        $items[] = $item;
+
+        $description = "Ubuntu 20.04 LTS System configuration and security policy deployment";
+        $price = 5000;
+        $item = new Bill_Item($description, $price, 1, "Package");
         $items[] = $item;
 
         $bill = new Model_Bill();
@@ -602,7 +621,13 @@ class Controller_Bill extends Controller_Hybrid {
                     "path" => $dossier."invoice-".$invoiceRef.".pdf",
                     "name" => "Invoice ".$bill->reference.".pdf"
             ]];
-            Sendmail::Send($destinataire, $subject, $mail_invoice_created, $attachments);
+            $bcc = array(
+                [
+                    "mail" => "emmanuel.mbulu@icarre-rdc.com",
+                    "name" => "Emmanuel MBULU"
+                ]
+            );
+            Sendmail::Send($destinataire, $subject, $mail_invoice_created, $attachments, $bcc);
             /**
              * Mail to client sent
             */
@@ -657,6 +682,6 @@ class Controller_Bill extends Controller_Hybrid {
         $this->template->title = $title;
         $this->template->header = $header;
         $this->template->content = View::forge($view, $array_context);
-        $this->template->footer = View::forge("shared/footer");
+        $this->template->footer = View::forge("shared/footer", ["lang" => $lang]);
     }
 }
