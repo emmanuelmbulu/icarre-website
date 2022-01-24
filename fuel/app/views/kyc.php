@@ -53,22 +53,21 @@ Lang::load("kyc.json", null, $lang);
                                         </div>
                                         <div class="accordion mt-2" id="accordion-kyc">
                                             <?php
-                                            $accordions = Lang::get("form.accordions", [], null, $lang);
-                                            for ($j=0; $j < count($accordions) / 2; $j++) {
-                                                $accordion = $accordions[$j]; ?>
+                                            $accordions[] = Lang::get("form.accordions.first");
+                                            $accordions[] = Lang::get("form.accordions.second");
+                                            $j=0;
+                                            foreach ($accordions as $accordion) { $j++; ?>
                                                 
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="<?= $accordion['name'].'-title' ?>">
-                                                        <button class="accordion-button <?= $j != 0 ? 'collapsed' : '' ?>" type="button" data-bs-toggle="collapse" data-bs-target="<?= '#'.$accordion['name'] ?>" aria-expanded="false" aria-controls="<?= $accordion['name'] ?>">
+                                                        <button class="accordion-button <?= $j != 1 ? 'collapsed' : '' ?>" type="button" data-bs-toggle="collapse" data-bs-target="<?= '#'.$accordion['name'] ?>" aria-expanded="false" aria-controls="<?= $accordion['name'] ?>">
                                                             <?= $accordion["title"] ?>
                                                         </button>
                                                     </h2>
-                                                    <div id="<?= $accordion['name'] ?>" class="accordion-collapse collapse <?= $j != 0 ? '' : 'show' ?>" aria-labelledby="<?= $accordion['name'].'-title' ?>">
+                                                    <div id="<?= $accordion['name'] ?>" class="accordion-collapse collapse <?= $j != 1 ? '' : 'show' ?>" aria-labelledby="<?= $accordion['name'].'-title' ?>">
                                                         <div class="accordion-body">
                                                             <div class="row">
-                                                                <?php
-                                                                if(array_key_exists("text", $accordion)) { ?>
-
+                                                                <?php if(array_key_exists("text", $accordion)) { ?>
                                                                     <div class="col-12 pb-2"> <?php
                                                                         $text = $accordion["text"];
                                                                         if($text["type"] == "simple") { ?>
@@ -80,8 +79,7 @@ Lang::load("kyc.json", null, $lang);
                                                                 }
 
                                                                 $inputs = $accordion["inputs"];
-                                                                for ($i = 0; $i < count($inputs); $i++) {
-                                                                    $item = $inputs[$i];                                                                    
+                                                                foreach ($inputs as $item) {                                                               
                                                                     if($item["type"] == "radio") { ?>
 
                                                                         <div class="col-12 pb-2"> <?php

@@ -11,59 +11,59 @@
             "paragraph": "Read the terms and conditions that apply to your investment in our business by downloading the related document.",
             "link": "Download the document."
         },
-        "accordions" : [
-            {
+        "accordions" : {
+            "first": {
                 "name": "profile",
                 "title": "Who are you?",
-                "inputs": [
-                    {
+                "inputs": {
+                    "first": {
                         "name": "title",
                         "label": "Title",
-                        "values": [
-                            {
+                        "values": {
+                            "first": {
                                 "value": "Mr",
                                 "text": "Sir"
                             },
-                            {
+                            "second": {
                                 "value": "Mrs",
                                 "text": "Madam"
                             },
-                            {
+                            "third": {
                                 "value": "Ms",
                                 "text": "Miss"
                             },
-                            {
+                            "forfth": {
                                 "value": "Dr",
                                 "text": "Doctor"
                             }
-                        ],
+                        },
                         "type": "radio"
                     },
-                    {
+                    "second": {
                         "name": "lastname",
                         "label": "Last name",
                         "placeholder": "Enter your last name here",
                         "type": "text"
                     },
-                    {
+                    "third": {
                         "name": "firstname",
                         "label": "First name",
                         "placeholder": "Enter your first name here",
                         "type": "text"
                     },
-                    {
+                    "forth": {
                         "name" : "birth",
                         "label": "Date of birth",
                         "placeholder": "Enter your date of birth here",
                         "type": "date"
                     },
-                    {
+                    "fifth": {
                         "name": "address",
                         "label": "Home address",
                         "placeholder": "Enter your home address here",
                         "type": "textarea"
                     },
-                    {
+                    "sixth": {
                         "name": "country",
                         "label": "Country of residence",
                         "placeholder": "Select your country of residence here",
@@ -71,13 +71,13 @@
                         "data": "api",
                         "url": "https://restcountries.com/v3.1/all"
                     },
-                    {
+                    "seventh": {
                         "name": "postal",
                         "label": "Zip code",
                         "placeholder": "Enter your zip code here",
                         "type": "text"
                     },
-                    {
+                    "heigth": {
                         "name": "nationality",
                         "label": "Nationality",
                         "placeholder": "Select the country of your nationality",
@@ -85,35 +85,35 @@
                         "data": "api",
                         "url": "https://restcountries.com/v3.1/all"
                     },
-                    {
+                    "nineth": {
                         "name": "nationalid",
                         "label": "Identification number (or passport number)",
                         "placeholder": "Enter your ID Number or your passport number",
                         "type": "text"
                     },
-                    {
+                    "tenth": {
                         "name": "mail",
                         "label": "Email address",
                         "placeholder": "Enter your email address here",
                         "type": "email"
                     },
-                    {
+                    "eleventh": {
                         "name": "phone",
                         "label": "Phone number",
                         "placeholder": "Enter your phone number here",
                         "type": "text"
                     }
-                ]
+                }
             },
-            {
+            "second": {
                 "name": "money",
                 "title": "How much would you like to invest?",
                 "text": {
                     "type": "simple",
                     "paragraph": "For each investment you would like to make, you must invest a lump sum worth at least USD 100 and no more than USD 10,000.<br><br>You can still invest as much as you like but the maximum value of your investment is USD 10,000."
                 },
-                "inputs": [
-                    {
+                "inputs": {
+                    "first": {
                         "name": "amount",
                         "label": "Lump sum in USD for this investment",
                         "placeholder": "Enter the value of the USD amount of your investment here",
@@ -121,9 +121,9 @@
                         "max": 10000,
                         "type": "number"
                     }
-                ]
+                }
             }
-        ]
+        }
         
     }
 }

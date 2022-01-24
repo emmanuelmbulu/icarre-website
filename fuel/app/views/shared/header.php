@@ -17,8 +17,9 @@ Config::load("icarre-data-config.json");
                 <div class="col-lg-8 col-md-12">
                     <div id="hs_cos_wrapper_module_16237504766303" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                         <ul class="header-top-links">
-                            <li><i class="fa fa-phone"></i> <a href="<?= 'tel:'.$tel ?>"><?= $tel ?></a></li>
-                            <li><i class="fa fa-envelope-o"></i> <a href="<?= 'mailto:'.$mail ?>"><?= $mail ?></a></li>
+                            <li><a href="<?= 'tel:'.$tel ?>"><i class="fa fa-phone fa-xl"></i> <span><?= $tel ?></span></a></li>
+                            <li><a href="<?= 'tel:+243854817354' ?>"><i class="fa fa-phone fa-xl"></i> <span>+243854817354</span></a></li>
+                            <li><a href="<?= 'mailto:'.$mail ?>"><i class="fa fa-envelope-o fa-xl"></i> <span><?= $mail ?></span></a></li>
                             <!--li><i class="fa fa-clock-o"></i> <span>Ouvert de lundi à vendredi, de 8:30 à 16:00</span> </li-->
                         </ul>
                     </div>

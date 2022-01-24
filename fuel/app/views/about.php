@@ -25,7 +25,7 @@ Lang::load("about.json", null, $lang);
                             <h1 class="title"><?= Lang::get("title", [], null, $lang) ?></h1>
                             <ul class="breadcrumb-list">
                                 <li><a href="<?= Uri::base(false)."/$lang" ?>"><?= Lang::get("home", [], null, $lang) ?></a></li>
-                                <!--li><a href="#"><?= Lang::get("aboutinvest", [], null, $lang) ?></a></li-->
+                                <li><a href="#"><?= Lang::get("title") ?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ Lang::load("about.json", null, $lang);
                         <div class="about-timeline-spacing-top border-top">
                             <div class="row row-cols-lg-3 row-cols-1 mb-n6">
                                 <?php 
-                                $domains = Lang::get("domains", [], null, $lang);
+                                $domains = Lang::get("domains");
                                 foreach ($domains as $item) {
                                 ?>
                                     <div class="col mb-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
@@ -103,7 +103,7 @@ Lang::load("about.json", null, $lang);
                     <div class="container">
                         <div class="row row-cols-sm-2 row-cols-lg-4 row-cols-1 mb-n10">
                             <?php
-                                $satisfactions = Lang::get("satisfactions", [], null, $lang);
+                                $satisfactions = Lang::get("satisfactions");
                                 foreach ($satisfactions as $item) { ?>
                                     <!-- FunFact Area Start -->
                                     <div class="col mb-10">

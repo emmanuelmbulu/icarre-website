@@ -6,43 +6,43 @@
         "paragraph" : "iCarré « Des Idées Intelligentes | Intelligents Ideas», registered with the RCCM under number CD/KNG/RCCM/19-A-01213 in the Democratic Republic of Congo, is identified as a company operating in general trade in the private sector in the Democratic Republic of Congo.<br><br >In the digital field, we have proven expertise of more than 6 years in supporting the management of innovation and digital transformation. We provide satisfaction for all types of IT needs.<br><br>In the field of wildlife crime and biodiversity, we align new information technologies in the strategy of preserving biodiversity and combating wildlife crime. wild species in partnership with a few local organizations. It is in this context that we offer our services to the Congolese Institute for the Conservation of Nature (ICCN).<br><br>In the field of finance, we work in partnership with the South African company Phronesis Finance (Pty) Ltd, registered with the Companies and Intellectual Property Commission of South Africa under tax number 2017/514935/07, of which we own 18% of the shares. Phronesis Finance (Pty) Ltd is a company specialising in financial market trading.<br><br>By placing your money with us, we guarantee you a 380% return on investment which you receive over 4 years, at the rate of one payment per half year, i.e. 2 payments per year, of an amount equivalent to the 60% of your investment.",
         "button" : "I want to invest"
     },
-    "domains" : [
-        {
+    "domains" : {
+        "first": {
             "title": "Digital and NICT",
             "paragraph" : "Governance of IS (Audit & Consulting); Networks and Telematics; Data Analysis and Business Intelligence; Cybersecurity; Acquisition and Maintenance of IT infrastructures; Acquisition, Implementation and Maintenance of application solutions (ERP, Web & Mobile Development, Integration); Digital Marketing (Web Ads, e-Reputation, Graphic Design); Training.",
             "img" : "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/about-icon-1.png"
         },
-        {
+        "second": {
             "title": "Wildlife crime and biodiversity",
             "paragraph" : "We implement a number of programs related to the insertion of new technologies in the management of biodiversity, fauna and flora.",
             "img" : "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/about-icon-1.png"
         },
-        {
+        "third": {
             "title": "Stock markets and other activities",
             "paragraph" : "We act as a broker and trader in the stock market through Phronesis Finance (Pty) Ltd.<br><br>The other activities that generate revenue for us are the marketing of Congolese handicrafts internationally as well as logistics management.",
             "img" : "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/about-icon-1.png"
         }
-    ],
-    "satisfactions" : [
-        {
+    },
+    "satisfactions" : {
+        "first": {
             "title": "USD placed between 2019 and 2020",
             "stats": 87500,
             "img": "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/funfact-icon-1.png"
         },
-        {
+        "second": {
             "title": "Value in USD of the shares",
             "stats": 225000,
             "img": "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/funfact-icon-1.png"
         },
-        {
+        "third": {
             "title": "Investors in progress",
             "stats": 57,
             "img": "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/funfact-icon-1.png"
         },
-        {
+        "forth": {
             "title": "Completed contracts",
             "stats": 65,
             "img": "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/funfact-icon-1.png"
         }
-    ]
+    }
 }

@@ -3,6 +3,7 @@
 use Fuel\Core\Config;
 use Fuel\Core\Cookie;
 use Fuel\Core\File;
+use Fuel\Core\Lang;
 use Fuel\Core\Response;
 use Fuel\Core\Router;
 use Fuel\Core\Uri;
@@ -113,7 +114,7 @@ class Helper {
         }
 
         if($lang == null) {
-            $lang = Cookie::get("lang", "fr");
+            $lang = Cookie::get("language", "fr");
             $args["lang"] = $lang;
             return Response::redirect(Router::get($route_name, $args));
         } else {
@@ -121,8 +122,9 @@ class Helper {
             if(Config::get("$lang") == null) {
                 $args["lang"] = "fr";
                 return Response::redirect(Router::get($route_name, $args));
-            } else Cookie::set("lang", $lang, 30 * 24 * 60 * 60);
+            } else Cookie::set("language", $lang, 30 * 24 * 60 * 60);
         }
+        Lang::set_lang($lang, true);
         return $lang;
     }
 

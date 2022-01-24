@@ -11,59 +11,59 @@
             "paragraph": "Prenez connaissance des termes et conditions qui s'appliquent à votre investissement dans nos activités en téléchargeant le document y rélatif.",
             "link": "Télécharger le document."
         },
-        "accordions" : [
-            {
+        "accordions" : {
+            "first": {
                 "name": "profile",
                 "title": "Qui êtes-vous ?",
-                "inputs": [
-                    {
+                "inputs": {
+                    "first": {
                         "name": "title",
                         "label": "Titre",
-                        "values": [
-                            {
+                        "values": {
+                            "first": {
                                 "value": "Mr",
                                 "text": "Monsieur"
                             },
-                            {
+                            "second": {
                                 "value": "Mme",
                                 "text": "Madame"
                             },
-                            {
+                            "third": {
                                 "value": "Mlle",
                                 "text": "Mademoiselle"
                             },
-                            {
+                            "forth": {
                                 "value": "Dr",
                                 "text": "Docteur"
                             }
-                        ],
+                        },
                         "type": "radio"
                     },
-                    {
+                    "second": {
                         "name": "lastname",
                         "label": "Nom",
                         "placeholder": "Entrez votre nom de famille ici",
                         "type": "text"
                     },
-                    {
+                    "third": {
                         "name": "firstname",
                         "label": "Prénom",
                         "placeholder": "Entrez votre prénom ici",
                         "type": "text"
                     },
-                    {
+                    "forth": {
                         "name" : "birth",
                         "label": "Date de naissance",
                         "placeholder": "Entrez votre date de naissance ici",
                         "type": "date"
                     },
-                    {
+                    "fifth": {
                         "name": "address",
                         "label": "Adresse de résidence",
                         "placeholder": "Entrez votre adresse de résidence ici",
                         "type": "textarea"
                     },
-                    {
+                    "sixth": {
                         "name": "country",
                         "label": "Pays de résidence",
                         "placeholder": "Sélectionez votre pays de résidence ici",
@@ -71,13 +71,13 @@
                         "data": "api",
                         "url": "https://restcountries.com/v3.1/all"
                     },
-                    {
+                    "seventh": {
                         "name": "postal",
                         "label": "Code postal",
                         "placeholder": "Entrez votre code postal ici",
                         "type": "text"
                     },
-                    {
+                    "heigth": {
                         "name": "nationality",
                         "label": "Nationalité",
                         "placeholder": "Sélectionnez le pays dont vous avez la nationalité",
@@ -85,35 +85,35 @@
                         "data": "api",
                         "url": "https://restcountries.com/v3.1/all"
                     },
-                    {
+                    "nineth": {
                         "name": "nationalid",
                         "label": "Numéro d'identification (ou numéro de passeport)",
                         "placeholder": "Entrez votre numéro d'identification ou celui du passeport",
                         "type": "text"
                     },
-                    {
+                    "tenth": {
                         "name": "mail",
                         "label": "Adresse email",
                         "placeholder": "Entrez votre adresse email ici",
                         "type": "email"
                     },
-                    {
+                    "eleventh": {
                         "name": "phone",
                         "label": "Téléphone",
                         "placeholder": "Entrez votre numéro de téléphone ici",
                         "type": "text"
                     }
-                ]
+                }
             },
-            {
+            "second": {
                 "name": "money",
                 "title": "Combien aimerez-vous investir ?",
                 "text": {
                     "type": "simple",
                     "paragraph": "Pour chaque placement que vous aimerez faire, vous devez investir un montant forfaitaire d'une valeur d'au moins 100 USD et d'au plus 10.000 USD.<br><br>Vous pouvez toujours investir autant que vous le souhaiterez mais la valeur maximale de votre placement est de 10.000 USD."
                 },
-                "inputs": [
-                    {
+                "inputs": {
+                    "first": {
                         "name": "amount",
                         "label": "Montant forfaitaire en USD pour ce placement",
                         "placeholder": "Entrez la valeur du montant en USD de votre placement ici",
@@ -121,9 +121,8 @@
                         "max": 10000,
                         "type": "number"
                     }
-                ]
+                }
             }
-        ]
-        
+        }        
     }
 }

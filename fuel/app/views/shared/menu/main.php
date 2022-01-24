@@ -38,7 +38,7 @@ Lang::load("main_menu.json", null, $lang);
                             <ul class="navigation sub-menu hs-menu-children-wrapper level-1" aria-hidden="false">
                                 <li class="no-has-children menu-item"><a class="<?= $active == "index" ? 'menu-link active active-item' : 'navs-link' ?>" href="<?= Uri::base(false)."$lang/home" ?>" aria-current="page"><?= Lang::get("home", [], null, $lang) ?></a></li>
                                 <li class="no-has-children menu-item"><a class="<?= $active == "about" ? 'menu-link active active-item' : 'navs-link' ?>" href="<?= Router::get("about", ["lang" => $lang]) ?>" aria-current="page"><?= Lang::get("about", [], null, $lang) ?></a></li>
-                                <li class="has-children menu-item">
+                                <!--li class="has-children menu-item">
                                     <a class="navs-link" href="?hsLang=en-us">Template</a>
                                     <ul class="navigation sub-menu hs-menu-children-wrapper level-2" aria-hidden="true">
                                         <li class="no-has-children menu-item"><a class="menu-link active active-item" href="//19899805.hs-sites.com/en-us/terbay/home" aria-current="page">Home</a></li>
@@ -46,7 +46,7 @@ Lang::load("main_menu.json", null, $lang);
                                         <li class="no-has-children menu-item"><a class="navs-link" href="//19899805.hs-sites.com/en-us/terbay/project?hsLang=en-us">Project</a></li>
                                     </ul>
                                 </li>
-                                <li class="no-has-children menu-item"><a class="navs-link" href="https://htmldemo.hasthemes.com/terbay_hubspot_documentation/">Documentation</a></li>
+                                <li class="no-has-children menu-item"><a class="navs-link" href="https://htmldemo.hasthemes.com/terbay_hubspot_documentation/">Documentation</a></li-->
                             </ul>
                         </div>
                     </div>

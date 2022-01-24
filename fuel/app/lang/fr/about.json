@@ -6,43 +6,43 @@
         "paragraph" : "iCarré « Des Idées Intelligentes », enregistré au RCCM sous le numéro CD/KNG/RCCM/19-A-01213 en République démocratique du Congo, est identifié comme une société exerçant dans le commerce général dans le secteur privé en République démocratique du Congo.<br><br>Dans le domaine du numérique, nous avons une expertise avérée de plus de 6 ans dans l’accompagnement à la conduite de l’innovation et de la transformation numérique. Nous apportons satisfaction à tout type de besoin en informatique.<br><br>Dans le domaine de criminalité faunique et biodiversité, nous alignons les nouvelles technologies de l’information dans la stratégie de préservation de la biodiversité et de lutte contre la criminalité des espèces sauvages en partenariat avec quelques organismes locaux. C’est d’ailleurs dans ce cadre que nous offrons nos services à l’Institut Congolais pour le Conservation de la Nature (ICCN).<br><br>Dans le domaine des finances, nous travaillons en partenariat avec la société sudafricaine Phronesis Finance (Pty) Ltd, enregistrée auprès de la commission des sociétés et de la propriété intellectuelle d'Afrique du Sud sous le numéro de taxe 2017/514935/07, dont nous détenons 18% des actions. Phronesis Finance (Pty) Ltd est une société spécialisée dans le trading des marchés financiers.<br><br>En plaçant votre argent chez nous, nous vous garantissons un retour sur investissement de 380% que vous recevez sur 4 ans, en raison d’un paiement par semestre, soit 2 paiements par an, d’un montant équivalent aux 60% de votre placement.",
         "button" : "Je souhaite investir"
     },
-    "domains" : [
-        {
+    "domains" : {
+        "first": {
             "title": "Numérique et NTIC",
             "paragraph" : "Gouvernance des SI (Audit & Conseil) ; Réseaux et Télématiques ; Analyse des données et Business Intelligence ; Cybersécurité ; Acquisition et Maintenance d'infrastructures informatiques ; Acquisition, Implémentation et Maintenance de solutions applicatives (ERP, Développement Web & Mobile, Intégration) ; Marketing Digital (Web Ads, e-Reputation, Conception graphique) ; Formation",
             "img" : "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/about-icon-1.png"
         },
-        {
+        "second": {
             "title": "Criminalité faunique et biodiversité",
             "paragraph" : "Nous implementons un certain nombre de programmes en lien avec l'insertion des nouvelles technologies dans la gestion de la biodiversité, de la faune et de la flore.",
             "img" : "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/about-icon-1.png"
         },
-        {
+        "third": {
             "title": "Marchés boursiers et autres activités",
             "paragraph" : "Nous agissons en tant que courtier et trader en bourse par l'intermediaire de Phronesis Finance (Pty) Ltd.<br><br>Les autres activités qui nous génèrent des recettes sont la commercialisation de l’artisanat congolais à l’internationale ainsi que la gestion logistique.",
             "img" : "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/about-icon-1.png"
         }
-    ],
-    "satisfactions" : [
-        {
+    },
+    "satisfactions" : {
+        "first": {
             "title": "USD placés entre 2019 et 2020",
             "stats": 87500,
             "img": "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/funfact-icon-1.png"
         },
-        {
+        "second": {
             "title": "Valeur en USD des actions",
             "stats": 225000,
             "img": "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/funfact-icon-1.png"
         },
-        {
+        "third": {
             "title": "Investisseurs en cours",
             "stats": 57,
             "img": "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/funfact-icon-1.png"
         },
-        {
+        "forth": {
             "title": "Contrats aboutis",
             "stats": 65,
             "img": "//fs.hubspotusercontent00.net/hubfs/19899805/raw_assets/public/terbay/images/icon/funfact-icon-1.png"
         }
-    ]
+    }
 }

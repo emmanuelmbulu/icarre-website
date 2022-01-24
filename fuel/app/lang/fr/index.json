@@ -139,37 +139,37 @@
     "testimonials" : {
         "title": "Quelques témoignages",
         "subtitle" : "Nous récoltons et nous continuerons à récolter pour vous des témoignages de <br>ceux qui nous font confiance afin de partager leur expérience avec vous.",
-        "testimonies" : [
-            {
+        "testimonies" : {
+            "first": {
                 "name" : "Joe-Kibay Michel",
                 "title": "Directeur Gérant chez Attemit SARL",
                 "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
                 "img": "#"
             },
-            {
+            "second": {
                 "name" : "Ange Mombu",
                 "title": "Chargé des opérations chez AZ",
                 "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
                 "img": "#"
             },
-            {
+            "third": {
                 "name" : "Glory Kakessa",
                 "title": "CEO chez Akilix",
                 "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
                 "img": "#"
             },
-            {
+            "forth": {
                 "name" : "Jonathan Ndaye",
                 "title": "Ingénieur chez iEngineering",
                 "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
                 "img": "#"
             },
-            {
+            "fifth": {
                 "name" : "Francis Mapilanga",
                 "title": "Consultant chez CENI/RDC",
                 "text": "\"You could debate whether it is an issue of the theme or a new extension. PlazaThemes support and response has been amazing, helping me with several issues. With no doubt when designing a complex website you will face issues with the compatibility of the theme specially when installing new extensions.",
                 "img": "#"
             }
-        ]
+        }
     }
 }
