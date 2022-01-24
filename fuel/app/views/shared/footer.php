@@ -21,14 +21,16 @@ Lang::load("footer.json", null, $lang);
                     <div class="single-footer-widget">
                         <div class="footer-logo">
                             <div id="hs_cos_wrapper_footer_logo" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-logo" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                                <span id="hs_cos_wrapper_footer_logo_hs_logo_widget" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" data-hs-cos-general-type="widget" data-hs-cos-type="logo"><a href="https://19899805.hs-sites.com/en-us/terbay/home?hsLang=en-us" id="hs-link-footer_logo_hs_logo_widget" style="border-width:0px;border:0px;">
-                                    <img src="<?= Asset::get_file("logo_large_reverse.png", "img") ?>" class="hs-image-widget " style="width:177px;border-width:0px;border:0px;" width="177" alt="Footer logo" title="Footer logo"></a>
+                                <span id="hs_cos_wrapper_footer_logo_hs_logo_widget" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" data-hs-cos-general-type="widget" data-hs-cos-type="logo">
+                                    <a href="<?= Router::get("index", ["lang" => $lang]) ?>" id="hs-link-footer_logo_hs_logo_widget" style="border-width:0px;border:0px;">
+                                        <img src="<?= Asset::get_file("logo_large_reverse.png", "img") ?>" class="hs-image-widget " style="width:177px;border-width:0px;border:0px;" width="177" alt="Footer logo" title="Footer logo">
+                                    </a>
                                 </span>
                             </div>
                         </div>
                         <div id="hs_cos_wrapper_about_text" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                             <span id="hs_cos_wrapper_about_text_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text">
-                                <p class="desc-content pt-5 pb-3">Lorem ipsum dolor sit amet, consect ascing elit, sed do eiusmod incididunt ut labore et dolore Many desktop</p>
+                                <p class="desc-content pt-5 pb-3"><?= Lang::get("description", [], null, $lang) ?></p>
                             </span>
                         </div>
 
