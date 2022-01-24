@@ -150,9 +150,9 @@ Lang::load("footer.json", null, $lang);
                                         console
                                         if(mail_format.test(mail.value)) {
                                             mail.value = "";
-                                            info.innerHTML('<?= "<p>".Lang::get("newsletter.form.success", [], null, $lang)."</p>" ?>');
+                                            info.innerHTML("<?= '<p>'.Lang::get('newsletter.form.success', [], null, $lang).'</p>' ?>");
                                         } else {
-                                            info.innerHTML('<?= "<p>".Lang::get("newsletter.form.error", [], null, $lang)."</p>" ?>');
+                                            info.innerHTML("<?= '<p>'.Lang::get('newsletter.form.error', [], null, $lang).'</p>' ?>");
                                         }
                                         return false;
                                     }

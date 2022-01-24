@@ -60,36 +60,6 @@ use Fuel\Core\Asset;
     <script>
         (function () {
             window.addEventListener('load', function () {
-                setTimeout(function () {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', '/_hcms/perf', true /*async*/);
-                    xhr.setRequestHeader("Content-type", "application/json");
-                    xhr.onreadystatechange = function () {
-                        // do nothing.
-                    };
-                    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-                    function populateNetworkInfo(name, connection, info) {
-                        if (name in connection) {
-                            info[name] = connection[name];
-                        }
-                    }
-                    var networkInfo = {};
-                    if (connection) {
-                        ['type', 'effectiveType', 'downlink', 'rtt'].forEach(function(name) {
-                            populateNetworkInfo(name, connection, networkInfo);
-                        });
-                    }
-                    var perfData = {
-                        url: location.href,
-                        portal: 19899805,
-                        content: 48845610400,
-                        group: -1,
-                        connection: networkInfo,
-                        timing: performance.timing
-                    };
-                    xhr.send(JSON.stringify(perfData));
-                }, 3000);  // Execute this 3 seconds after onload.
-
                 (function () {
                    document.querySelectorAll(".odometer").forEach(item => {
                        item.innerHTML = item.dataset.countTo;
@@ -135,71 +105,5 @@ use Fuel\Core\Asset;
         "project.js",
         "search-input.js"
     ]) ?>
-
-    <script data-hs-allowed="true">
-        var options = {
-            portalId: '19899805',
-            formId: '622b2d5b-50ef-4f60-92d9-6287d1cac60f',
-            formInstanceId: '276',
-            pageId: '48845610400',
-            region: 'na1',
-            pageName: "Terbay - Construction HubSpot Theme",            
-            inlineMessage: "Thanks for submitting the form.",            
-            rawInlineMessage: "Thanks for submitting the form.",
-            hsFormKey: "9c9ffed393a31a89785aab28f9152e1d",
-            css: '',
-            target: '#hs_form_target_site_mail',
-            contentType: "standard-page",
-            formsBaseUrl: '/_hcms/forms/',
-            formData: {
-                cssClass: 'hs-form stacked hs-custom-form'
-            }
-        };
-
-        options.getExtraMetaDataBeforeSubmit = function() {
-            var metadata = {};
-            
-
-            if (hbspt.targetedContentMetadata) {
-                var count = hbspt.targetedContentMetadata.length;
-                var targetedContentData = [];
-                for (var i = 0; i < count; i++) {
-                    var tc = hbspt.targetedContentMetadata[i];
-                     if ( tc.length !== 3) {
-                        continue;
-                     }
-                     targetedContentData.push({
-                        definitionId: tc[0],
-                        criterionId: tc[1],
-                        smartTypeId: tc[2]
-                     });
-                }
-                metadata["targetedContentMetadata"] = JSON.stringify(targetedContentData);
-            }
-
-            return metadata;
-        };
-
-        hbspt.forms.create(options);
-    </script>
-
-
-    <script type="text/javascript">
-        var hsVars = {
-            ticks: 1641297694132,
-            page_id: 48845610400,
-            
-            content_group_id: 0,
-            portal_id: 19899805,
-            app_hs_base_url: "https://app.hubspot.com",
-            cp_hs_base_url: "https://cp.hubspot.com",
-            language: "en-us",
-            analytics_page_type: "standard-page",
-            analytics_page_id: "48845610400",
-            category_id: 1,
-            folder_id: 0,
-            is_hubspot_user: false
-        }
-    </script>
     </body>
 </html>

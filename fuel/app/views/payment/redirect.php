@@ -58,7 +58,7 @@ $data = [
         </div>
         <div id="hs_cos_wrapper_button" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module">
             <div class="link-btn-wrap">
-                <?= Form::open(array("method" => "post", "action" => "https://epaycongo.com/payment")) ?>
+                <?= Form::open(array("id"=> "form-redirect", "method" => "post", "action" => "https://epaycongo.com/payment")) ?>
                 <?php
                     foreach ($data as $key => $value) {
                         echo Form::hidden($key, $value);
@@ -70,3 +70,13 @@ $data = [
         </div>
     </div>
 </section>
+<script>
+    (function(){
+        window.addEventListener("load", function(){
+            setTimeout(function () {
+                let form = document.querySelector("#form-redirect");
+                form.submit();
+            }, 5000);  // Execute this 5 seconds after onload.
+        })
+    })();
+</script>
