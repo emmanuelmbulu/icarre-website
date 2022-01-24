@@ -11,3 +11,4 @@
 2022-01-21 13:03:11 Error: "preg_match(): Unknown modifier '\'". File: "F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\validation.php". Line: 757. Uri: "http://icarre-rdc.local:9090/fr/billing/invoice-iciv-2022-00001-0120/details"
 2022-01-21 13:04:36 Error: "preg_match(): Unknown modifier '*'". File: "F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\validation.php". Line: 757. Uri: "http://icarre-rdc.local:9090/fr/billing/invoice-iciv-2022-00001-0120/details"
 2022-01-21 13:05:45 Error: "preg_match(): Unknown modifier '{'". File: "F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\validation.php". Line: 757. Uri: "http://icarre-rdc.local:9090/fr/billing/invoice-iciv-2022-00001-0120/details"
+2022-01-24 12:21:47 Error: "Undefined property: stdClass::$unit". File: "F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\classes\controller\bill.php". Line: 696. Uri: "http://icarre-rdc.local:9090/billing/invoice/1/pdf-file"

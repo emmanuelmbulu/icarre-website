@@ -208,4 +208,33 @@ class Helper {
         return strtr($s, $replace);
     }
 
+    /**
+     * Function that forces redirect to 404 status
+     * @param string $lang The ISO Code of the language in which print 404 page
+     * @return null
+     */
+    static public function redirectTo404($lang) {
+        return self::redirect($lang, "page-not-found", 404);
+    }
+
+    /**
+     * Function that forces redirect to 500 status
+     * @param string $lang The ISO Code of the language in which print 500 page
+     * @return null
+     */
+    static public function redirectTo500($lang) {
+        return self::redirect($lang, "error-500", 500);
+    }
+
+    /**
+     * Function that forces redirect to a specific route with a specific HTTP Code status
+     * @param string $lang The ISO Code of the language in which print the page
+     * @param string $route_name The name of the route where to redirect
+     * @param int $code  The HTTP Code
+     * @return null
+     */
+    static function redirect($lang, $route_name, $code = 200) {
+        $route = Router::get($route_name, ["lang" => $lang]);
+        return Response::redirect($route, "location", $code);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Fuel\Core\Lang;
+use Fuel\Core\Router;
 
 Lang::load("invoice_details.json", null, $lang);
 ?>
@@ -41,7 +42,7 @@ Lang::load("invoice_details.json", null, $lang);
                     </div>
                 <?php } ?>                
 
-                <div id="hs_cos_wrapper_content" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+                <div id="hs_cos_wrapper_content" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text mb-3" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                     <span id="hs_cos_wrapper_content_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text">
                         <h2><?= Lang::get("reference", ["reference" => $invoice->reference], null, $lang) ?></h2>
                     </span>
@@ -66,12 +67,13 @@ Lang::load("invoice_details.json", null, $lang);
                                         <div class="card-body">
                                             <p>
                                                 <?= $details["reference"] ?> <strong><?= $invoice->reference ?></strong><br>
-                                                <?= $details["date"] ?> <strong><?= date($date_format, strtotime($invoice->created_at)) ?></strong>
-                                            </p>
-                                            <p>
+                                                <?= $details["date"] ?> <strong><?= date($date_format, strtotime($invoice->created_at)) ?></strong><br>
                                                 <?= $details["total"] ?> <strong><?= Lang::get("amount", ["value" => $total, "currency" => $invoice->currency], null, $lang) ?></strong><br>
                                                 <?= $details["paid"] ?> <strong><?= Lang::get("amount", ["value" => $invoice->amount_paid, "currency" => $invoice->currency], null, $lang) ?></strong><br>
-                                                <?= $details["status"]["label"] ?> <strong><?= $invoice->is_paid ? $details["status"]["paid"] : $details["status"]["unpaid"] ?></strong>
+                                                <?= $details["status"]["label"] ?> <strong><?= $invoice->is_paid ? $details["status"]["paid"] : $details["status"]["unpaid"] ?></strong><br>
+                                                <a href="<?= Router::get("invoice-pdf", ["ref" => $invoice->id]) ?>" target="_blank" style="color: red">
+                                                    <i class="fa-solid fa-file-pdf fa-fw fa-lg" style="color: var(--fa-navy);"></i> <?= $details["download"] ?>
+                                                </a>
                                             </p>
                                         </div>
                                     </div>

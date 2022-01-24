@@ -33,13 +33,11 @@ class Controller_Receipt extends Controller_Hybrid {
                 $response->body($content);
                 return $response;
             } else {
-                $route = Router::get("page-not-found", ["lang" => $lang]);
-                return Response::redirect($route, "location", 404);
+                return Helper::redirectTo404($lang);
             }
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
-            $route = Router::get("error-500", ["lang" => $lang]);
-            return Response::redirect($route, "location", 500);
+            return Helper::redirectTo500($lang);
         }
     }
 }

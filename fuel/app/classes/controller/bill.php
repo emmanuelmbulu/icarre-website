@@ -24,8 +24,7 @@ class Controller_Bill extends Controller_Hybrid {
             if(is_numeric($ref)) {
                 $bill = Model_Bill::find($ref);
                 if($bill == null) {
-                    $route = Router::get("page-not-found", ["lang" => $lang]);
-                    return Response::redirect($route, "location", 404);
+                    return Helper::redirectTo404($lang);
                 }
                 Cookie::set("invoice", $bill->id, 30 * 60);               
                 $ref = Helper::NormalizeChars(strtolower("invoice-".$bill->reference));
@@ -37,8 +36,7 @@ class Controller_Bill extends Controller_Hybrid {
             $ref = Cookie::get("invoice", 0);
             $bill = Model_Bill::find($ref);
             if($bill == null) {
-                $route = Router::get("page-not-found", ["lang" => $lang]);
-                return Response::redirect($route, "location", 404);
+                return Helper::redirectTo404($lang);
             }
             
             $items = $bill->get_items();
@@ -56,8 +54,7 @@ class Controller_Bill extends Controller_Hybrid {
             return $this->buildPage($lang, "invoice/details", $title, $context);
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
-            $route = Router::get("error-500", ["lang" => $lang]);
-            return Response::redirect($route, "location", 500);
+            return Helper::redirectTo500($lang);
         }
     }
 
@@ -71,8 +68,7 @@ class Controller_Bill extends Controller_Hybrid {
             $ref = Input::post("ref", 0);
             $bill = Model_Bill::find($ref);
             if($bill == null) {
-                $route = Router::get("page-not-found", ["lang" => $lang]);
-                return Response::redirect($route, "location", 404);
+                return Helper::redirectTo404($lang);
             }
 
             $invoiceForm->add_model('Model_Bill');
@@ -106,8 +102,7 @@ class Controller_Bill extends Controller_Hybrid {
             return $this->buildPage($lang, "invoice/details", $title, $context);         
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
-            $route = Router::get("error-500", ["lang" => $lang]);
-            return Response::redirect($route, "location", 500);
+            return Helper::redirectTo500($lang);
         }
     }
 
@@ -118,8 +113,7 @@ class Controller_Bill extends Controller_Hybrid {
             $ref = Input::get("Reference", 0);
             $bill = Model_Bill::find($ref);
             if($bill == null) {
-                $route = Router::get("page-not-found", ["lang" => $lang]);
-                return Response::redirect($route, "location", 404);
+                return Helper::redirectTo404($lang);
             }
 
             $payment = new Bill_Payment();
@@ -293,8 +287,7 @@ class Controller_Bill extends Controller_Hybrid {
             return $this->buildPage($lang, "invoice/details", $title, $context);         
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
-            $route = Router::get("error-500", ["lang" => $lang]);
-            return Response::redirect($route, "location", 500);
+            return Helper::redirectTo500($lang);
         }
     }
 
@@ -305,8 +298,7 @@ class Controller_Bill extends Controller_Hybrid {
             $ref = Input::post("Reference", 0);
             $bill = Model_Bill::find($ref);
             if($bill == null) {
-                $route = Router::get("page-not-found", ["lang" => $lang]);
-                return Response::redirect($route, "location", 404);
+                return Helper::redirectTo404($lang);
             }
 
             $payment = new Bill_Payment();
@@ -480,8 +472,7 @@ class Controller_Bill extends Controller_Hybrid {
             return $this->buildPage($lang, "invoice/details", $title, $context);         
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
-            $route = Router::get("error-500", ["lang" => $lang]);
-            return Response::redirect($route, "location", 500);
+            return Helper::redirectTo500($lang);
         }
     }
 
@@ -575,7 +566,7 @@ class Controller_Bill extends Controller_Hybrid {
             $invoiceRef = strtolower(Helper::NormalizeChars($bill->reference));
                 
             $pathToQRCode = $dossier."invoice-".$invoiceRef.".png";
-            $contenuQRCode = Router::get("invoice-pdf", ["ref" => $invoiceRef]);
+            $contenuQRCode = Router::get("details-bill", ["ref" => $bill->id]);
             /**
              * TO ADD AFTER
              */
@@ -643,9 +634,100 @@ class Controller_Bill extends Controller_Hybrid {
         $lang = Cookie::get("lang", "fr");
         
         try {
-            $ref = strtolower($this->param("ref"));
-            $file = DOCROOT."invoices/invoice-".$ref.".pdf";
+            $ref = strtolower($this->param("ref", 0));
+            if(is_numeric($ref)) {
+                $bill = Model_Bill::find((int)$ref);
+                if(null == $bill) {
+                    Helper::redirectTo404($lang);
+                }
 
+                try {
+                    $client = $bill->get_client();
+                    $items = $bill->get_items();
+
+                    $date_format = "Y-m-d h:i:s";
+                    if($lang == "fr") {
+                        $date_format = "d/m/Y h:i:s";
+                    }
+        
+                    $pathToModel = DOCROOT."assets/bills/".$lang."-invoice-model.docx";
+                    $phpdocx = new TemplateProcessor($pathToModel);
+        
+                    $phpdocx->setValues(array(
+                        /**
+                         * INVOICE
+                         */
+                        "reference" => $bill->reference,
+                        "invoice_date" => date($date_format, strtotime($bill->created_at)),
+                        /*"payment_channel" => $payment->channel,
+                        "channel_reference" => Input::post("order", "undefined"),*/
+        
+                        /**
+                         * CLIENT
+                         */
+                        "payer_fullname" => $client->fullname,
+                        "payer_address" => $client->address,
+                        "payer_mail" => $client->email,
+        
+                        /**
+                         * ADD
+                         */
+                        "total_ht" => $bill->amount,
+                        "tva_value" => $bill->tva,
+                        "tva_amount" => $bill->get_vat(),
+                        "currency" => $bill->currency,
+                        "total_ttc" => $bill->get_ttc(),
+                    ));
+        
+                    $invoiceItems = array();
+        
+                    foreach($items as $it) {
+                        $invoiceItems[] = [
+                            "item_description" => $it->description,
+                            "item_unit" => $it->unit,
+                            "item_quantity" => $it->quantity,
+                            "item_price" => $it->price,
+                            "item_total" => $it->total,
+                        ];
+                    }
+                    $phpdocx->cloneRowAndSetValues('item_description', $invoiceItems);
+        
+                    $dossier = DOCROOT."invoices/";
+                    $invoiceRef = strtolower(Helper::NormalizeChars($bill->reference));
+                        
+                    $pathToQRCode = $dossier."invoice-".$invoiceRef.".png";
+                    $contenuQRCode = Router::get("details-bill", ["ref" => $bill->id]);
+                    /**
+                     * TO ADD AFTER
+                     */
+                    //$bill->receipt = $contenuQRCode;
+                    QRcode::png($contenuQRCode, $pathToQRCode, QR_ECLEVEL_H, 4, 2);
+        
+                    $phpdocx->setImageValue('qrcode', array(
+                        'path' => $pathToQRCode, 
+                        'width' => 100, 
+                        'height' => 100,
+                        'ratio' => false
+                        )
+                    );
+        
+                    $fichier_docx = $dossier."invoice-".$invoiceRef.".docx";
+                    $phpdocx->saveAs($fichier_docx);
+        
+                    // CONVERT THE DOCS DOCUMENT TO PDF DOCUMENT
+                    shell_exec('libreoffice --headless --convert-to pdf '.$fichier_docx.' --outdir '.$dossier);
+        
+                    // DELETE THE DOCX DOCUMENT CREATED AND THE PNG FILE.
+                    File::delete($fichier_docx);
+                    File::delete($pathToQRCode);
+        
+                    $ref = $invoiceRef;
+                } catch (\Throwable $th) {
+                    Helper::archiverErreur($th);
+                }
+            }
+
+            $file = DOCROOT."invoices/invoice-".$ref.".pdf";
             if(File::exists($file)) {
                 $response = new Response();
 
@@ -665,13 +747,11 @@ class Controller_Bill extends Controller_Hybrid {
                 $response->body($content);
                 return $response;
             } else {
-                $route = Router::get("page-not-found", ["lang" => $lang]);
-                return Response::redirect($route, "location", 404);
+                Helper::redirectTo404($lang);
             }
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
-            $route = Router::get("error-500", ["lang" => $lang]);
-            return Response::redirect($route, "location", 500);
+            Helper::redirectTo500($lang);
         }
     }
 

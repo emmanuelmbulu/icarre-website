@@ -6,6 +6,7 @@
         "title": "Invoice details",
         "reference" : "Reference:",
         "date" : "Date :",
+        "download": "Download the invoice",
         "total" : "Total to be pay:",
         "paid": "Total paid :",
         "status" : {
