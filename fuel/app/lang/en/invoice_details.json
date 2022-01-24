@@ -42,7 +42,7 @@
         "empty": "We did not find any payment saved with this invoice."
     },
     "input": {
-        "title": "Nous vous offrons la possibilité de payer en plusieurs tranches.",
+        "title": "We offer you the possibility of paying in several instalments.",
         "label": "Amount to pay in :currency",
         "placeholder" : "Put here the amount you want to pay for",
         "button" : "Validate",
