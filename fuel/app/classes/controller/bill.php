@@ -185,7 +185,10 @@ class Controller_Bill extends Controller_Hybrid {
                  
                 $pathToQRCode = $dossier."receipt-".$receiptRef.".png";
                 $contenuQRCode = Router::get("receipt-pdf", ["ref" => $receiptRef]);
+                
+                $bill->add_payment($payment);
                 $payment->receipt = $contenuQRCode;
+                
                 QRcode::png($contenuQRCode, $pathToQRCode, QR_ECLEVEL_H, 4, 2);
 
                 $phpdocx->setImageValue('qrcode', array(
@@ -248,6 +251,7 @@ class Controller_Bill extends Controller_Hybrid {
                  * Notifications sent
                  */
             } else {
+                $bill->add_payment($payment);
                 /**
                  * Notify admins
                  */
@@ -265,8 +269,6 @@ class Controller_Bill extends Controller_Hybrid {
                  * Notifications sent
                  */
             }
-
-            $bill->add_payment($payment);
             $bill->save();
 
             $payments = $bill->get_payments();
@@ -370,7 +372,10 @@ class Controller_Bill extends Controller_Hybrid {
                  
                 $pathToQRCode = $dossier."receipt-".$receiptRef.".png";
                 $contenuQRCode = Router::get("receipt-pdf", ["ref" => $receiptRef]);
+
                 $payment->receipt = $contenuQRCode;
+                $bill->add_payment($payment);
+
                 QRcode::png($contenuQRCode, $pathToQRCode, QR_ECLEVEL_H, 4, 2);
 
                 $phpdocx->setImageValue('qrcode', array(
@@ -433,6 +438,7 @@ class Controller_Bill extends Controller_Hybrid {
                  * Notifications sent
                  */
             } else {
+                $bill->add_payment($payment);
                 /**
                  * Notify admins
                  */
@@ -450,8 +456,6 @@ class Controller_Bill extends Controller_Hybrid {
                  * Notifications sent
                  */
             }
-
-            $bill->add_payment($payment);
             $bill->save();
 
             $payments = $bill->get_payments();
