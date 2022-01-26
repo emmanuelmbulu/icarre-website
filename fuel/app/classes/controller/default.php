@@ -75,7 +75,7 @@ class Controller_Default extends Controller_Hybrid {
     function buildPage($lang, $route_name, $view, $title, $array_context) {
         $array_context["lang"] = $lang;
         $mainMenu = View::forge("shared/menu/main", ["active" => $route_name, "lang" => $lang,]);
-        $phoneMenu = View::forge("shared/menu/phone");
+        $phoneMenu = View::forge("shared/menu/phone", ["active" => $route_name, "lang" => $lang,]);
         $header = View::forge("shared/header", ["mainMenu" => $mainMenu, "phoneMenu" => $phoneMenu, "lang" => $lang, "route_name" => $route_name]);
 
         $this->template->title = $title;

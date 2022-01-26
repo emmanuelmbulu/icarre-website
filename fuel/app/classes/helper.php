@@ -225,7 +225,7 @@ class Helper {
      * @return null
      */
     static public function redirectTo500($lang) {
-        return self::redirect($lang, "error-500", 500);
+        return self::redirect($lang, "error-500");
     }
 
     /**

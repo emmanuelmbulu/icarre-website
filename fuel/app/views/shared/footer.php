@@ -36,7 +36,7 @@ Lang::load("footer.json", null, $lang);
 
                         <!-- Contact Address Start -->
                         <ul class="widget-address">
-                            <div id="hs_cos_wrapper_contact_info" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+                            <div id="hs_cos_wrapper_contact_info" class="mt-3 hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                 <span id="hs_cos_wrapper_contact_info_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text">
                                     <li><i class="fa fa-location-dot fa-2xl"></i> <span style="margin-left:25px; margin-top:-10px"><?= $address ?></span></li>
                                     <li><a href="<?= 'tel:'.$tel ?>"><i class="fa fa-phone fa-2xl"></i> <span><?= $tel ?></span></a></li>
