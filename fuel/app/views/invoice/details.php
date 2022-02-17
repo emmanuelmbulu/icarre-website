@@ -118,15 +118,15 @@ Lang::load("invoice_details.json", null, $lang);
                                             </tr>
                                         <?php } ?>
                                         <tr>
-                                            <th scope="row" style="text-align: right" colspan="4"><?= Lang::get("add.ht", [], null, $lang) ?></th>
+                                            <th scope="row" style="text-align: right" colspan="5"><?= Lang::get("add.ht", [], null, $lang) ?></th>
                                             <th scope="row" style="text-align: right"><?= Lang::get("amount", ["value" => $invoice->amount, "currency" => $invoice->currency], null, $lang) ?></th>
                                         </tr>
                                         <tr>
-                                            <th scope="row" style="text-align: right" colspan="4"><?= Lang::get("add.vat", ["value" => $invoice->tva], null, $lang) ?></th>
+                                            <th scope="row" style="text-align: right" colspan="5"><?= Lang::get("add.vat", ["value" => $invoice->tva], null, $lang) ?></th>
                                             <th scope="row" style="text-align: right"><?= Lang::get("amount", ["value" => $invoice->get_vat(), "currency" => $invoice->currency], null, $lang) ?></th>
                                         </tr>
                                         <tr>
-                                            <th scope="row" style="text-align: right" colspan="4"><?= Lang::get("add.ttc", [], null, $lang) ?></th>
+                                            <th scope="row" style="text-align: right" colspan="5"><?= Lang::get("add.ttc", [], null, $lang) ?></th>
                                             <th scope="row" style="text-align: right"><?= Lang::get("amount", ["value" => $total, "currency" => $invoice->currency], null, $lang) ?></th>
                                         </tr>
                                     </tbody>

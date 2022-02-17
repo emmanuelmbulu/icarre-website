@@ -97,6 +97,21 @@ class Dao_Payment {
     }
 
     //
+    public static function persistForBill($bill) {
+        $payment = new Model_Payment();
+        $payment->amount = $bill->amount;
+        $payment->currency = $bill->currency;
+        $payment->channel = $bill->bank_purchaser;
+        $payment->status = self::$StatusInit;
+        $payment->direct_payer = $bill->client;
+        $payment->reference = self::createPaymentReference();
+        $payment->created_at = Helper::renvoyerNow();
+
+        // Savechanges
+        return $payment->save() ? $payment : null;
+    }
+
+    //
     public static function getOne($id) {
         if($id == 0) return null;
         return Model_Payment::find($id);

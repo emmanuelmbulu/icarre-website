@@ -110,7 +110,7 @@
                 "title": "Combien aimerez-vous investir ?",
                 "text": {
                     "type": "simple",
-                    "paragraph": "Pour chaque placement que vous aimerez faire, vous devez investir un montant forfaitaire d'une valeur d'au moins 100 USD et d'au plus 10.000 USD.<br><br>Vous pouvez toujours investir autant que vous le souhaiterez mais la valeur maximale de votre placement est de 10.000 USD."
+                    "paragraph": "Pour chaque placement que vous aimerez faire, vous devez investir un montant forfaitaire d'une valeur d'au moins 100 USD et d'au plus 10.000 USD. Votre paiement peut prendre jusqu'à deux jours pour apparaître dans nos comptes.<br><br>Vous pouvez toujours investir autant que vous le souhaiterez mais la valeur maximale de votre placement est de 10.000 USD."
                 },
                 "inputs": {
                     "first": {
@@ -120,6 +120,55 @@
                         "min": 100,
                         "max": 10000,
                         "type": "number"
+                    }
+                }
+            },
+            "third": {
+                "name": "bank",
+                "title": "Quelles sont vos coordonnées bancaires ?",
+                "text": {
+                    "type": "list",
+                    "list": {
+                        "first": "Veuillez remplir cette section si vous souhaitez recevoir des paiements par virément bancaire.",
+                        "second": "Nous effectuerons des virements bancaires sur l'un de ces comptes portant votre nom, sauf indication contraire.",
+                        "third": "Nous n'effectuerons aucun paiement sur des cartes de crédit, des comptes liés au marché ou des comptes bancaires tiers."
+                    }
+                },
+                "inputs": {
+                    "first": {
+                        "type": "group",
+                        "duplicate": true,
+                        "title": "Vos comptes bancaires",
+                        "inputs": {
+                            "first": {
+                                "name": "accountname[]",
+                                "label": "Nom du titulaire du compte",
+                                "placeholder": "Entrez le nom du titulaire du compte ici",
+                                "type": "text"
+                            },
+                            "second": {
+                                "name": "accountnumber[]",
+                                "label": "Numéro de compte",
+                                "placeholder": "Entrez le numéro du compte ici",
+                                "type": "text"
+                            },
+                            "third": {
+                                "name": "accountbank[]",
+                                "label": "Nom de la banque",
+                                "placeholder": "Entrez le nom de la banque ici",
+                                "type": "text"
+                            },
+                            "forfth": {
+                                "name": "accountbankbranch[]",
+                                "label": "Code de la succursale",
+                                "placeholder": "Entrez le code de la succursale de la banque ici",
+                                "type": "text"
+                            }
+                        },
+                        "actions": {
+                            "add": "Ajouter un autre",
+                            "remove": "Supprimer le dernier"
+                        }
                     }
                 }
             }

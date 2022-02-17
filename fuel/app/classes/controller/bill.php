@@ -1,5 +1,6 @@
 <?php
 
+use Fuel\Core\Config;
 use Fuel\Core\Controller_Hybrid;
 use Fuel\Core\Cookie;
 use Fuel\Core\Fieldset;
@@ -79,6 +80,35 @@ class Controller_Bill extends Controller_Hybrid {
 
             if(!$invoiceForm->error("amount")) {
                 $bill->amount = Input::post("amount");
+                if($bill->bank_purchaser == Dao_Bill::$BankPurchaser["ECOBANK"]) {
+                    $cardPayment = new Ecobank\CardPayment("test", Config::get("ecobank"));
+                    $response = $cardPayment->paymentAuthentification();
+                    if(null != $response && is_array($response) && !empty($response['token'])) {
+                        $payment = Dao_Payment::persistForBill($bill);
+                        if($payment != null) {
+                            $description = Lang::get("callback.description", 
+                                [
+                                    "amount" => $payment->amount,
+                                    "currency" => $bill->currency,
+                                    "reference" => $bill->reference
+                                ], null, $lang);
+                            $returnUrl = Router::get("callback-invoice", ["lang" => $lang, "ref" => $ref]);
+                            $locale = "en_EN";
+                            if($lang == "fr") $locale = "fr_FR";
+                            $response = $cardPayment->initPayment(
+                                $requestId=$payment->id, 
+                                $productCode=$bill->id, 
+                                $description, 
+                                $returnUrl, 
+                                $payment->amount, 
+                                $payment->currency, 
+                                $language=$locale
+                            );
+                            Api::toPreResponse(array("response" => $response));
+                        }
+                    }
+                }
+
                 Lang::load("payment_redirect.json", null, $lang);
                 $title = Lang::get("title", ["reference" => $bill->reference], null, $lang);
                 return $this->buildPage($lang, "invoice/redirect", $title, ["invoice" => $bill, "ref" => $this->param("ref")]);
@@ -186,9 +216,9 @@ class Controller_Bill extends Controller_Hybrid {
                 $pathToQRCode = $dossier."receipt-".$receiptRef.".png";
                 $contenuQRCode = Router::get("receipt-pdf", ["ref" => $receiptRef]);
                 
-                $bill->add_payment($payment);
                 $payment->receipt = $contenuQRCode;
-                
+                $bill->add_payment($payment);
+
                 QRcode::png($contenuQRCode, $pathToQRCode, QR_ECLEVEL_H, 4, 2);
 
                 $phpdocx->setImageValue('qrcode', array(
@@ -484,28 +514,28 @@ class Controller_Bill extends Controller_Hybrid {
         $lang = Helper::manageLanguage($this, "details");
 
         $client = new Bill_Client();
-        $client->address = "105 Wildberry Crescent Woodbridge ON L4H 2C6";
-        $client->country = "Canada";
-        $client->email = "burdanerdo@vusra.com";
-        $client->fullname = "Justin Thomas";
-        $client->phone = "+14163232014";
+        $client->address = "1012, ave Mutombo-Katshi, Kinshasa - Gombe";
+        $client->country = "Congo, Republic Democratic of the"; //45.130.83.98
+        $client->email = "contact@icarre-rdc.com";
+        $client->fullname = "Emmanuel MBULU";
+        $client->phone = "+243813700243";
 
         $items = array();
 
-        $description = "Remote Drupal Web Application source code audit";
-        $price = 7500;
+        $description = "Android App Engineering";
+        $price = 5000;
         $item = new Bill_Item($description, $price, 1, "Package");
         $items[] = $item;
 
-        $description = "Payrol Module Implementation";
-        $price = 25;
-        $item = new Bill_Item($description, $price, 200, "Hours");
+        /*$description = "Remote iOS App Engineering";
+        $price = 8000;
+        $item = new Bill_Item($description, $price, 1, "Package");
         $items[] = $item;
 
         $description = "Ubuntu 20.04 LTS System configuration and security policy deployment";
         $price = 5000;
         $item = new Bill_Item($description, $price, 1, "Package");
-        $items[] = $item;
+        $items[] = $item;*/
 
         $bill = new Model_Bill();
         $bill->set_reference();
@@ -514,6 +544,7 @@ class Controller_Bill extends Controller_Hybrid {
         $bill->tva = 0; 
         $bill->add_items($items);
         $bill->add_client($client);
+        $bill->bank_purchaser = Dao_Bill::$BankPurchaser["ECOBANK"];
         $bill->is_paid = false;
         $bill->created_at = Helper::renvoyerNow();
         $bill->save();
@@ -644,91 +675,94 @@ class Controller_Bill extends Controller_Hybrid {
                 if(null == $bill) {
                     Helper::redirectTo404($lang);
                 }
+        
+                $dossier = DOCROOT."invoices/";
+                $invoiceRef = strtolower(Helper::NormalizeChars($bill->reference));
 
-                try {
-                    $client = $bill->get_client();
-                    $items = $bill->get_items();
+                if(!File::exists($dossier."invoice-".$invoiceRef.".pdf")) {
+                    try {
+                        $client = $bill->get_client();
+                        $items = $bill->get_items();
 
-                    $date_format = "Y-m-d h:i:s";
-                    if($lang == "fr") {
-                        $date_format = "d/m/Y h:i:s";
+                        $date_format = "Y-m-d h:i:s";
+                        if($lang == "fr") {
+                            $date_format = "d/m/Y h:i:s";
+                        }
+            
+                        $pathToModel = DOCROOT."assets/bills/".$lang."-invoice-model.docx";
+                        $phpdocx = new TemplateProcessor($pathToModel);
+            
+                        $phpdocx->setValues(array(
+                            /**
+                             * INVOICE
+                             */
+                            "reference" => $bill->reference,
+                            "invoice_date" => date($date_format, strtotime($bill->created_at)),
+                            /*"payment_channel" => $payment->channel,
+                            "channel_reference" => Input::post("order", "undefined"),*/
+            
+                            /**
+                             * CLIENT
+                             */
+                            "payer_fullname" => $client->fullname,
+                            "payer_address" => $client->address,
+                            "payer_mail" => $client->email,
+            
+                            /**
+                             * ADD
+                             */
+                            "total_ht" => $bill->amount,
+                            "tva_value" => $bill->tva,
+                            "tva_amount" => $bill->get_vat(),
+                            "currency" => $bill->currency,
+                            "total_ttc" => $bill->get_ttc(),
+                        ));
+            
+                        $invoiceItems = array();
+            
+                        foreach($items as $it) {
+                            $invoiceItems[] = [
+                                "item_description" => $it->description,
+                                "item_unit" => $it->unit,
+                                "item_quantity" => $it->quantity,
+                                "item_price" => $it->price,
+                                "item_total" => $it->total,
+                            ];
+                        }
+                        $phpdocx->cloneRowAndSetValues('item_description', $invoiceItems);
+                            
+                        $pathToQRCode = $dossier."invoice-".$invoiceRef.".png";
+                        $contenuQRCode = Router::get("details-bill", ["ref" => $bill->id]);
+                        /**
+                         * TO ADD AFTER
+                         */
+                        //$bill->receipt = $contenuQRCode;
+                        QRcode::png($contenuQRCode, $pathToQRCode, QR_ECLEVEL_H, 4, 2);
+            
+                        $phpdocx->setImageValue('qrcode', array(
+                            'path' => $pathToQRCode, 
+                            'width' => 100, 
+                            'height' => 100,
+                            'ratio' => false
+                            )
+                        );
+            
+                        $fichier_docx = $dossier."invoice-".$invoiceRef.".docx";
+                        $phpdocx->saveAs($fichier_docx);
+            
+                        // CONVERT THE DOCS DOCUMENT TO PDF DOCUMENT
+                        shell_exec('libreoffice --headless --convert-to pdf '.$fichier_docx.' --outdir '.$dossier);
+            
+                        // DELETE THE DOCX DOCUMENT CREATED AND THE PNG FILE.
+                        File::delete($fichier_docx);
+                        File::delete($pathToQRCode);
+                    } catch (\Throwable $th) {
+                        Helper::archiverErreur($th);
                     }
-        
-                    $pathToModel = DOCROOT."assets/bills/".$lang."-invoice-model.docx";
-                    $phpdocx = new TemplateProcessor($pathToModel);
-        
-                    $phpdocx->setValues(array(
-                        /**
-                         * INVOICE
-                         */
-                        "reference" => $bill->reference,
-                        "invoice_date" => date($date_format, strtotime($bill->created_at)),
-                        /*"payment_channel" => $payment->channel,
-                        "channel_reference" => Input::post("order", "undefined"),*/
-        
-                        /**
-                         * CLIENT
-                         */
-                        "payer_fullname" => $client->fullname,
-                        "payer_address" => $client->address,
-                        "payer_mail" => $client->email,
-        
-                        /**
-                         * ADD
-                         */
-                        "total_ht" => $bill->amount,
-                        "tva_value" => $bill->tva,
-                        "tva_amount" => $bill->get_vat(),
-                        "currency" => $bill->currency,
-                        "total_ttc" => $bill->get_ttc(),
-                    ));
-        
-                    $invoiceItems = array();
-        
-                    foreach($items as $it) {
-                        $invoiceItems[] = [
-                            "item_description" => $it->description,
-                            "item_unit" => $it->unit,
-                            "item_quantity" => $it->quantity,
-                            "item_price" => $it->price,
-                            "item_total" => $it->total,
-                        ];
-                    }
-                    $phpdocx->cloneRowAndSetValues('item_description', $invoiceItems);
-        
-                    $dossier = DOCROOT."invoices/";
-                    $invoiceRef = strtolower(Helper::NormalizeChars($bill->reference));
-                        
-                    $pathToQRCode = $dossier."invoice-".$invoiceRef.".png";
-                    $contenuQRCode = Router::get("details-bill", ["ref" => $bill->id]);
-                    /**
-                     * TO ADD AFTER
-                     */
-                    //$bill->receipt = $contenuQRCode;
-                    QRcode::png($contenuQRCode, $pathToQRCode, QR_ECLEVEL_H, 4, 2);
-        
-                    $phpdocx->setImageValue('qrcode', array(
-                        'path' => $pathToQRCode, 
-                        'width' => 100, 
-                        'height' => 100,
-                        'ratio' => false
-                        )
-                    );
-        
-                    $fichier_docx = $dossier."invoice-".$invoiceRef.".docx";
-                    $phpdocx->saveAs($fichier_docx);
-        
-                    // CONVERT THE DOCS DOCUMENT TO PDF DOCUMENT
-                    shell_exec('libreoffice --headless --convert-to pdf '.$fichier_docx.' --outdir '.$dossier);
-        
-                    // DELETE THE DOCX DOCUMENT CREATED AND THE PNG FILE.
-                    File::delete($fichier_docx);
-                    File::delete($pathToQRCode);
-        
-                    $ref = $invoiceRef;
-                } catch (\Throwable $th) {
-                    Helper::archiverErreur($th);
                 }
+        
+                $route = Router::get("invoice-pdf", ["lang"=>$lang, "ref"=>$invoiceRef]);
+                return Response::redirect($route);
             }
 
             $file = DOCROOT."invoices/invoice-".$ref.".pdf";

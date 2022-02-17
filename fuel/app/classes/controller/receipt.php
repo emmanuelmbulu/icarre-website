@@ -1,12 +1,13 @@
 <?php
 
 use Fuel\Core\Controller_Hybrid;
+use Fuel\Core\Controller_Rest;
 use Fuel\Core\Cookie;
 use Fuel\Core\File;
 use Fuel\Core\Response;
 use Fuel\Core\Router;
 
-class Controller_Receipt extends Controller_Hybrid {
+class Controller_Receipt extends Controller_Rest {
     public function get_pdf() {
         $lang = Cookie::get("lang", "fr");
         

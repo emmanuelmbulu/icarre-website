@@ -50,6 +50,13 @@ class Model_Payment extends \Orm\Model {
                 "name" => "payer",
             )
         ),
+		"bill_id" => array(
+			"label" => "form.input.reference.label",
+			"data_type" => "int",
+            "form" => array(
+                "type" => false,
+            )
+		),
 		"created_at" => array(
 			"label" => "form.input.createdat.label",
 			"data_type" => "datetime",
@@ -84,12 +91,14 @@ class Model_Payment extends \Orm\Model {
 	);
 
 	protected static $_belongs_to = array(
-		/*'moyen_paiement' => array(
-	        'key_from' => 'moyen_paiement_id',
-	        'model_to' => 'Model_MoyenPaiement',
+		'bill' => array(
+	        'key_from' => 'bill_id',
+	        'model_to' => 'Model_Bill',
 	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => true,
 		),
-		'note_debit' => array(
+		/*'note_debit' => array(
 	        'key_from' => 'note_debit_id',
 	        'model_to' => 'Model_NoteDebit',
 	        'key_to' => 'id',

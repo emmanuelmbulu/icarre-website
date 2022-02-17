@@ -28,6 +28,7 @@ class Model_Bill extends Model {
         "currency",
         "tva",
         "client",
+        "bank_purchaser",
         "items",
         "payments",
         "amount_paid",
@@ -35,6 +36,16 @@ class Model_Bill extends Model {
         "last_payment_date",
         "created_at",
     );
+
+    protected static $_has_many = array(
+        'saved_payments' => array(
+	        'key_from' => 'id',
+	        'model_to' => 'Model_Payment',
+	        'key_to' => 'bill_id',
+	        'cascade_save' => true,
+	        'cascade_delete' => true,
+		),
+	);
 
     /**
      * Function that add an item to the bill

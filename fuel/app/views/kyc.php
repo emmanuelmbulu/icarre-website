@@ -55,6 +55,7 @@ Lang::load("kyc.json", null, $lang);
                                             <?php
                                             $accordions[] = Lang::get("form.accordions.first");
                                             $accordions[] = Lang::get("form.accordions.second");
+                                            $accordions = Lang::get("form.accordions");
                                             $j=0;
                                             foreach ($accordions as $accordion) { $j++; ?>
                                                 
@@ -74,7 +75,11 @@ Lang::load("kyc.json", null, $lang);
 
                                                                             <p><?= $text["paragraph"] ?></p> <?php
 
-                                                                        } ?>
+                                                                        } else if($text["type"] == "list") { ?>
+
+                                                                            <ul class="list-styled"><?php foreach($text["list"] as $text => $value) { ?><li><?= $value ?></li><?php } ?></ul> <?php
+
+                                                                        }  ?>
                                                                     </div> <?php
                                                                 }
 
@@ -163,7 +168,44 @@ Lang::load("kyc.json", null, $lang);
                                                                                 })();
                                                                             </script>
                                                                         </div> <?php
-                                                                    } 
+                                                                    } else if($item["type"] == "group") { ?>
+
+                                                                        <div id="group" class="col-12 pb-2">
+                                                                            <div id="account1" class="row">
+                                                                                <div class="col-12 pb-2"><p class="h6"><?= $item["title"] ?> 1</p></div>
+                                                                                <?php foreach($item["inputs"] as $input) { ?>
+                                                                                    <div class="col-6 pb-2">
+                                                                                        <div class="form-floating mb-3">
+                                                                                            <input type="text" class="form-control" name="<?= $input["name"] ?>" id="<?= $input["name"] ?>" placeholder="<?= $input["placeholder"] ?>">
+                                                                                            <label for="<?= $input["name"] ?>"><?= $input["label"] ?></label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <?php } ?>
+                                                                            </div>
+                                                                        </div> <?php if($item["duplicate"]) { ?>                                                                            
+                                                                            <hr><div class="col-12 pb-2">
+                                                                                <button type="button" onclick="addRow()" class="btn btn-primary btn-sm"><?= $item["actions"]["add"] ?></button>
+                                                                                <button type="button" class="btn btn-secondary btn-sm"><?= $item["actions"]["remove"] ?></button>
+                                                                                <script>
+                                                                                    let index = 1;
+
+                                                                                    function addRow() {
+                                                                                        index++;
+                                                                                        document.querySelector('#group').append('<hr>');
+                                                                                        let row = createRow(index);
+                                                                                        document.querySelector('#group').append(row);
+                                                                                    }
+
+                                                                                    function createRow(index) {
+                                                                                        let row = document.querySelector("#account1").cloneNode(true);
+                                                                                        console.log(row);
+                                                                                        return row;
+                                                                                    }
+                                                                                </script>
+                                                                            </div> <?php 
+                                                                        }
+
+                                                                    }
                                                                 }
                                                                 ?>
                                                             </div>                                                        

@@ -110,7 +110,7 @@
                 "title": "How much would you like to invest?",
                 "text": {
                     "type": "simple",
-                    "paragraph": "For each investment you would like to make, you must invest a lump sum worth at least USD 100 and no more than USD 10,000.<br><br>You can still invest as much as you like but the maximum value of your investment is USD 10,000."
+                    "paragraph": "For each investment you would like to make, you must invest a lump sum worth at least USD 100 and no more than USD 10,000. Your payment may take up to two days to appear in our account.<br><br>You can still invest as much as you like but the maximum value of your investment is USD 10,000."
                 },
                 "inputs": {
                     "first": {
@@ -120,6 +120,55 @@
                         "min": 100,
                         "max": 10000,
                         "type": "number"
+                    }
+                }
+            },
+            "third": {
+                "name": "bank",
+                "title": "What are your bank details?",
+                "text": {
+                    "type": "list",
+                    "list": {
+                        "first": "Please complete this section if you wish to receive payments by bank transfer.",
+                        "second": "We will make bank transfers to one of these accounts in your name, unless otherwise specified.",
+                        "third": "We will not make payments to credit cards, marketplace accounts or third party bank accounts."
+                    }
+                },
+                "inputs": {
+                    "first": {
+                        "type": "group",
+                        "duplicate": true,
+                        "title": "Your bank accounts",
+                        "inputs": {
+                            "first": {
+                                "name": "accountname[]",
+                                "label": "Name of the account holder",
+                                "placeholder": "Enter the name of the account holder here",
+                                "type": "text"
+                            },
+                            "second": {
+                                "name": "accountnumber[]",
+                                "label": "Account number",
+                                "placeholder": "Enter the account number here",
+                                "type": "text"
+                            },
+                            "third": {
+                                "name": "accountbank[]",
+                                "label": "Name of the bank",
+                                "placeholder": "Enter the name of the bank",
+                                "type": "text"
+                            },
+                            "forfth": {
+                                "name": "accountbankbranch[]",
+                                "label": "Bank branch office code",
+                                "placeholder": "Enter the code of the bank branch office here",
+                                "type": "text"
+                            }
+                        },
+                        "actions": {
+                            "add": "Add an other",
+                            "remove": "Remove the last"
+                        }
                     }
                 }
             }
