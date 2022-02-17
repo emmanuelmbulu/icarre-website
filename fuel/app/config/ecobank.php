@@ -14,9 +14,9 @@
 
 return array(
     'test' => array(
-        'userId' => 'iamaunifieddev103',
-        'userPassword' => '$2a$10$Wmame.Lh1FJDCB4JJIxtx.3SZT0dP2XlQWgj9Q5UAGcDLpB0yRYCC',
-        'userApiKey' => '0C/5F7QHdMv40uVGaTbt5nXdJOxi105k2LN9goPRqTUrwZrdYOYbvC0sJz7G0iT9',
+        'userId' => 'your_sandbox_user_id',
+        'userPassword' => 'your_sandbox_user_password',
+        'userApiKey' => 'your_sandbox_user_api_key',
         'verifyPeerSSL' => true, // or false
     ),
     'production' => array(
