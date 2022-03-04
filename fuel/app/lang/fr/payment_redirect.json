@@ -3,5 +3,58 @@
     "home" : "Accueil",
     "subtitle" : "Paiement de :amount :currency - Ref.: :reference.",
     "paragraph" : "Vous êtes en train rediriger vers la plateforme de paiement. Cliquez sur le bouton ci-dessous si vous n'êtes pas redirigé dans 5 secondes.",
-    "action": "Aller effectuer le paiement"
+    "action": "Aller effectuer le paiement",
+    "ecobank": {
+        "action": "Effectuer le paiement",
+        "firstname": {
+            "label": "Prénom",
+            "placeholder": "Entrez votre prénom ici.."
+        },
+        "lastname": {
+            "label": "Nom",
+            "placeholder": "Entrez votre nom de famille ici.."
+        },
+        "email": {
+            "label": "Adresse email",
+            "placeholder": "Entrez votre adresse email ici.."
+        },
+        "phone": {
+            "label": "Numéro de téléphone",
+            "placeholder": "Entrez votre numéro de téléphone ici.."
+        },
+        "address": {
+            "label": "Adresse de facturation",
+            "placeholder": "Entrez votre adresse de facturation ici.."
+        },
+        "city": {
+            "label": "Ville / Cité",
+            "placeholder": "Entrez le nom de votre ville ici.."
+        },
+        "state": {
+            "label": "Province / Etat",
+            "placeholder": "Entrez le nom de votre province ou état ici.."
+        }
+        "country": {
+            "label": "Pays",
+            "placeholder": "Sélectionnez votre pays.."
+        },
+        "zipcode": {
+            "label": "Code postal",
+            "placeholder": "Entrez votre code postal ici.."
+        },
+        "card": {
+            "number": {
+                "label": "Numéro de la carte",
+                "placeholder": "XXXXXXXXXXXXXXXXXXXX"
+            },
+            "date": {
+                "label": "Date d'expiration",
+                "placeholder": "MM/YY"
+            },
+            "cvn": {
+                "label": "CVV",
+                "placeholder": "XXX"
+            }
+        }
+    }
 }

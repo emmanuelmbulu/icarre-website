@@ -3,5 +3,58 @@
     "home" : "Home",
     "subtitle" : "Payment of :currency :amount - Ref.: :reference.",
     "paragraph" : "You are being redirected to the payment platform. Click the button below if you are not redirected in 5 seconds.",
-    "action": "Go to payment"
+    "action": "Go to payment",
+    "ecobank": {
+        "action": "Process",
+        "firstname": {
+            "label": "Firstname",
+            "placeholder": "Enter your firstname here.."
+        },
+        "lastname": {
+            "label": "Lastname",
+            "placeholder": "Enter your lastname here.."
+        },
+        "email": {
+            "label": "Email address",
+            "placeholder": "Enter your email address here.."
+        },
+        "phone": {
+            "label": "Cell number",
+            "placeholder": "Enter your cell number here.."
+        },
+        "address": {
+            "label": "Home address",
+            "placeholder": "Enter your home address here.."
+        },
+        "city": {
+            "label": "City",
+            "placeholder": "Enter your city here.."
+        },
+        "state": {
+            "label": "State",
+            "placeholder": "Enter your state here.."
+        }
+        "country": {
+            "label": "Country",
+            "placeholder": "Select your country.."
+        },
+        "zipcode": {
+            "label": "Zip code",
+            "placeholder": "Enter your zip code here.."
+        },
+        "card": {
+            "number": {
+                "label": "Card number",
+                "placeholder": "XXXXXXXXXXXXXXXXXXXX"
+            },
+            "date": {
+                "label": "Expiration date",
+                "placeholder": "MM/YY"
+            },
+            "cvn": {
+                "label": "CVV",
+                "placeholder": "XXX"
+            }
+        }
+    }
 }

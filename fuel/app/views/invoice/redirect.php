@@ -89,115 +89,117 @@ $df_param .= $sessionId;
                         <input type="hidden" name="signed_field_names" value="profile_id,access_key,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,payment_method,transaction_type,reference_number,auth_trans_ref_no,amount,currency,merchant_descriptor,override_custom_receipt_page">    
                         <input type="hidden" name="unsigned_field_names" value="device_fingerprint_id,card_type,card_number,card_expiry_date,card_cvn,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_line2,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code,customer_ip_address">
 
-                        <div class="col-6 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="bill_to_forename" name="bill_to_forename" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="bill_to_forename"><?= Lang::get("paragraph", [], null, $lang) ?></label>
+                        <div class="row align-left">
+                            <div class="col-6 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="bill_to_forename" name="bill_to_forename" placeholder="<?= Lang::get("ecobank.firstname.placeholder", [], null, $lang) ?>">
+                                    <label for="bill_to_forename"><?= Lang::get("ecobank.firstname.label", [], null, $lang) ?></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-6 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="bill_to_surname" name="bill_to_surname" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="bill_to_surname"><?= Lang::get("paragraph", [], null, $lang) ?></label>
+                            <div class="col-6 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="bill_to_surname" name="bill_to_surname" placeholder="<?= Lang::get("ecobank.lastname.placeholder", [], null, $lang) ?>">
+                                    <label for="bill_to_surname"><?= Lang::get("ecobank.lastname.label", [], null, $lang) ?></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-6 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" name="bill_to_email" id="bill_to_email" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="bill_to_email"><?= Lang::get("paragraph", [], null, $lang) ?></label>
+                            <div class="col-6 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" name="bill_to_email" id="bill_to_email" placeholder="<?= Lang::get("ecobank.email.placeholder", [], null, $lang) ?>">
+                                    <label for="bill_to_email"><?= Lang::get("ecobank.email.label", [], null, $lang) ?></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-6 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="bill_to_phone" id="bill_to_phone" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="bill_to_phone"><?= Lang::get("paragraph", [], null, $lang) ?></label>
+                            <div class="col-6 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="bill_to_phone" id="bill_to_phone" placeholder="<?= Lang::get("ecobank.phone.placeholder", [], null, $lang) ?>">
+                                    <label for="bill_to_phone"><?= Lang::get("ecobank.phone.label", [], null, $lang) ?></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 pb-2">
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>" name="bill_to_address_line1" id="bill_to_address_line1"></textarea>
-                                <label for="bill_to_address_line1"><?= Lang::get("paragraph", [], null, $lang) ?></label>
+                            <div class="col-12 pb-2">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="<?= Lang::get("ecobank.address.placeholder", [], null, $lang) ?>" name="bill_to_address_line1" id="bill_to_address_line1"></textarea>
+                                    <label for="bill_to_address_line1"><?= Lang::get("ecobank.address.label", [], null, $lang) ?></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-6 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="bill_to_address_city" id="bill_to_address_city" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="bill_to_address_city"><?= Lang::get("paragraph", [], null, $lang) ?></label>
+                            <div class="col-6 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="bill_to_address_city" id="bill_to_address_city" placeholder="<?= Lang::get("ecobank.city.placeholder", [], null, $lang) ?>">
+                                    <label for="bill_to_address_city"><?= Lang::get("ecobank.city.label", [], null, $lang) ?></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-6 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="bill_to_address_state" id="bill_to_address_state" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="bill_to_address_state"><?= Lang::get("paragraph", [], null, $lang) ?></label>
+                            <div class="col-6 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="bill_to_address_state" id="bill_to_address_state" placeholder="<?= Lang::get("ecobank.state.placeholder", [], null, $lang) ?>">
+                                    <label for="bill_to_address_state"><?= Lang::get("ecobank.state.label", [], null, $lang) ?></label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-9 pb-2">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" list="country-list" name="bill_to_address_country" id="bill_to_address_country" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <datalist id="country-list">
-                                </datalist>
-                                <label for="bill_to_address_country" class="form-label"><?= Lang::get("paragraph", [], null, $lang) ?></label>
-                            </div>
-                            <script>
-                                (function () {
-                                    window.addEventListener('load', function () {
-                                        (function(){
-                                            var xhr = new XMLHttpRequest();
-                                            xhr.open('GET', 'https://restcountries.com/v3.1/all', true /*async*/);
-                                            xhr.onreadystatechange = function () {
-                                                if (xhr.readyState === 4) {
-                                                    const data  = xhr.response;
-                                                    for(let i = 0; i < data.length; i++) {
-                                                        const item = data[i];
-                                                        let html = document.createElement("option");
-                                                        html.value = item.name.official;
-                                                        document.querySelector('#country-list').append(html);
+                            <div class="col-9 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" list="country-list" name="bill_to_address_country" id="bill_to_address_country" placeholder="<?= Lang::get("ecobank.country.placeholder", [], null, $lang) ?>">
+                                    <datalist id="country-list">
+                                    </datalist>
+                                    <label for="bill_to_address_country" class="form-label"><?= Lang::get("ecobank.country.label", [], null, $lang) ?></label>
+                                </div>
+                                <script>
+                                    (function () {
+                                        window.addEventListener('load', function () {
+                                            (function(){
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open('GET', 'https://restcountries.com/v3.1/all', true /*async*/);
+                                                xhr.onreadystatechange = function () {
+                                                    if (xhr.readyState === 4) {
+                                                        const data  = xhr.response;
+                                                        for(let i = 0; i < data.length; i++) {
+                                                            const item = data[i];
+                                                            let html = document.createElement("option");
+                                                            html.value = item.name.official;
+                                                            document.querySelector('#country-list').append(html);
+                                                        }
                                                     }
-                                                }
-                                            };
-                                            xhr.responseType = "json";
-                                            xhr.send();
-                                        })();
-                                    });
-                                })();
-                            </script>
-                        </div>
-                        <div class="col-3 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="bill_to_address_postal_code" id="bill_to_address_postal_code" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="bill_to_address_postal_code"><?= Lang::get("paragraph", [], null, $lang) ?></label>
+                                                };
+                                                xhr.responseType = "json";
+                                                xhr.send();
+                                            })();
+                                        });
+                                    })();
+                                </script>
+                            </div>
+                            <div class="col-3 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="bill_to_address_postal_code" id="bill_to_address_postal_code" placeholder="<?= Lang::get("ecobank.zipcode.placeholder", [], null, $lang) ?>">
+                                    <label for="bill_to_address_postal_code"><?= Lang::get("ecobank.zipcode.label", [], null, $lang) ?></label>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="col-12 pb-2">
+                                <div class="form-check form-check-inline">
+                                    <input checked class="form-check-input" type="radio" name="card_type" id="visa" value="visa">
+                                    <label class="form-check-label" for="visa">VISA <i class="fab fa-cc-visa mx-1"></i></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="card_type" id="mc" value="mastercard">
+                                    <label class="form-check-label" for="mc>">MASTERCARD <i class="fab fa-cc-mastercard mx-1"></i></label>
+                                </div>
+                            </div>
+                            <div class="col-7 pb-2">
+                                <div class="form-floating">
+                                <input type="text" class="form-control" name="card_number" id="card_number" placeholder="<?= Lang::get("ecobank.card.number.placeholder", [], null, $lang) ?>">
+                                    <label for="card_number"><?= Lang::get("ecobank.card.number.label", [], null, $lang) ?></label>
+                                </div>
+                            </div>
+                            <div class="col-3 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="card_expiry_date" id="card_expiry_date" placeholder="<?= Lang::get("ecobank.card.date.placeholder", [], null, $lang) ?>">
+                                    <label for="card_expiry_date"><?= Lang::get("ecobank.card.date.label", [], null, $lang) ?></label>
+                                </div>
+                            </div>
+                            <div class="col-2 pb-2">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="card_cvn" id="card_cvn" placeholder="<?= Lang::get("ecobank.card.cvn.placeholder", [], null, $lang) ?>">
+                                    <label for="card_cvn"><?= Lang::get("ecobank.card.cvn.label", [], null, $lang) ?></label>
+                                </div>
                             </div>
                         </div>
-                        <hr/>
-                        <div class="col-12 pb-2">
-                            <div class="form-check form-check-inline">
-                                <input checked class="form-check-input" type="radio" name="card_type" id="visa" value="visa">
-                                <label class="form-check-label" for="visa">VISA <i class="fab fa-cc-visa mx-1"></i></label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="card_type" id="mc" value="mastercard">
-                                <label class="form-check-label" for="mc>">MASTERCARD <i class="fab fa-cc-mastercard mx-1"></i></label>
-                            </div>
-                        </div>
-                        <div class="col-7 pb-2">
-                            <div class="form-floating">
-                            <input type="text" class="form-control" name="card_number" id="card_number" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="card_number"><?= Lang::get("paragraph", [], null, $lang) ?></label>
-                            </div>
-                        </div>
-                        <div class="col-3 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="card_expiry_date" id="card_expiry_date" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="card_expiry_date"><?= Lang::get("paragraph", [], null, $lang) ?></label>
-                            </div>
-                        </div>
-                        <div class="col-2 pb-2">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="card_cvn" id="card_cvn" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
-                                <label for="card_cvn"><?= Lang::get("paragraph", [], null, $lang) ?></label>
-                            </div>
-                        </div>
-                        <?= Form::submit("submit", Lang::get("action", [], null, $lang), ["class" => "btn btn-hover-secondary btn-primary"]) ?>
+                        <?= Form::submit("submit", Lang::get("ecobank.action", [], null, $lang), ["class" => "btn btn-hover-secondary btn-primary"]) ?>
                         <?= Form::close() ?>
                     </div>
                 </div>
