@@ -97,7 +97,7 @@ class Dao_Payment {
     }
 
     //
-    public static function persistForBill($bill) {
+    public static function persistForBill($bill, $ip_address) {
         $payment = new Model_Payment();
         $payment->amount = $bill->amount;
         $payment->currency = $bill->currency;
@@ -105,6 +105,7 @@ class Dao_Payment {
         $payment->status = self::$StatusInit;
         $payment->direct_payer = $bill->client;
         $payment->reference = self::createPaymentReference();
+        $payment->ip_address = $ip_address;
         $payment->created_at = Helper::renvoyerNow();
 
         // Savechanges

@@ -41,6 +41,13 @@ class Model_Payment extends \Orm\Model {
                 "type" => false,
             )
 		),
+		"ip_address" => array(
+			"label" => "form.input.ipaddress.label",
+			"data_type" => "varchar",
+            "form" => array(
+                "type" => false,
+            )
+		),
 		"direct_payer" => array(
 			"label" => "form.input.payer.label",
 			"data_type" => "text",

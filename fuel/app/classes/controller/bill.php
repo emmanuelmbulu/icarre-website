@@ -63,6 +63,7 @@ class Controller_Bill extends Controller_Hybrid {
         $lang = Helper::manageLanguage($this, "details-bill", ["ref" => 0]);
 
         try {
+            $ip_address = Input::ip();
             Cookie::set("ip", Input::ip(), 60 * 60);
 
             $invoiceForm = new Fieldset('invoice');
@@ -80,38 +81,40 @@ class Controller_Bill extends Controller_Hybrid {
 
             if(!$invoiceForm->error("amount")) {
                 $bill->amount = Input::post("amount");
+                $payment = null;
                 if($bill->bank_purchaser == Dao_Bill::$BankPurchaser["ECOBANK"]) {
-                    $cardPayment = new Ecobank\CardPayment("test", Config::get("ecobank"));
+                    /*$cardPayment = new Ecobank\CardPayment("test", Config::get("ecobank"));
                     $response = $cardPayment->paymentAuthentification();
                     if(null != $response && is_array($response) && !empty($response['token'])) {
-                        $payment = Dao_Payment::persistForBill($bill);
-                        if($payment != null) {
-                            $description = Lang::get("callback.description", 
-                                [
-                                    "amount" => $payment->amount,
-                                    "currency" => $bill->currency,
-                                    "reference" => $bill->reference
-                                ], null, $lang);
-                            $returnUrl = Router::get("callback-invoice", ["lang" => $lang, "ref" => $ref]);
-                            $locale = "en_EN";
-                            if($lang == "fr") $locale = "fr_FR";
-                            $response = $cardPayment->initPayment(
-                                $requestId=$payment->id, 
-                                $productCode=$bill->id, 
-                                $description, 
-                                $returnUrl, 
-                                $payment->amount, 
-                                $payment->currency, 
-                                $language=$locale
-                            );
-                            Api::toPreResponse(array("response" => $response));
-                        }
-                    }
+                        
+                    }*/
+                    $payment = Dao_Payment::persistForBill($bill, $ip_address);
+                    /*if($payment != null) {
+                        $description = Lang::get("callback.description", 
+                            [
+                                "amount" => $payment->amount,
+                                "currency" => $bill->currency,
+                                "reference" => $bill->reference
+                            ], null, $lang);
+                        $returnUrl = Router::get("callback-invoice", ["lang" => $lang, "ref" => $ref]);
+                        $locale = "en_EN";
+                        if($lang == "fr") $locale = "fr_FR";
+                        $response = $cardPayment->initPayment(
+                            $requestId=$payment->id, 
+                            $productCode=$bill->id, 
+                            $description, 
+                            $returnUrl, 
+                            $payment->amount, 
+                            $payment->currency, 
+                            $language=$locale
+                        );
+                        Api::toPreResponse(array("response" => $response));
+                    }*/
                 }
 
                 Lang::load("payment_redirect.json", null, $lang);
                 $title = Lang::get("title", ["reference" => $bill->reference], null, $lang);
-                return $this->buildPage($lang, "invoice/redirect", $title, ["invoice" => $bill, "ref" => $this->param("ref")]);
+                return $this->buildPage($lang, "invoice/redirect", $title, ["invoice" => $bill, "ref" => $this->param("ref"), "transaction" => $payment]);
             }
             
             Lang::load("invoice_details.json", null, $lang);

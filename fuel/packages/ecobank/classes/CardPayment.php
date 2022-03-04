@@ -142,8 +142,8 @@ class CardPayment {
             "secureHash" => "1be4bf59f4917a306005fd8178b8ae9ac385b832a94b15c7a87945cf374edab099e9735379833a01053c33f0edae94ebd0ffa8beb5680871e78c3b7630582331",
             "merchantDetails" => array (
                 "accessCode" => "31a95cc023dd35b88d4cad5e7f08fd9b",
-                "merchantID" => $this->getUserId,
-                "secureSecret" => $this->getUserPassword,
+                "merchantID" => $this->getUserId(),
+                "secureSecret" => $this->getUserPassword(),
             ),
             "paymentDetails" => array (
                 "requestId" => $requestId,
