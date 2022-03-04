@@ -133,10 +133,10 @@ $df_param .= $sessionId;
                         </div>
                         <div class="col-9 pb-2">
                             <div class="form-floating mb-3">
-                                <input class="form-control" list="country-list" name="bill_to_address_country" id="bill_to_address_country" placeholder="<?= $item["placeholder"] ?>">
+                                <input class="form-control" list="country-list" name="bill_to_address_country" id="bill_to_address_country" placeholder="<?= Lang::get("paragraph", [], null, $lang) ?>">
                                 <datalist id="country-list">
                                 </datalist>
-                                <label for="bill_to_address_country" class="form-label"><?= $item["label"] ?></label>
+                                <label for="bill_to_address_country" class="form-label"><?= Lang::get("paragraph", [], null, $lang) ?></label>
                             </div>
                             <script>
                                 (function () {
