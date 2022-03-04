@@ -33,7 +33,7 @@
         "state": {
             "label": "State",
             "placeholder": "Enter your state here.."
-        }
+        },
         "country": {
             "label": "Country",
             "placeholder": "Select your country.."

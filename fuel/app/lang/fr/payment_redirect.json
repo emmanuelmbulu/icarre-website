@@ -33,7 +33,7 @@
         "state": {
             "label": "Province / Etat",
             "placeholder": "Entrez le nom de votre province ou état ici.."
-        }
+        },
         "country": {
             "label": "Pays",
             "placeholder": "Sélectionnez votre pays.."
