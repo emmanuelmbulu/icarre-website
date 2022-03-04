@@ -144,7 +144,7 @@ class Controller_Bill extends Controller_Hybrid {
             $ecobank = Config::get("ecobank");
 
             $dataToSign = array();
-            foreach(Input::post() $key => $value) {
+            foreach(Input::post() as $key => $value) {
                 $dataToSign[] = $key . "=" . $value;
             }
             $dataToSign = implode(",", $dataToSign);
