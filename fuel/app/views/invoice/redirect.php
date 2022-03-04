@@ -72,8 +72,8 @@ $df_param .= $sessionId;
                     <div class="col-lg-8 offset-lg-2">
                         <?= Form::open(array("method" => "post", "action" => "https://testsecureacceptance.cybersource.com/silent/pay")) ?>
                         
-                        <input type="hidden" name="profile_id" value="<?= $ecobank['profileId'] ?>">
-                        <input type="hidden" name="access_key" value="<?= $ecobank['accessKey'] ?>">
+                        <input type="hidden" name="profile_id" value="<?= $ecobank['test']['profileId'] ?>">
+                        <input type="hidden" name="access_key" value="<?= $ecobank['test']['accessKey'] ?>">
                         <input type="hidden" name="transaction_uuid" value="<?= $transaction->id ?>">
                         <input type="hidden" name="signed_date_time" value="<?= gmdate('Y-m-d\TH:i:s\Z') ?>">
                         <input type="hidden" name="transaction_type" value="sale" >
