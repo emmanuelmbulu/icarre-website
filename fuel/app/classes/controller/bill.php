@@ -139,6 +139,23 @@ class Controller_Bill extends Controller_Hybrid {
         }
     }
 
+    public function post_signdata() {
+        try {
+            $ecobank = Config::get("ecobank");
+
+            $dataToSign = array();
+            foreach(Input::post() $key => $value) {
+                $dataToSign[] = $key . "=" . $value;
+            }
+            $dataToSign = implode(",", $dataToSign);
+            $dataSigned = base64_encode(hash_hmac("sha256", $dataToSign, $ecobank["test"]["secretKey"], true));
+            
+            return Api::toJSONResponse(["code"=>0, "signature"=>$dataSigned]);
+        } catch(Exception $e) {
+            return Api::toJSONResponse(["code"=>-1, "error"=>$e->getMessage()]);
+        }
+    }
+
     public function get_callback() {
         $lang = Helper::manageLanguage($this, "details-bill", ["ref" => 0]);
 

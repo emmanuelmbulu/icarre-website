@@ -4,6 +4,7 @@
     "subtitle" : "Payment of :currency :amount - Ref.: :reference.",
     "paragraph" : "You are being redirected to the payment platform. Click the button below if you are not redirected in 5 seconds.",
     "action": "Go to payment",
+    "process": "Payment initialization...",
     "ecobank": {
         "action": "Process",
         "firstname": {

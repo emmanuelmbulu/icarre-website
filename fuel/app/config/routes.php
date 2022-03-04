@@ -62,6 +62,8 @@ return array(
 	'(:lang)/billing/:ref/payment-callback' => array("bill/callback", 'name' => "callback-invoice"),
 	'billing/:ref/payment-callback' => array("bill/callback", 'name' => "callback-invoice-without-lang-param"),
 
+	'billing/sign-data-for-payment' => array("bill/signdata", 'name' => "sign-data-for-payment"),
+
 	/**
 	 * Default routes
 	 */
