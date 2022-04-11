@@ -30,23 +30,29 @@ return array(
 
 	'_404_' => 'default/404',
 	'_500_' => 'default/500',
-
-	/**
-	 * -------------------------------------------------------------------------
-	 *  Example for Presenter
-	 * -------------------------------------------------------------------------
-	 *
-	 *  A route for showing page using Presenter
-	 *
-	 */
-
-	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 	
 	/**
 	 * Payment routes
 	 */
+	'(:lang)/payment/check-out' => array("payment/init", 'name' => "check-out"),
+	'payment/check-out' => array("payment/init", 'name' => "check-out-without-lang-param"),
+
+	'(:lang)/payment/(:ref)/success' => array("payment/success", 'name' => "payment-success"),
+	'payment/(:ref)/success' => array("payment/success", 'name' => "payment-success-without-lang-param"),
+
+	'(:lang)/payment/(:ref)/cancelled' => array("payment/cancelled", 'name' => "payment-cancelled"),
+	'payment/(:ref)/cancelled' => array("payment/cancelled", 'name' => "payment-cancelled-without-lang-param"),
+
+	'(:lang)/payment/(:ref)/declined' => array("payment/declined", 'name' => "payment-declined"),
+	'payment/(:ref)/declined' => array("payment/declined", 'name' => "payment-declined-without-lang-param"),
+
 	'(:lang)/direct-payment' => array("payment/direct", 'name' => "direct-payment"),
 	'direct-payment' => array("payment/direct", 'name' => "direct-payment-without-lang-param"),
+
+	/**
+	 * Callback routes
+	 */
+	'payment/e-com-easypay-channel/callback-manager' => array("payment/callbackeasypay", 'name' => "manage-ecom-easypay-callback"),
 	
 	/**
 	 * Bill routes

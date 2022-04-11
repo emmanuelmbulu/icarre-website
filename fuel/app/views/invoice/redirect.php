@@ -36,11 +36,12 @@ $data = [
 ];
 
 // ECOBANK CONFIG
-$ecobank = Config::get("ecobank");
+Config::load("ecobank");
+$ecobank = Config::get("test");
 session_start();
 $sessionId  = session_id();
-$df_param = 'org_id=' . $ecobank["test"]["dfOrg"];
-$df_param .= '&amp;session_id=' . $ecobank["test"]["merchantId"];
+$df_param = 'org_id=' . $ecobank["dfOrg"];
+$df_param .= '&amp;session_id=' . $ecobank["merchantId"];
 $df_param .= $sessionId;
 ?>
 
@@ -70,26 +71,28 @@ $df_param .= $sessionId;
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <?= Form::open(array("method" => "post", "action" => "https://testsecureacceptance.cybersource.com/silent/pay")) ?>
+                        <?= Form::open(array("method" => "post", "action" => "https://testsecureacceptance.cybersource.com/pay")) ?>
                         
-                        <input type="hidden" name="profile_id" id="profile_id" value="<?= $ecobank['test']['profileId'] ?>">
-                        <input type="hidden" name="access_key" id="access_key" value="<?= $ecobank['test']['accessKey'] ?>">
+                        <input type="hidden" name="profile_id" id="profile_id" value="<?= $ecobank['profileId'] ?>">
+                        <input type="hidden" name="access_key" id="access_key" value="<?= $ecobank['accessKey'] ?>">
                         <input type="hidden" name="transaction_uuid" id="transaction_uuid" value="<?= $transaction->id ?>">
                         <input type="hidden" name="signed_date_time" id="signed_date_time" value="<?= gmdate('Y-m-d\TH:i:s\Z') ?>">
                         <input type="hidden" name="transaction_type" id="transaction_type" value="sale" >
                         <input type="hidden" name="reference_number" id="reference_number" value="<?= $transaction->reference ?>" >
                         <input type="hidden" name="auth_trans_ref_no" id="auth_trans_ref_no" value="">
                         <input type="hidden" name="amount" id="amount" value="<?= $transaction->amount ?>">
-                        <input type="hidden" name="payment_method" id="payment_method" value="card">
+                        <!--input type="hidden" name="payment_method" id="payment_method" value="card"-->
                         <input type="hidden" name="currency" id="currency" value="<?= $transaction->currency ?>">
                         <input type="hidden" name="locale" id="locale" value="<?= $lang == 'en' ? 'en-us' : 'fr-fr' ?>" >
                         <input type="hidden" name="override_custom_receipt_page" id="override_custom_receipt_page" value="<?= Router::get("callback-invoice", ["lang" => $lang, "ref" => $transaction->id]) ?>">
+                        <input type="hidden" name="override_custom_cancel_page" id="override_custom_cancel_page" value="<?= Router::get("callback-invoice", ["lang" => $lang, "ref" => $transaction->id]) ?>">
+                        <input type="hidden" name="merchant_descriptor" id="merchant_descriptor" value="Swen">
                         <input type="hidden" name="device_fingerprint_id" id="device_fingerprint_id" value="<?= $sessionId ?>" />
-                        <input type="hidden" name="merchant_descriptor" id="merchant_descriptor" value="iCarré">
                         <input type="hidden" name="customer_ip_address" id="customer_ip_address" value="<?= $transaction->ip_address ?>">
-                        <input type="hidden" name="signed_field_names" id="signed_field_names" value="profile_id,access_key,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,payment_method,transaction_type,reference_number,auth_trans_ref_no,amount,currency,merchant_descriptor,override_custom_receipt_page">    
-                        <input type="hidden" name="unsigned_field_names" id="unsigned_field_names" value="device_fingerprint_id,card_type,card_number,card_expiry_date,card_cvn,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_line2,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code,customer_ip_address">
+                        <input type="hidden" name="signed_field_names" id="signed_field_names" value="profile_id,access_key,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,auth_trans_ref_no,amount,currency,merchant_descriptor,override_custom_cancel_page,override_custom_receipt_page">    
+                        <input type="hidden" name="unsigned_field_names" id="unsigned_field_names" value="signature,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_line2,bill_to_address_line2,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code,customer_ip_address">
                         <input type="hidden" name="signature" id="signature" />
+                        <input type="hidden" name="line_item_count" value="1"/>
                         <input type="submit" style="display:none" id="submit">
 
                         <div class="row align-left">
@@ -119,10 +122,12 @@ $df_param .= $sessionId;
                             </div>
                             <div class="col-12 pb-2">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="<?= Lang::get("ecobank.address.placeholder", [], null, $lang) ?>" name="bill_to_address_line1" id="bill_to_address_line1"></textarea>
-                                    <label for="bill_to_address_line1"><?= Lang::get("ecobank.address.label", [], null, $lang) ?></label>
+                                    <textarea class="form-control" placeholder="<?= Lang::get("ecobank.address.placeholder", [], null, $lang) ?>" id="bill_to_address_line"></textarea>
+                                    <label for="bill_to_address_line"><?= Lang::get("ecobank.address.label", [], null, $lang) ?></label>
                                 </div>
                             </div>
+                            <input type="hidden" id="bill_to_address_line1" name="bill_to_address_line1">
+                            <input type="hidden" id="bill_to_address_line2" name="bill_to_address_line2">
                             <div class="col-6 pb-2">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" name="bill_to_address_city" id="bill_to_address_city" placeholder="<?= Lang::get("ecobank.city.placeholder", [], null, $lang) ?>">
@@ -172,7 +177,7 @@ $df_param .= $sessionId;
                                     <label for="bill_to_address_postal_code"><?= Lang::get("ecobank.zipcode.label", [], null, $lang) ?></label>
                                 </div>
                             </div>
-                            <hr/>
+                            <!--hr/>
                             <div class="col-12 pb-2">
                                 <div class="form-check form-check-inline">
                                     <input checked class="form-check-input" type="radio" name="card_type" id="visa" value="visa">
@@ -201,20 +206,38 @@ $df_param .= $sessionId;
                                     <label for="card_cvn"><?= Lang::get("ecobank.card.cvn.label", [], null, $lang) ?></label>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                         <button id="action" class="btn btn-hover-secondary btn-primary" type="button" onclick="signData()"><?= Lang::get("ecobank.action", [], null, $lang) ?></button>
                         
                         <?= Form::close() ?>
                         <script>
                             function signData() {
-                                document.querySelector("#action").innerHTML = '<?= Lang::get("ecobank.process", [], null, $lang) ?>';
+                                document.querySelector("#action").innerHTML = '<?= Lang::get("process", [], null, $lang) ?>';
+                                
+                                let addressLines = document.querySelector("#bill_to_address_line").value.split("\n");
+                                document.querySelector("#bill_to_address_line1").value = addressLines[0];
+                                if(addressLines.length > 1) {
+                                    let addressLine2 = addressLines[1];
+                                    for(let i = 2; i < addressLines.length; i++) {
+                                        addressLine2 += addressLines[i];
+                                    }
+                                    document.querySelector("#bill_to_address_line2").value = addressLine2;
+                                }
+
 
                                 let paramList = document.querySelector("#signed_field_names").value;
                                 let dataToSubmit = "";
-                                for (let item of paramList.split(",")) {
+                                let inputNames = paramList.split(",");
+                                let compter = 0;
+                                console.log("InputNames : ", inputNames);
+                                for (let item of inputNames) {
+                                    compter++;
                                     dataToSubmit += item + "=" + document.querySelector("#" + item).value;
+                                    if(compter != inputNames.length) {
+                                        dataToSubmit += "&";
+                                    }
                                 }
-                                console.log(dataToSubmit);
+                                console.log("dataToSubmit : ", dataToSubmit);
                                 let xhr = new XMLHttpRequest();
                                 xhr.open('POST', '<?= Router::get("sign-data-for-payment") ?>', true /*async*/);
                                 xhr.onreadystatechange = function () {
@@ -222,15 +245,15 @@ $df_param .= $sessionId;
                                         const data  = xhr.response;
                                         if(data.code == 0) {
                                             document.querySelector("#signature").value = data.signature;
-                                            document.querySelector("#submit").click;
+                                            document.querySelector("#submit").click();
                                         } else {                                            
-                                            document.querySelector("#action").innerHTML = '<?= Lang::get("ecobank.process", [], null, $lang) ?>';
+                                            document.querySelector("#action").innerHTML = '<?= Lang::get("action", [], null, $lang) ?>';
                                             alert("Error occured! Please retry!");
                                         }
                                     }
                                 };
                                 xhr.responseType = "json";
-                                xhr.send();
+                                xhr.send(dataToSubmit);
                             }
                         </script>
                     </div>

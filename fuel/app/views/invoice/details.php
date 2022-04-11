@@ -147,7 +147,21 @@ Lang::load("invoice_details.json", null, $lang);
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i = 0; foreach ($payments as $item) { $i++; ?>
+                                        <?php $i = 0; foreach ($payments_saved as $item) { $i++; ?>
+                                            <tr>
+                                                <td><?= $i ?></td>
+                                                <td><?= date($date_format, strtotime($item->created_at)) ?></td>
+                                                <td><?= $item->reference ?></td>
+                                                <td><?= strtolower($item->status) == "approved" ? Lang::get("payments.approved", [], null, $lang) : Lang::get("payments.cancelled", [], null, $lang) ?></td>
+                                                
+                                                <td style="text-align: right"><?= Lang::get("amount", ["value" => $item->amount, "currency" => $item->currency], null, $lang) ?></td>
+                                                <td><?= $item->channel ?></td>
+                                                <td>
+                                                    <?php if(strtolower($item->status) == "approved") { ?>
+                                                        <a href="<?= Router::get("receipt-pdf", ["ref"=> strtolower(Helper::NormalizeChars($item->reference))]) ?>" target="blank" style="color: red"><i class="fa-solid fa-file-pdf fa-fw fa-lg" style="color: var(--fa-navy);"></i></a>
+                                                    <?php } else echo("-"); ?>
+                                            </tr>
+                                        <?php } foreach ($payments as $item) { $i++; ?>
                                             <tr>
                                                 <td><?= $i ?></td>
                                                 <td><?= date($date_format, strtotime($item->date)) ?></td>
@@ -161,7 +175,7 @@ Lang::load("invoice_details.json", null, $lang);
                                                         <a href="<?= $item->receipt ?>" target="blank" style="color: red"><i class="fa-solid fa-file-pdf fa-fw fa-lg" style="color: var(--fa-navy);"></i></a>
                                                     <?php } else echo("-"); ?>
                                             </tr>
-                                        <?php } if(count($payments) == 0) { ?>
+                                        <?php } if(count($payments) == 0 && count($payments_saved)) { ?>
                                             <tr>
                                                 <td colspan="7">
                                                     <p><?= Lang::get("payments.empty", [], null, $lang) ?></p>

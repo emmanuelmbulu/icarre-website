@@ -1,0 +1,41 @@
+{    
+    "title" : "Paiement :object :reference",
+    "home" : "Accueil",
+    "subtitle" : "Paiement de :amount :currency - Ref.: :reference.",
+    "approved" : {
+        "title" : "Votre paiement a abouti !",
+        "message" : "Vous pouvez télécharger la preuve de paiement en cliquant sur le lien ci-dessous.",
+        "link": "Télécharger la preuve de paiement."
+    },
+    "cancelled": {
+        "title": "Votre paiement a été annulé !",
+        "message": "Vous avez volontairement annulé le processus de paiement. Si cela est dû à une erreur de maipulation, nous vous prions de reprendre l'opération de paiement."
+    },
+    "declined": {
+        "title": "Votre paiement a échoué !",
+        "message": "Pour une ou plusieurs raisons votre paiement n'a pas abouti. Veillez entrer en contact avec le fournisseur du moyen de paiement que vous avez utilisé pour plus amples informations.",
+        "reason": "La raison qui nous a été communiquée est : <strong>:reason</strong>."
+    },
+    "bill": {
+        "description" : "Paiement d'une tranche de :amount :currency sur la facture :reference",
+        "details" : {
+            "title": "Détails de la facture",
+            "reference" : "Référence :",
+            "date" : "Date :",
+            "download": "Télécharger la facture",
+            "total" : "Total à payer :",
+            "paid": "Total payé :",
+            "status" : {
+                "label" : "Statut :",
+                "paid" : "Soldée",
+                "unpaid" : "A solder"
+            }
+        },
+        "button": "Payer la facture"
+    },
+    "client": {
+        "title": "Détails du client",
+        "email": "Email :",
+        "phone" : "Tél. :"
+    }
+}

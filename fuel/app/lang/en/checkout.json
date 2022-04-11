@@ -1,0 +1,89 @@
+{
+    "header": {
+        "default": "Checkout",
+        "home" : "Home"
+    },
+    "invoice": "Invoice",
+    "investment": "Investing money",
+    "title" : ":object :reference payment",
+    "home" : "Home",
+    "subtitle" : "Payment of :currency :amount - Ref.: :reference.",
+    "paragraph" : "For this payment, it is important that you provide us with the billing address by filling in all the fields below and that you accept the conditions relating thereto.",
+    "action": "Validate",
+    "process": "Payment initiation...",
+    "form": {
+        "action": "Make the payment",
+        "firstname": {
+            "label": "Firstname",
+            "placeholder": "Enter your firstname here.."
+        },
+        "lastname": {
+            "label": "Lastname",
+            "placeholder": "Enter your lastname here.."
+        },
+        "email": {
+            "label": "Email address",
+            "placeholder": "Enter your email address here.."
+        },
+        "phone": {
+            "label": "Cell number",
+            "placeholder": "Enter your cell number here.."
+        },
+        "address": {
+            "label": "Home address",
+            "placeholder": "Enter your home address here.."
+        },
+        "city": {
+            "label": "City",
+            "placeholder": "Enter your city here.."
+        },
+        "state": {
+            "label": "State",
+            "placeholder": "Enter your state here.."
+        },
+        "country": {
+            "label": "Country",
+            "placeholder": "Select your country.."
+        },
+        "zipcode": {
+            "label": "Zip code",
+            "placeholder": "Enter your zip code here.."
+        },
+        "card": {
+            "number": {
+                "label": "Card number",
+                "placeholder": "XXXXXXXXXXXXXXXXXXXX"
+            },
+            "date": {
+                "label": "Expiration date",
+                "placeholder": "MM/YY"
+            },
+            "cvn": {
+                "label": "CVV",
+                "placeholder": "XXX"
+            }
+        },
+        "terms": {
+            "before": "I accept the",
+            "link": "terms et conditions",
+            "after": "relating to this opération"
+        }
+    },
+    "modal": {
+        "title": "Your commitment",
+        "button": "OK",
+        "agreement": {
+            "me": "I,",
+            "address": "Staying at the following address:",
+            "contacts": "Reachable via the following means:",
+            "bill": "I acknowledge having initiated, on the date of <strong>:datetime</strong>, a credit card payment of <strong>:currency :amount</strong> on the website of the iCarré establishment (https://icarre-rdc.com), via its invoice collection module, for a service which was correctly rendered to me whose invoice bears the reference number <strong>:reference</strong>.",
+            "investment": "I acknowledge having initiated, on the date of <strong>:datetime</strong>, a credit card payment of <strong>:currency :amount</strong> on the website of the iCarré establishment (https://icarre-rdc.com) for my investment in the activities of this establishment after having read and accepted the terms and which apply to it.",
+            "ip": "For this payment I used the IP address <strong>:ipaddress</strong>."
+        }
+    },
+    "payment" : {
+        "bill": {
+            "description": "Payment referenced :reference for an amount of :currency :amount on the invoice bearing the reference :invoice"
+        }
+    }
+}

@@ -1,0 +1,89 @@
+{
+    "header": {
+        "default": "Checkout",
+        "home" : "Accueil"
+    },
+    "invoice": "Facture",
+    "investment": "Placement",
+    "title" : "Paiement :object :reference",
+    "home" : "Accueil",
+    "subtitle" : "Paiement de :amount :currency - Ref.: :reference.",
+    "paragraph" : "Pour ce paiement, il est important que vous nous fournissez l'adresse de facturation en remplissant tous les champs ci-dessous et que vous acceptez les conditions y relatives.",
+    "action": "Valider",
+    "process": "Initialisation du paiement...",
+    "form": {
+        "action": "Effectuer le paiement",
+        "firstname": {
+            "label": "Prénom",
+            "placeholder": "Entrez votre prénom ici.."
+        },
+        "lastname": {
+            "label": "Nom",
+            "placeholder": "Entrez votre nom de famille ici.."
+        },
+        "email": {
+            "label": "Adresse email",
+            "placeholder": "Entrez votre adresse email ici.."
+        },
+        "phone": {
+            "label": "Numéro de téléphone",
+            "placeholder": "Entrez votre numéro de téléphone ici.."
+        },
+        "address": {
+            "label": "Adresse de facturation",
+            "placeholder": "Entrez votre adresse de facturation ici.."
+        },
+        "city": {
+            "label": "Ville / Cité",
+            "placeholder": "Entrez le nom de votre ville ici.."
+        },
+        "state": {
+            "label": "Province / Etat",
+            "placeholder": "Entrez le nom de votre province ou état ici.."
+        },
+        "country": {
+            "label": "Pays",
+            "placeholder": "Sélectionnez votre pays.."
+        },
+        "zipcode": {
+            "label": "Code postal",
+            "placeholder": "Entrez votre code postal ici.."
+        },
+        "card": {
+            "number": {
+                "label": "Numéro de la carte",
+                "placeholder": "XXXXXXXXXXXXXXXXXXXX"
+            },
+            "date": {
+                "label": "Date d'expiration",
+                "placeholder": "MM/YY"
+            },
+            "cvn": {
+                "label": "CVV",
+                "placeholder": "XXX"
+            }
+        },
+        "terms": {
+            "before": "J'accepte les",
+            "link": "termes et conditions",
+            "after": "relatifs à cette opération"
+        }
+    },
+    "modal": {
+        "title": "Votre engagement",
+        "button": "OK",
+        "agreement": {
+            "me": "Moi,",
+            "address": "Résidant à l'adresse suivante :",
+            "contacts": "Joignable via les moyens suivants :",
+            "bill": "Je reconnais avoir initié, à la date du <strong>:datetime</strong>, un paiement, par carte bancaire, de <strong>:amount :currency</strong> sur le site web de l'établissement iCarré (https://icarre-rdc.com), via son module de recouvrement des factures, pour un service qui m'a été correctement rendu dont la facture porte la référence <strong>:reference</strong>.",
+            "investment": "Je reconnais avoir initié, à la date du <strong>:datetime</strong>, un paiement, par carte bancaire, de <strong>:amount :currency</strong> sur le site web de l'établissement iCarré (https://icarre-rdc.com) pour mon investissement dans les activités de cet établissement après avoir lu et accepté les termes et conditions qui s'y appliquent.",
+            "ip": "Pour ce paiement, j'ai utilisé l'adresse IP <strong>:ipaddress</strong>."
+        }
+    },
+    "payment" : {
+        "bill": {
+            "description": "Paiement référencé :reference d'un montant de :amount :currency sur la facture portant la référence :invoice"
+        }
+    }
+}

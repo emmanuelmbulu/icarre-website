@@ -27,7 +27,7 @@ class Controller_Bill extends Controller_Hybrid {
                 if($bill == null) {
                     return Helper::redirectTo404($lang);
                 }
-                Cookie::set("invoice", $bill->id, 30 * 60);               
+                Cookie::set("invoice", $bill->id, 60 * 60 * 30);               
                 $ref = Helper::NormalizeChars(strtolower("invoice-".$bill->reference));
                 $ref = urlencode($ref);
                 $route = Router::get("details-bill", ["lang" => $lang, "ref" => $ref]);
@@ -43,11 +43,13 @@ class Controller_Bill extends Controller_Hybrid {
             $items = $bill->get_items();
             $client = $bill->get_client();
             $payments = $bill->get_payments();
+            $payments_saved = Dao_Payment::getAllByBill($bill->id);
             $context = [
                 "invoice" => $bill,
                 "items" => $items,
                 "client" => $client,
                 "payments" => $payments,
+                "payments_saved" => $payments_saved,
             ];
 
             Lang::load("invoice_details.json", null, $lang);
@@ -64,7 +66,11 @@ class Controller_Bill extends Controller_Hybrid {
 
         try {
             $ip_address = Input::ip();
-            Cookie::set("ip", Input::ip(), 60 * 60);
+            /*Api::toPreResponse([
+                "ip" => Input::ip(),
+                "real_ip" => Input::real_ip()
+            ]);*/
+            Cookie::set("ip", Input::ip(), 60 * 60 * 30);
 
             $invoiceForm = new Fieldset('invoice');
             $ref = Input::post("ref", 0);
@@ -80,41 +86,11 @@ class Controller_Bill extends Controller_Hybrid {
             $invoiceForm->validation()->run();
 
             if(!$invoiceForm->error("amount")) {
-                $bill->amount = Input::post("amount");
-                $payment = null;
-                if($bill->bank_purchaser == Dao_Bill::$BankPurchaser["ECOBANK"]) {
-                    /*$cardPayment = new Ecobank\CardPayment("test", Config::get("ecobank"));
-                    $response = $cardPayment->paymentAuthentification();
-                    if(null != $response && is_array($response) && !empty($response['token'])) {
-                        
-                    }*/
-                    $payment = Dao_Payment::persistForBill($bill, $ip_address);
-                    /*if($payment != null) {
-                        $description = Lang::get("callback.description", 
-                            [
-                                "amount" => $payment->amount,
-                                "currency" => $bill->currency,
-                                "reference" => $bill->reference
-                            ], null, $lang);
-                        $returnUrl = Router::get("callback-invoice", ["lang" => $lang, "ref" => $ref]);
-                        $locale = "en_EN";
-                        if($lang == "fr") $locale = "fr_FR";
-                        $response = $cardPayment->initPayment(
-                            $requestId=$payment->id, 
-                            $productCode=$bill->id, 
-                            $description, 
-                            $returnUrl, 
-                            $payment->amount, 
-                            $payment->currency, 
-                            $language=$locale
-                        );
-                        Api::toPreResponse(array("response" => $response));
-                    }*/
-                }
+                Cookie::set("amount", Input::post("amount"), 60 * 60 * 30);
 
-                Lang::load("payment_redirect.json", null, $lang);
-                $title = Lang::get("title", ["reference" => $bill->reference], null, $lang);
-                return $this->buildPage($lang, "invoice/redirect", $title, ["invoice" => $bill, "ref" => $this->param("ref"), "transaction" => $payment]);
+                $route = Router::get("check-out", array("lang" => $lang));
+                $route .= "?ref=$bill->id&object=invoice";
+                return Response::redirect($route);
             }
             
             Lang::load("invoice_details.json", null, $lang);
@@ -122,12 +98,14 @@ class Controller_Bill extends Controller_Hybrid {
             $items = $bill->get_items();
             $client = $bill->get_client();
             $payments = $bill->get_payments();
+            $payments_saved = Dao_Payment::getAllByBill($bill->id);
             $error = Lang::get("input.error", [], null, $lang);
             $context = [
                 "invoice" => $bill,
                 "items" => $items,
                 "client" => $client,
                 "payments" => $payments,
+                "payments_saved" => $payments_saved,
                 "error" => $error
             ];
 

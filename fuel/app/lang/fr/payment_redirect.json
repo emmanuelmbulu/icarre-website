@@ -5,7 +5,7 @@
     "paragraph" : "Vous êtes en train rediriger vers la plateforme de paiement. Cliquez sur le bouton ci-dessous si vous n'êtes pas redirigé dans 5 secondes.",
     "action": "Effectuer le paiement",
     "process": "Initialisation du paiement...",
-    "ecobank": {
+    "form": {
         "action": "Effectuer le paiement",
         "firstname": {
             "label": "Prénom",

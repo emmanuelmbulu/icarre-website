@@ -1,0 +1,41 @@
+{    
+    "title" : ":object :reference payment",
+    "home" : "Home",
+    "subtitle" : "Payment of :currency :amount - Ref.: :reference.",
+    "approved" : {
+        "title" : "Your payment was successful!",
+        "message" : "You can download the proof of payment by clicking on the link below.",
+        "link": "Download proof of payment."
+    },
+    "cancelled": {
+        "title": "Your payment was cancelled!",
+        "message": "You voluntarily canceled the payment process. If this is due to a handling error, please resume the payment process."
+    },
+    "declined": {
+        "title": "Your payment failed!",
+        "message": "For one or more reasons your payment was not successful. Please contact the provider of the payment method you used for more information.",
+        "reason": "The reason that was sent to us: <strong>:reason</strong>."
+    },
+    "bill": {
+        "description" : "Payment of :currency :amount on invoice :reference",
+        "details" : {
+            "title": "Invoice details",
+            "reference" : "Reference:",
+            "date" : "Date :",
+            "download": "Download the invoice",
+            "total" : "Total to be pay:",
+            "paid": "Total paid :",
+            "status" : {
+                "label" : "Status:",
+                "paid" : "Paid",
+                "unpaid" : "To pay"
+            }
+        },
+        "button": "Pay the invoice"
+    },
+    "client": {
+        "title": "Client details",
+        "email": "Email:",
+        "phone" : "Phone:"
+    }
+}

@@ -97,25 +97,71 @@ class Dao_Payment {
     }
 
     //
-    public static function persistForBill($bill, $ip_address) {
+    public static function persistForBill($bill, $lang = "en") {
         $payment = new Model_Payment();
-        $payment->amount = $bill->amount;
+        $payment->amount = Input::post("amount");
+        $payment->ip_address = Input::real_ip();
+
         $payment->currency = $bill->currency;
-        $payment->channel = $bill->bank_purchaser;
+        $payment->language = $lang;
+        $payment->bill_id = $bill->id;
+        
+        $index = 1; //rand(1, 5);
+        $payment->channel = $bill->bank_purchaser == null ? Dao_Bill::$BankPurchaser[$index] : $bill->bank_purchaser;
+
         $payment->status = self::$StatusInit;
-        $payment->direct_payer = $bill->client;
+        $payment->direct_payer = self::retreivePayer();
         $payment->reference = self::createPaymentReference();
-        $payment->ip_address = $ip_address;
-        $payment->created_at = Helper::renvoyerNow();
+        $payment->created_at = Helper::renvoyerNow();           
 
         // Savechanges
         return $payment->save() ? $payment : null;
     }
 
-    //
+    static function retreivePayer() {
+        $payer = array (
+            "firstname" => Input::post("firstname"),
+            "lastname" => Input::post("lastname"),
+            "address" => Input::post("address_line"),
+            "city" => Input::post("address_city"),
+            "state" => Input::post("address_state"),
+            "country" => Input::post("address_country"),
+            "zipcode" => Input::post("address_zipcode"),
+            "email" => Input::post("email"),
+            "phone" => Input::post("phone"),
+        );
+        return json_encode($payer);
+    }
+
+    /**
+     * Returns the Model_Payment object that corresponds to the ID
+     * 
+     * @param int $id The ID of the object
+     * @access public
+     * @return Model_Payment|null
+     */
     public static function getOne($id) {
         if($id == 0) return null;
         return Model_Payment::find($id);
+    }
+
+    //
+    public static function getOneByReference($reference) { 
+        return Model_Payment::query()
+                ->where('reference', $reference)
+                ->get_one();
+    }
+
+    /**
+     * Returns array of Model_Payment objects related to a bill ID
+     * @param int $bill_id
+     * @access public
+     * @return array
+     */
+    public static function getAllByBill($bill_id) {
+        return Model_Payment::query()
+            ->where('bill_id', $bill_id)
+            ->get();
     }
   
     //
@@ -204,15 +250,6 @@ class Dao_Payment {
                 ->get_one();
     }
 
-    //
-    public static function getOneByNumero($numero)
-    { 
-        return Model_Declaration::query()
-                ->where('numero', $numero)
-                ->related(['etablissement', 'lignes_declaration'])
-                ->get_one();
-    }
-
     public static function getOneByPeriodeBeforePersist($id_user) {
         $mois_concerne = self::$Mois[(Input::post('cle_mois'))];
         $annee_concernee = trim(Input::post('annee_concernee'));
@@ -245,15 +282,6 @@ class Dao_Payment {
             //->related(['etablissement', 'auteur'])
             ->where('etablissement_id', $id_etablissement)
             ->related('lignes_declaration')
-            ->get();
-    }
-
-    //
-    public static function getAllByAuteur($id_auteur)
-    {
-        return Model_Declaration::query()
-            ->where('auteur_id', $id_auteur)
-            ->where('est_teledeclaree', true)
             ->get();
     }
 

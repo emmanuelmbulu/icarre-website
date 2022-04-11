@@ -1,5 +1,6 @@
 <?php
 
+use Fuel\Core\Router;
 use Orm\Model;
 
 class Model_Bill extends Model {
@@ -153,15 +154,48 @@ class Model_Bill extends Model {
     }
 
     /**
+     * Function that add a payment item to the bill
+     * @param Model_Payment $payment : An object
+     */
+    public function set_payment($payment) {
+        if(strtolower($payment->status) == "approved") {
+            $this->amount_paid += $payment->amount;
+            $total_to_pay = $this->get_ttc();
+
+            if($this->amount_paid >= $total_to_pay) {
+                $this->is_paid = true;
+            }
+        }
+        $this->last_payment_date = $payment->created_at;
+        $this->save();
+    }
+
+    /**
      * Function that returns an array of Bill_Payment objects
      * @param null : Nothing
      * @return array
      */
     public function get_payments() {
+        $payments = array();
         if(!empty($this->payments)) {
-            return (array)json_decode($this->payments);
+            $payments = (array)json_decode($this->payments);
         }
-        return [];
+        foreach (Dao_Payment::getAllByBill($this->id) as $item) {
+            $payment = new Bill_Payment();
+            $payment->amount = $item->amount;
+            $payment->channel = $item->channel;
+            $payment->date = $item->created_at;
+            $payment->ip_address = $item->ip_address;
+
+            $receiptRef = strtolower(Helper::NormalizeChars($item->reference));                 
+            $payment->receipt = Router::get("receipt-pdf", ["ref" => $receiptRef]);
+             
+            $payment->reference = $item->reference;
+            $payment->set_status($item->status);
+
+            $payments[] = $payment;
+        }
+        return $payments;
     }
 
     /**

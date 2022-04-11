@@ -20,6 +20,7 @@ class Model_Payment extends \Orm\Model {
                 "type" => false,
             )
         ),
+		"language",
 		"status" => array(
 			"label" => "form.input.status.label",
 			"data_type" => "enum",
@@ -57,6 +58,13 @@ class Model_Payment extends \Orm\Model {
                 "name" => "payer",
             )
         ),
+		"payloads" => array(
+			"label" => "form.input.payloads.label",
+			"data_type" => "text",
+            "form" => array(
+                "type" => false,
+            )
+		),
 		"bill_id" => array(
 			"label" => "form.input.reference.label",
 			"data_type" => "int",
@@ -121,4 +129,10 @@ class Model_Payment extends \Orm\Model {
 	    ),*/
 	);
 
+	public function getPayer() {
+		if(empty($this->direct_payer)) {
+			return null;
+		}
+		return json_decode($this->direct_payer);
+	}
 }
