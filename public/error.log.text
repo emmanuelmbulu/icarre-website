@@ -14,3 +14,4 @@
 2022-01-24 12:21:47 Error: "Undefined property: stdClass::$unit". File: "F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\classes\controller\bill.php". Line: 696. Uri: "http://icarre-rdc.local:9090/billing/invoice/1/pdf-file"
 2022-04-08 12:42:11 Error: "Attempt to assign property of non-object". File: "F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\classes\controller\payment.php". Line: 152. Uri: "http://icarre-rdc.local:9090/fr/payment/check-out?ref=1&object=invoice"
 2022-04-08 14:20:39 Error: "Arr::merge() - all arguments must be arrays.". File: "F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\arr.php". Line: 873. Uri: "http://icarre-rdc.local:9090/fr/payment/check-out?ref=1&object=invoice"
+2022-04-11 18:00:47 Error: "Trying to get property of non-object". File: "F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\app\classes\controller\payment.php". Line: 259. Uri: "http://icarre-rdc.local:9090/en/payment/ICIP-2022-00001-0411/declined"

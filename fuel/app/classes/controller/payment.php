@@ -195,18 +195,27 @@ class Controller_Payment extends Controller_Hybrid {
             $payment = Dao_Payment::getOneByReference($ref);
             if($payment == null) {
                 return Helper::redirectTo404($lang);
+            } else if($payment->status == Dao_Payment::$StatusCanceled) {
+                $route = Router::get("payment-cancelled", ["lang"=>$lang, "ref"=>$payment->reference]);
+                return Response::redirect($route);
+            } else if($payment->status == Dao_Payment::$StatusDeclined) {
+                $route = Router::get("payment-declined", ["lang"=>$lang, "ref"=>$payment->reference]);
+                return Response::redirect($route);
             }
 
             $element = null;
+            $client = null;
             $object = "invoice";
             if($payment->bill_id != null) {
                 $element = Model_Bill::find($payment->bill_id);
+                $client = $element->get_client();
             }
 
             $title = Lang::get("title", ["reference" => $element->reference, "object" => $object], null, $lang);
             $context = array(
                 "model" => $payment,
                 "element" => $element,
+                "client" => $client,
                 "object" => $object,
             );
             return $this->buildPage($lang, "payment/approved", $title, $context);
@@ -224,21 +233,30 @@ class Controller_Payment extends Controller_Hybrid {
             $payment = Dao_Payment::getOneByReference($ref);
             if($payment == null) {
                 return Helper::redirectTo404($lang);
+            } else if($payment->status == Dao_Payment::$StatusApproved) {
+                $route = Router::get("payment-success", ["lang"=>$lang, "ref"=>$payment->reference]);
+                return Response::redirect($route);
+            } else if($payment->status == Dao_Payment::$StatusDeclined) {
+                $route = Router::get("payment-declined", ["lang"=>$lang, "ref"=>$payment->reference]);
+                return Response::redirect($route);
             }
 
             $element = null;
+            $client = null;
             $object = "invoice";
             if($payment->bill_id != null) {
                 $element = Model_Bill::find($payment->bill_id);
+                $client = $element->get_client();
             }
 
             $title = Lang::get("title", ["reference" => $element->reference, "object" => $object], null, $lang);
             $context = array(
                 "model" => $payment,
                 "element" => $element,
+                "client" => $client,
                 "object" => $object,
             );
-            return $this->buildPage($lang, "payment/approved", $title, $context);
+            return $this->buildPage($lang, "payment/cancelled", $title, $context);
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
             return Helper::redirectTo500($lang);
@@ -253,21 +271,30 @@ class Controller_Payment extends Controller_Hybrid {
             $payment = Dao_Payment::getOneByReference($ref);
             if($payment == null) {
                 return Helper::redirectTo404($lang);
+            } else if($payment->status == Dao_Payment::$StatusApproved) {
+                $route = Router::get("payment-success", ["lang"=>$lang, "ref"=>$payment->reference]);
+                return Response::redirect($route);
+            } else if($payment->status == Dao_Payment::$StatusCanceled) {
+                $route = Router::get("payment-cancelled", ["lang"=>$lang, "ref"=>$payment->reference]);
+                return Response::redirect($route);
             }
 
             $error = json_decode($payment->payloads);
-            $error = $error->$error;
+            $error = $error->error;
 
             $element = null;
+            $client = null;
             $object = "invoice";
             if($payment->bill_id != null) {
                 $element = Model_Bill::find($payment->bill_id);
+                $client = $element->get_client();
             }
 
             $title = Lang::get("title", ["reference" => $element->reference, "object" => $object], null, $lang);
             $context = array(
                 "model" => $payment,
                 "element" => $element,
+                "client" => $client,
                 "object" => $object,
                 "error" => $error,
             );

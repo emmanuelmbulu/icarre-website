@@ -20,7 +20,7 @@ Lang::load("payment_callback.json", null, $lang);
                     <p class="mb-0"><?= Lang::get("declined.reason", ["reason" => $error], null, $lang) ?></p>
                 </div>
                 
-                <?php if($object == "invoice") { $client = $element->get_client(); ?>
+                <?php if($object == "invoice") { ?>
                 <div id="hs_cos_wrapper_content" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-rich_text mb-3" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                     <span id="hs_cos_wrapper_content_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text">
                         <h2><?= Lang::get("bill.description", ["reference" => $element->reference, "amount" => $model->amount, "currency" => $model->currency], null, $lang) ?></h2>
