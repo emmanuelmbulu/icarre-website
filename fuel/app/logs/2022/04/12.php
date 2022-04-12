@@ -1,0 +1,5 @@
+<?php defined('COREPATH') or exit('No direct script access allowed'); ?>
+
+ERROR - 2022-04-12 15:48:07 --> Error - Object class "Bill_Payment" could not be converted to string or sanitized as ArrayAccess. Whitelist it in security.whitelisted_classes in app/config/config.php to allow it to be passed unchecked. in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\security.php on line 268
+ERROR - 2022-04-12 15:50:09 --> Error - Object class "Bill_Payment" could not be converted to string or sanitized as ArrayAccess. Whitelist it in security.whitelisted_classes in app/config/config.php to allow it to be passed unchecked. in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\security.php on line 268
+ERROR - 2022-04-12 15:55:40 --> Error - Object class "Bill_Payment" could not be converted to string or sanitized as ArrayAccess. Whitelist it in security.whitelisted_classes in app/config/config.php to allow it to be passed unchecked. in F:\DEV PROJECTS\iCARRE\iCARRE - WEBSITE\fuel\core\classes\security.php on line 268

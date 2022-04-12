@@ -298,7 +298,7 @@ class Controller_Payment extends Controller_Hybrid {
                 "object" => $object,
                 "error" => $error,
             );
-            return $this->buildPage($lang, "payment/approved", $title, $context);
+            return $this->buildPage($lang, "payment/declined", $title, $context);
         } catch (\Throwable $th) {
             Helper::archiverErreur($th);
             return Helper::redirectTo500($lang);

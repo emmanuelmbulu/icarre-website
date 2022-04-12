@@ -794,7 +794,6 @@ class Controller_Bill extends Controller_Hybrid {
     function buildPage($lang, $view, $title, $array_context) {
         $array_context["lang"] = $lang;
         $header = View::forge("shared/bill/header", ["lang" => $lang, "title" => $title]);
-
         $this->template->title = $title;
         $this->template->header = $header;
         $this->template->content = View::forge($view, $array_context);

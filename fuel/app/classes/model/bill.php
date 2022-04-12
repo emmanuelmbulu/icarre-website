@@ -176,26 +176,10 @@ class Model_Bill extends Model {
      * @return array
      */
     public function get_payments() {
-        $payments = array();
         if(!empty($this->payments)) {
-            $payments = (array)json_decode($this->payments);
+            return (array)json_decode($this->payments);
         }
-        foreach (Dao_Payment::getAllByBill($this->id) as $item) {
-            $payment = new Bill_Payment();
-            $payment->amount = $item->amount;
-            $payment->channel = $item->channel;
-            $payment->date = $item->created_at;
-            $payment->ip_address = $item->ip_address;
-
-            $receiptRef = strtolower(Helper::NormalizeChars($item->reference));                 
-            $payment->receipt = Router::get("receipt-pdf", ["ref" => $receiptRef]);
-             
-            $payment->reference = $item->reference;
-            $payment->set_status($item->status);
-
-            $payments[] = $payment;
-        }
-        return $payments;
+        return array();
     }
 
     /**
