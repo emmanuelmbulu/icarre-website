@@ -198,7 +198,7 @@ class Controller_Payment extends Controller_Hybrid {
             } else if($payment->status == Dao_Payment::$StatusCanceled) {
                 $route = Router::get("payment-cancelled", ["lang"=>$lang, "ref"=>$payment->reference]);
                 return Response::redirect($route);
-            } else if($payment->status == Dao_Payment::$StatusDeclined) {
+            } else if($payment->status == Dao_Payment::$StatusDeclined || $payment->status == Dao_Payment::$StatusInit) {
                 $route = Router::get("payment-declined", ["lang"=>$lang, "ref"=>$payment->reference]);
                 return Response::redirect($route);
             }
@@ -274,7 +274,7 @@ class Controller_Payment extends Controller_Hybrid {
             } else if($payment->status == Dao_Payment::$StatusApproved) {
                 $route = Router::get("payment-success", ["lang"=>$lang, "ref"=>$payment->reference]);
                 return Response::redirect($route);
-            } else if($payment->status == Dao_Payment::$StatusCanceled) {
+            } else if($payment->status == Dao_Payment::$StatusCanceled || $payment->status == Dao_Payment::$StatusInit) {
                 $route = Router::get("payment-cancelled", ["lang"=>$lang, "ref"=>$payment->reference]);
                 return Response::redirect($route);
             }
